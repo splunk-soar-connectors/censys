@@ -1,7 +1,7 @@
 {
   "appid": "97C8DF6F-C870-4482-B6CA-B6C31745FBAB",
   "name": "Censys",
-  "description": "This app implements investigative actions like lookup ip and lookup domain to get information from the censys search engine.",
+  "description": "This app implements investigative actions to get information from the censys search engine",
   "publisher": "Phantom",
   "type": "information",
   "main_module": "censys_connector.pyc",
@@ -12,8 +12,8 @@
   "product_name": "Censys",
   "product_version_regex": ".*",
   "logo": "censys.png",
-  "min_phantom_version": "1.2.283", 
-  "license": "Copyright (c) Phantom Cyber Corporation 2016",
+  "min_phantom_version": "3.0.247",
+  "license": "Copyright (c) Phantom Cyber Corporation 2016-2017",
   "configuration": {
     "api_id": {
       "data_type": "string",
