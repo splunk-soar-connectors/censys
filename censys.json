@@ -5,8 +5,8 @@
   "publisher": "Phantom",
   "type": "information",
   "main_module": "censys_connector.pyc",
-    "app_version": "1.0.12",
-    "utctime_updated": "2017-08-28T23:40:53.000000Z",
+  "app_version": "1.0.13",
+  "utctime_updated": "2017-09-19T23:25:19.000000Z",
   "package_name": "phantom_censys",
   "product_vendor": "Censys",
   "product_name": "Censys",
@@ -49,11 +49,13 @@
         "ip": {
           "data_type": "string",
           "description": "IP to get info of",
-          "contains": ["ip"],
+          "contains": [
+            "ip"
+          ],
           "required": true,
           "primary": true,
           "order": 0
-          }
+        }
       },
       "render": {
         "type": "custom",
@@ -66,7 +68,9 @@
         {
           "data_path": "action_result.data.*.ip",
           "data_type": "string",
-          "contains": ["ip"]
+          "contains": [
+            "ip"
+          ]
         },
         {
           "data_path": "action_result.data.*.tags",
@@ -271,7 +275,9 @@
         {
           "data_path": "action_result.data.*.ports.443.https.tls.chain.*.parsed.fingerprint_md5",
           "data_type": "string",
-          "contains": [ "md5" ]
+          "contains": [
+            "md5"
+          ]
         },
         {
           "data_path": "action_result.data.*.ports.443.https.tls.chain.*.parsed.tbs_fingerprint",
@@ -304,7 +310,9 @@
         {
           "data_path": "action_result.data.*.ports.443.https.tls.chain.*.parsed.subject_key_info.fingerprint_sha256",
           "data_type": "string",
-          "contains": ["sha256"]
+          "contains": [
+            "sha256"
+          ]
         },
         {
           "data_path": "action_result.data.*.ports.443.https.tls.chain.*.parsed.validation_level",
@@ -313,7 +321,9 @@
         {
           "data_path": "action_result.data.*.ports.443.https.tls.chain.*.parsed.fingerprint_sha256",
           "data_type": "string",
-          "contains": ["sha256"]
+          "contains": [
+            "sha256"
+          ]
         },
         {
           "data_path": "action_result.data.*.ports.443.https.tls.chain.*.parsed.signature_algorithm.oid",
@@ -518,7 +528,9 @@
         {
           "data_path": "action_result.data.*.ports.443.https.tls.certificate.parsed.subject_key_info.fingerprint_sha256",
           "data_type": "string",
-          "contains": ["sha256"]
+          "contains": [
+            "sha256"
+          ]
         },
         {
           "data_path": "action_result.data.*.ports.443.https.tls.certificate.parsed.validation_level",
@@ -527,7 +539,9 @@
         {
           "data_path": "action_result.data.*.ports.443.https.tls.certificate.parsed.fingerprint_sha256",
           "data_type": "string",
-          "contains": ["sha256"]
+          "contains": [
+            "sha256"
+          ]
         },
         {
           "data_path": "action_result.data.*.ports.443.https.tls.certificate.parsed.signature_algorithm.oid",
@@ -692,7 +706,9 @@
         {
           "data_path": "action_result.parameter.ip",
           "data_type": "string",
-          "contains": ["ip"]
+          "contains": [
+            "ip"
+          ]
         },
         {
           "data_path": "summary.total_objects",
@@ -715,11 +731,13 @@
         "domain": {
           "data_type": "string",
           "description": "Domain to lookup",
-          "contains": ["domain"],
+          "contains": [
+            "domain"
+          ],
           "required": true,
           "primary": true,
           "order": 0
-          }
+        }
       },
       "render": {
         "type": "custom",
@@ -876,7 +894,9 @@
         {
           "data_path": "action_result.data.*.ports.25.smtp.starttls.tls.chain.*.parsed.fingerprint_md5",
           "data_type": "string",
-          "contains": ["md5"]
+          "contains": [
+            "md5"
+          ]
         },
         {
           "data_path": "action_result.data.*.ports.25.smtp.starttls.tls.chain.*.parsed.tbs_fingerprint",
@@ -909,7 +929,9 @@
         {
           "data_path": "action_result.data.*.ports.25.smtp.starttls.tls.chain.*.parsed.subject_key_info.fingerprint_sha256",
           "data_type": "string",
-          "contains": ["sha256"]
+          "contains": [
+            "sha256"
+          ]
         },
         {
           "data_path": "action_result.data.*.ports.25.smtp.starttls.tls.chain.*.parsed.validation_level",
@@ -918,7 +940,9 @@
         {
           "data_path": "action_result.data.*.ports.25.smtp.starttls.tls.chain.*.parsed.fingerprint_sha256",
           "data_type": "string",
-          "contains": ["sha256"]
+          "contains": [
+            "sha256"
+          ]
         },
         {
           "data_path": "action_result.data.*.ports.25.smtp.starttls.tls.chain.*.parsed.signature_algorithm.oid",
@@ -1115,7 +1139,9 @@
         {
           "data_path": "action_result.data.*.ports.25.smtp.starttls.tls.certificate.parsed.subject_key_info.fingerprint_sha256",
           "data_type": "string",
-          "contains": ["sha256"]
+          "contains": [
+            "sha256"
+          ]
         },
         {
           "data_path": "action_result.data.*.ports.25.smtp.starttls.tls.certificate.parsed.validation_level",
@@ -1124,7 +1150,9 @@
         {
           "data_path": "action_result.data.*.ports.25.smtp.starttls.tls.certificate.parsed.fingerprint_sha256",
           "data_type": "string",
-          "contains": ["sha256"]
+          "contains": [
+            "sha256"
+          ]
         },
         {
           "data_path": "action_result.data.*.ports.25.smtp.starttls.tls.certificate.parsed.signature_algorithm.oid",
@@ -1393,7 +1421,9 @@
         {
           "data_path": "action_result.data.*.ports.443.https.tls.chain.*.parsed.subject_key_info.fingerprint_sha256",
           "data_type": "string",
-          "contains": ["sha256"]
+          "contains": [
+            "sha256"
+          ]
         },
         {
           "data_path": "action_result.data.*.ports.443.https.tls.chain.*.parsed.validation_level",
@@ -1402,7 +1432,9 @@
         {
           "data_path": "action_result.data.*.ports.443.https.tls.chain.*.parsed.fingerprint_sha256",
           "data_type": "string",
-          "contains": ["sha256"]
+          "contains": [
+            "sha256"
+          ]
         },
         {
           "data_path": "action_result.data.*.ports.443.https.tls.chain.*.parsed.signature_algorithm.oid",
@@ -1634,7 +1666,9 @@
         {
           "data_path": "action_result.data.*.ports.443.https.tls.certificate.parsed.subject_key_info.fingerprint_sha256",
           "data_type": "string",
-          "contains": ["sha256"]
+          "contains": [
+            "sha256"
+          ]
         },
         {
           "data_path": "action_result.data.*.ports.443.https.tls.certificate.parsed.validation_level",
@@ -1643,7 +1677,9 @@
         {
           "data_path": "action_result.data.*.ports.443.https.tls.certificate.parsed.fingerprint_sha256",
           "data_type": "string",
-          "contains": ["sha256"]
+          "contains": [
+            "sha256"
+          ]
         },
         {
           "data_path": "action_result.data.*.ports.443.https.tls.certificate.parsed.signature_algorithm.oid",
@@ -1832,11 +1868,14 @@
         "sha256": {
           "data_type": "string",
           "description": "SHA256 fingerprint of certificate",
-          "contains": ["hash", "sha256"],
+          "contains": [
+            "hash",
+            "sha256"
+          ],
           "required": true,
           "primary": true,
           "order": 0
-          }
+        }
       },
       "render": {
         "type": "custom",
@@ -2177,7 +2216,9 @@
         {
           "data_path": "action_result.data.*.parsed.subject_key_info.fingerprint_sha256",
           "data_type": "string",
-          "contains": [ "sha256" ]
+          "contains": [
+            "sha256"
+          ]
         },
         {
           "data_path": "action_result.data.*.parsed.validation_level",
@@ -2186,7 +2227,9 @@
         {
           "data_path": "action_result.data.*.parsed.fingerprint_sha256",
           "data_type": "string",
-          "contains": [ "sha256" ]
+          "contains": [
+            "sha256"
+          ]
         },
         {
           "data_path": "action_result.data.*.parsed.signature_algorithm.oid",
@@ -2279,7 +2322,10 @@
         {
           "data_path": "action_result.parameter.sha256",
           "data_type": "string",
-          "contains": [ "hash", "sha256" ]
+          "contains": [
+            "hash",
+            "sha256"
+          ]
         },
         {
           "data_path": "summary.total_objects",
