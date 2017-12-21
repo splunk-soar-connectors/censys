@@ -1,2296 +1,2343 @@
 {
-  "appid": "97C8DF6F-C870-4482-B6CA-B6C31745FBAB",
-  "name": "Censys",
-  "description": "This app implements investigative actions like lookup ip and lookup domain to get information from the censys search engine.",
-  "publisher": "Phantom",
-  "type": "information",
-  "main_module": "censys_connector.pyc",
+    "appid": "97C8DF6F-C870-4482-B6CA-B6C31745FBAB",
+    "name": "Censys",
+    "description": "This app implements investigative actions like lookup ip and lookup domain to get information from the censys search engine.",
+    "publisher": "Phantom",
+    "type": "information",
+    "main_module": "censys_connector.pyc",
     "app_version": "1.0.11",
     "utctime_updated": "2017-04-29T02:31:08.000000Z",
-  "package_name": "phantom_censys",
-  "product_vendor": "Censys",
-  "product_name": "Censys",
-  "product_version_regex": ".*",
-  "logo": "censys.png",
-  "min_phantom_version": "1.2.283", 
-  "license": "Copyright (c) Phantom Cyber Corporation 2016",
-  "configuration": {
-    "api_id": {
-      "data_type": "string",
-      "order": 0,
-      "description": "API ID",
-      "required": true
-    },
-    "secret": {
-      "data_type": "string",
-      "order": 1,
-      "description": "Secret",
-      "required": true
-    }
-  },
-  "actions": [
-    {
-      "action": "test connectivity",
-      "description": "Validate connectivity to Censys",
-      "type": "test",
-      "identifier": "test_asset_connectivity",
-      "read_only": true,
-      "parameters": {},
-      "output": [],
-      "versions": "EQ(*)"
-    },
-    {
-      "action": "lookup ip",
-      "description": "Lookup ip info",
-      "type": "investigate",
-      "identifier": "lookup_ip",
-      "read_only": true,
-      "parameters": {
-        "ip": {
-          "data_type": "string",
-          "description": "IP to get info of",
-          "contains": ["ip"],
-          "required": true,
-          "primary": true,
-          "order": 0
-          }
-      },
-      "render": {
-        "type": "custom",
-        "width": 10,
-        "height": 5,
-        "view": "censys_view.display_ip_domain_info",
-        "title": "IP Info"
-      },
-      "output": [
-        {
-          "data_path": "action_result.data.*.ip",
-          "data_type": "string",
-          "contains": ["ip"]
-        },
-        {
-          "data_path": "action_result.data.*.tags",
-          "data_type": "string"
-        },
-        {
-          "data_path": "action_result.data.*.ports.80.http.get.body",
-          "data_type": "string"
-        },
-        {
-          "data_path": "action_result.data.*.ports.80.http.get.headers.vary",
-          "data_type": "string"
-        },
-        {
-          "data_path": "action_result.data.*.ports.80.http.get.headers.pragma",
-          "data_type": "string"
-        },
-        {
-          "data_path": "action_result.data.*.ports.80.http.get.headers.server",
-          "data_type": "string"
-        },
-        {
-          "data_path": "action_result.data.*.ports.80.http.get.headers.expires",
-          "data_type": "string"
-        },
-        {
-          "data_path": "action_result.data.*.ports.80.http.get.headers.unknown.*.key",
-          "data_type": "string"
-        },
-        {
-          "data_path": "action_result.data.*.ports.80.http.get.headers.unknown.*.value",
-          "data_type": "string"
-        },
-        {
-          "data_path": "action_result.data.*.ports.80.http.get.headers.connection",
-          "data_type": "string"
-        },
-        {
-          "data_path": "action_result.data.*.ports.80.http.get.headers.content_type",
-          "data_type": "string"
-        },
-        {
-          "data_path": "action_result.data.*.ports.80.http.get.headers.cache_control",
-          "data_type": "string"
-        },
-        {
-          "data_path": "action_result.data.*.ports.80.http.get.headers.x_frame_options",
-          "data_type": "string"
-        },
-        {
-          "data_path": "action_result.data.*.ports.80.http.get.headers.x_ua_compatible",
-          "data_type": "string"
-        },
-        {
-          "data_path": "action_result.data.*.ports.80.http.get.headers.content_language",
-          "data_type": "string"
-        },
-        {
-          "data_path": "action_result.data.*.ports.80.http.get.headers.strict_transport_security",
-          "data_type": "string"
-        },
-        {
-          "data_path": "action_result.data.*.ports.80.http.get.body_sha256",
-          "data_type": "string"
-        },
-        {
-          "data_path": "action_result.data.*.ports.80.http.get.status_code",
-          "data_type": "numeric"
-        },
-        {
-          "data_path": "action_result.data.*.ports.80.http.get.status_line",
-          "data_type": "string"
-        },
-        {
-          "data_path": "action_result.data.*.ports.443.https.dhe.support",
-          "data_type": "boolean"
-        },
-        {
-          "data_path": "action_result.data.*.ports.443.https.tls.chain.*.parsed.issuer.country",
-          "data_type": "string"
-        },
-        {
-          "data_path": "action_result.data.*.ports.443.https.tls.chain.*.parsed.issuer.common_name",
-          "data_type": "string"
-        },
-        {
-          "data_path": "action_result.data.*.ports.443.https.tls.chain.*.parsed.issuer.organization",
-          "data_type": "string"
-        },
-        {
-          "data_path": "action_result.data.*.ports.443.https.tls.chain.*.parsed.issuer.organizational_unit",
-          "data_type": "string"
-        },
-        {
-          "data_path": "action_result.data.*.ports.443.https.tls.chain.*.parsed.subject.country",
-          "data_type": "string"
-        },
-        {
-          "data_path": "action_result.data.*.ports.443.https.tls.chain.*.parsed.subject.common_name",
-          "data_type": "string"
-        },
-        {
-          "data_path": "action_result.data.*.ports.443.https.tls.chain.*.parsed.subject.organization",
-          "data_type": "string"
-        },
-        {
-          "data_path": "action_result.data.*.ports.443.https.tls.chain.*.parsed.subject.organizational_unit",
-          "data_type": "string"
-        },
-        {
-          "data_path": "action_result.data.*.ports.443.https.tls.chain.*.parsed.version",
-          "data_type": "numeric"
-        },
-        {
-          "data_path": "action_result.data.*.ports.443.https.tls.chain.*.parsed.validity.end",
-          "data_type": "string"
-        },
-        {
-          "data_path": "action_result.data.*.ports.443.https.tls.chain.*.parsed.validity.start",
-          "data_type": "string"
-        },
-        {
-          "data_path": "action_result.data.*.ports.443.https.tls.chain.*.parsed.validity.length",
-          "data_type": "numeric"
-        },
-        {
-          "data_path": "action_result.data.*.ports.443.https.tls.chain.*.parsed.issuer_dn",
-          "data_type": "string"
-        },
-        {
-          "data_path": "action_result.data.*.ports.443.https.tls.chain.*.parsed.signature.valid",
-          "data_type": "boolean"
-        },
-        {
-          "data_path": "action_result.data.*.ports.443.https.tls.chain.*.parsed.signature.value",
-          "data_type": "string"
-        },
-        {
-          "data_path": "action_result.data.*.ports.443.https.tls.chain.*.parsed.signature.self_signed",
-          "data_type": "boolean"
-        },
-        {
-          "data_path": "action_result.data.*.ports.443.https.tls.chain.*.parsed.signature.signature_algorithm.oid",
-          "data_type": "string"
-        },
-        {
-          "data_path": "action_result.data.*.ports.443.https.tls.chain.*.parsed.signature.signature_algorithm.name",
-          "data_type": "string"
-        },
-        {
-          "data_path": "action_result.data.*.ports.443.https.tls.chain.*.parsed.extensions.key_usage.value",
-          "data_type": "numeric"
-        },
-        {
-          "data_path": "action_result.data.*.ports.443.https.tls.chain.*.parsed.extensions.key_usage.crl_sign",
-          "data_type": "boolean"
-        },
-        {
-          "data_path": "action_result.data.*.ports.443.https.tls.chain.*.parsed.extensions.key_usage.certificate_sign",
-          "data_type": "boolean"
-        },
-        {
-          "data_path": "action_result.data.*.ports.443.https.tls.chain.*.parsed.extensions.subject_key_id",
-          "data_type": "string"
-        },
-        {
-          "data_path": "action_result.data.*.ports.443.https.tls.chain.*.parsed.extensions.authority_key_id",
-          "data_type": "string"
-        },
-        {
-          "data_path": "action_result.data.*.ports.443.https.tls.chain.*.parsed.extensions.subject_alt_name.directory_names.*.common_name",
-          "data_type": "string"
-        },
-        {
-          "data_path": "action_result.data.*.ports.443.https.tls.chain.*.parsed.extensions.basic_constraints.is_ca",
-          "data_type": "boolean"
-        },
-        {
-          "data_path": "action_result.data.*.ports.443.https.tls.chain.*.parsed.extensions.basic_constraints.max_path_len",
-          "data_type": "numeric"
-        },
-        {
-          "data_path": "action_result.data.*.ports.443.https.tls.chain.*.parsed.extensions.certificate_policies",
-          "data_type": "string"
-        },
-        {
-          "data_path": "action_result.data.*.ports.443.https.tls.chain.*.parsed.extensions.authority_info_access.ocsp_urls",
-          "data_type": "string"
-        },
-        {
-          "data_path": "action_result.data.*.ports.443.https.tls.chain.*.parsed.extensions.crl_distribution_points",
-          "data_type": "string"
-        },
-        {
-          "data_path": "action_result.data.*.ports.443.https.tls.chain.*.parsed.subject_dn",
-          "data_type": "string"
-        },
-        {
-          "data_path": "action_result.data.*.ports.443.https.tls.chain.*.parsed.serial_number",
-          "data_type": "string"
-        },
-        {
-          "data_path": "action_result.data.*.ports.443.https.tls.chain.*.parsed.fingerprint_md5",
-          "data_type": "string",
-          "contains": [ "md5" ]
-        },
-        {
-          "data_path": "action_result.data.*.ports.443.https.tls.chain.*.parsed.tbs_fingerprint",
-          "data_type": "string"
-        },
-        {
-          "data_path": "action_result.data.*.ports.443.https.tls.chain.*.parsed.fingerprint_sha1",
-          "data_type": "string"
-        },
-        {
-          "data_path": "action_result.data.*.ports.443.https.tls.chain.*.parsed.subject_key_info.key_algorithm.oid",
-          "data_type": "string"
-        },
-        {
-          "data_path": "action_result.data.*.ports.443.https.tls.chain.*.parsed.subject_key_info.key_algorithm.name",
-          "data_type": "string"
-        },
-        {
-          "data_path": "action_result.data.*.ports.443.https.tls.chain.*.parsed.subject_key_info.rsa_public_key.length",
-          "data_type": "numeric"
-        },
-        {
-          "data_path": "action_result.data.*.ports.443.https.tls.chain.*.parsed.subject_key_info.rsa_public_key.modulus",
-          "data_type": "string"
-        },
-        {
-          "data_path": "action_result.data.*.ports.443.https.tls.chain.*.parsed.subject_key_info.rsa_public_key.exponent",
-          "data_type": "numeric"
-        },
-        {
-          "data_path": "action_result.data.*.ports.443.https.tls.chain.*.parsed.subject_key_info.fingerprint_sha256",
-          "data_type": "string",
-          "contains": ["sha256"]
-        },
-        {
-          "data_path": "action_result.data.*.ports.443.https.tls.chain.*.parsed.validation_level",
-          "data_type": "string"
-        },
-        {
-          "data_path": "action_result.data.*.ports.443.https.tls.chain.*.parsed.fingerprint_sha256",
-          "data_type": "string",
-          "contains": ["sha256"]
-        },
-        {
-          "data_path": "action_result.data.*.ports.443.https.tls.chain.*.parsed.signature_algorithm.oid",
-          "data_type": "string"
-        },
-        {
-          "data_path": "action_result.data.*.ports.443.https.tls.chain.*.parsed.signature_algorithm.name",
-          "data_type": "string"
-        },
-        {
-          "data_path": "action_result.data.*.ports.443.https.tls.chain.*.parsed.tbs_noct_fingerprint",
-          "data_type": "string"
-        },
-        {
-          "data_path": "action_result.data.*.ports.443.https.tls.chain.*.parsed.spki_subject_fingerprint",
-          "data_type": "string"
-        },
-        {
-          "data_path": "action_result.data.*.ports.443.https.tls.version",
-          "data_type": "string"
-        },
-        {
-          "data_path": "action_result.data.*.ports.443.https.tls.signature.valid",
-          "data_type": "boolean"
-        },
-        {
-          "data_path": "action_result.data.*.ports.443.https.tls.signature.hash_algorithm",
-          "data_type": "string"
-        },
-        {
-          "data_path": "action_result.data.*.ports.443.https.tls.signature.signature_algorithm",
-          "data_type": "string"
-        },
-        {
-          "data_path": "action_result.data.*.ports.443.https.tls.validation.browser_trusted",
-          "data_type": "boolean"
-        },
-        {
-          "data_path": "action_result.data.*.ports.443.https.tls.certificate.parsed.names",
-          "data_type": "string"
-        },
-        {
-          "data_path": "action_result.data.*.ports.443.https.tls.certificate.parsed.issuer.country",
-          "data_type": "string"
-        },
-        {
-          "data_path": "action_result.data.*.ports.443.https.tls.certificate.parsed.issuer.common_name",
-          "data_type": "string"
-        },
-        {
-          "data_path": "action_result.data.*.ports.443.https.tls.certificate.parsed.issuer.organization",
-          "data_type": "string"
-        },
-        {
-          "data_path": "action_result.data.*.ports.443.https.tls.certificate.parsed.issuer.organizational_unit",
-          "data_type": "string"
-        },
-        {
-          "data_path": "action_result.data.*.ports.443.https.tls.certificate.parsed.subject.country",
-          "data_type": "string"
-        },
-        {
-          "data_path": "action_result.data.*.ports.443.https.tls.certificate.parsed.subject.locality",
-          "data_type": "string"
-        },
-        {
-          "data_path": "action_result.data.*.ports.443.https.tls.certificate.parsed.subject.province",
-          "data_type": "string"
-        },
-        {
-          "data_path": "action_result.data.*.ports.443.https.tls.certificate.parsed.subject.common_name",
-          "data_type": "string"
-        },
-        {
-          "data_path": "action_result.data.*.ports.443.https.tls.certificate.parsed.subject.organization",
-          "data_type": "string"
-        },
-        {
-          "data_path": "action_result.data.*.ports.443.https.tls.certificate.parsed.version",
-          "data_type": "numeric"
-        },
-        {
-          "data_path": "action_result.data.*.ports.443.https.tls.certificate.parsed.validity.end",
-          "data_type": "string"
-        },
-        {
-          "data_path": "action_result.data.*.ports.443.https.tls.certificate.parsed.validity.start",
-          "data_type": "string"
-        },
-        {
-          "data_path": "action_result.data.*.ports.443.https.tls.certificate.parsed.validity.length",
-          "data_type": "numeric"
-        },
-        {
-          "data_path": "action_result.data.*.ports.443.https.tls.certificate.parsed.issuer_dn",
-          "data_type": "string"
-        },
-        {
-          "data_path": "action_result.data.*.ports.443.https.tls.certificate.parsed.signature.valid",
-          "data_type": "boolean"
-        },
-        {
-          "data_path": "action_result.data.*.ports.443.https.tls.certificate.parsed.signature.value",
-          "data_type": "string"
-        },
-        {
-          "data_path": "action_result.data.*.ports.443.https.tls.certificate.parsed.signature.self_signed",
-          "data_type": "boolean"
-        },
-        {
-          "data_path": "action_result.data.*.ports.443.https.tls.certificate.parsed.signature.signature_algorithm.oid",
-          "data_type": "string"
-        },
-        {
-          "data_path": "action_result.data.*.ports.443.https.tls.certificate.parsed.signature.signature_algorithm.name",
-          "data_type": "string"
-        },
-        {
-          "data_path": "action_result.data.*.ports.443.https.tls.certificate.parsed.extensions.key_usage.value",
-          "data_type": "numeric"
-        },
-        {
-          "data_path": "action_result.data.*.ports.443.https.tls.certificate.parsed.extensions.key_usage.key_encipherment",
-          "data_type": "boolean"
-        },
-        {
-          "data_path": "action_result.data.*.ports.443.https.tls.certificate.parsed.extensions.key_usage.digital_signature",
-          "data_type": "boolean"
-        },
-        {
-          "data_path": "action_result.data.*.ports.443.https.tls.certificate.parsed.extensions.authority_key_id",
-          "data_type": "string"
-        },
-        {
-          "data_path": "action_result.data.*.ports.443.https.tls.certificate.parsed.extensions.subject_alt_name.dns_names",
-          "data_type": "string"
-        },
-        {
-          "data_path": "action_result.data.*.ports.443.https.tls.certificate.parsed.extensions.basic_constraints.is_ca",
-          "data_type": "boolean"
-        },
-        {
-          "data_path": "action_result.data.*.ports.443.https.tls.certificate.parsed.extensions.extended_key_usage",
-          "data_type": "numeric"
-        },
-        {
-          "data_path": "action_result.data.*.ports.443.https.tls.certificate.parsed.extensions.certificate_policies",
-          "data_type": "string"
-        },
-        {
-          "data_path": "action_result.data.*.ports.443.https.tls.certificate.parsed.extensions.authority_info_access.ocsp_urls",
-          "data_type": "string"
-        },
-        {
-          "data_path": "action_result.data.*.ports.443.https.tls.certificate.parsed.extensions.authority_info_access.issuer_urls",
-          "data_type": "string"
-        },
-        {
-          "data_path": "action_result.data.*.ports.443.https.tls.certificate.parsed.extensions.crl_distribution_points",
-          "data_type": "string"
-        },
-        {
-          "data_path": "action_result.data.*.ports.443.https.tls.certificate.parsed.subject_dn",
-          "data_type": "string"
-        },
-        {
-          "data_path": "action_result.data.*.ports.443.https.tls.certificate.parsed.serial_number",
-          "data_type": "string"
-        },
-        {
-          "data_path": "action_result.data.*.ports.443.https.tls.certificate.parsed.fingerprint_md5",
-          "data_type": "string"
-        },
-        {
-          "data_path": "action_result.data.*.ports.443.https.tls.certificate.parsed.tbs_fingerprint",
-          "data_type": "string"
-        },
-        {
-          "data_path": "action_result.data.*.ports.443.https.tls.certificate.parsed.fingerprint_sha1",
-          "data_type": "string"
-        },
-        {
-          "data_path": "action_result.data.*.ports.443.https.tls.certificate.parsed.subject_key_info.key_algorithm.oid",
-          "data_type": "string"
-        },
-        {
-          "data_path": "action_result.data.*.ports.443.https.tls.certificate.parsed.subject_key_info.key_algorithm.name",
-          "data_type": "string"
-        },
-        {
-          "data_path": "action_result.data.*.ports.443.https.tls.certificate.parsed.subject_key_info.rsa_public_key.length",
-          "data_type": "numeric"
-        },
-        {
-          "data_path": "action_result.data.*.ports.443.https.tls.certificate.parsed.subject_key_info.rsa_public_key.modulus",
-          "data_type": "string"
-        },
-        {
-          "data_path": "action_result.data.*.ports.443.https.tls.certificate.parsed.subject_key_info.rsa_public_key.exponent",
-          "data_type": "numeric"
-        },
-        {
-          "data_path": "action_result.data.*.ports.443.https.tls.certificate.parsed.subject_key_info.fingerprint_sha256",
-          "data_type": "string",
-          "contains": ["sha256"]
-        },
-        {
-          "data_path": "action_result.data.*.ports.443.https.tls.certificate.parsed.validation_level",
-          "data_type": "string"
-        },
-        {
-          "data_path": "action_result.data.*.ports.443.https.tls.certificate.parsed.fingerprint_sha256",
-          "data_type": "string",
-          "contains": ["sha256"]
-        },
-        {
-          "data_path": "action_result.data.*.ports.443.https.tls.certificate.parsed.signature_algorithm.oid",
-          "data_type": "string"
-        },
-        {
-          "data_path": "action_result.data.*.ports.443.https.tls.certificate.parsed.signature_algorithm.name",
-          "data_type": "string"
-        },
-        {
-          "data_path": "action_result.data.*.ports.443.https.tls.certificate.parsed.tbs_noct_fingerprint",
-          "data_type": "string"
-        },
-        {
-          "data_path": "action_result.data.*.ports.443.https.tls.certificate.parsed.spki_subject_fingerprint",
-          "data_type": "string"
-        },
-        {
-          "data_path": "action_result.data.*.ports.443.https.tls.cipher_suite.id",
-          "data_type": "string"
-        },
-        {
-          "data_path": "action_result.data.*.ports.443.https.tls.cipher_suite.name",
-          "data_type": "string"
-        },
-        {
-          "data_path": "action_result.data.*.ports.443.https.tls.ocsp_stapling",
-          "data_type": "boolean"
-        },
-        {
-          "data_path": "action_result.data.*.ports.443.https.tls.server_key_exchange.ecdh_params.curve_id.id",
-          "data_type": "numeric"
-        },
-        {
-          "data_path": "action_result.data.*.ports.443.https.tls.server_key_exchange.ecdh_params.curve_id.name",
-          "data_type": "string"
-        },
-        {
-          "data_path": "action_result.data.*.ports.443.https.ssl_2.export",
-          "data_type": "boolean"
-        },
-        {
-          "data_path": "action_result.data.*.ports.443.https.ssl_2.support",
-          "data_type": "boolean"
-        },
-        {
-          "data_path": "action_result.data.*.ports.443.https.ssl_2.extra_clear",
-          "data_type": "boolean"
-        },
-        {
-          "data_path": "action_result.data.*.ports.443.https.dhe_export.support",
-          "data_type": "boolean"
-        },
-        {
-          "data_path": "action_result.data.*.ports.443.https.heartbleed.heartbeat_enabled",
-          "data_type": "boolean"
-        },
-        {
-          "data_path": "action_result.data.*.ports.443.https.heartbleed.heartbleed_vulnerable",
-          "data_type": "boolean"
-        },
-        {
-          "data_path": "action_result.data.*.ports.443.https.rsa_export.support",
-          "data_type": "boolean"
-        },
-        {
-          "data_path": "action_result.data.*.location.city",
-          "data_type": "string"
-        },
-        {
-          "data_path": "action_result.data.*.location.country",
-          "data_type": "string"
-        },
-        {
-          "data_path": "action_result.data.*.location.latitude",
-          "data_type": "numeric"
-        },
-        {
-          "data_path": "action_result.data.*.location.province",
-          "data_type": "string"
-        },
-        {
-          "data_path": "action_result.data.*.location.timezone",
-          "data_type": "string"
-        },
-        {
-          "data_path": "action_result.data.*.location.continent",
-          "data_type": "string"
-        },
-        {
-          "data_path": "action_result.data.*.location.longitude",
-          "data_type": "numeric"
-        },
-        {
-          "data_path": "action_result.data.*.location.postal_code",
-          "data_type": "string"
-        },
-        {
-          "data_path": "action_result.data.*.location.country_code",
-          "data_type": "string"
-        },
-        {
-          "data_path": "action_result.data.*.location.registered_country",
-          "data_type": "string"
-        },
-        {
-          "data_path": "action_result.data.*.location.registered_country_code",
-          "data_type": "string"
-        },
-        {
-          "data_path": "action_result.data.*.protocols",
-          "data_type": "string"
-        },
-        {
-          "data_path": "action_result.data.*.updated_at",
-          "data_type": "string"
-        },
-        {
-          "data_path": "action_result.data.*.autonomous_system.asn",
-          "data_type": "numeric"
-        },
-        {
-          "data_path": "action_result.data.*.autonomous_system.rir",
-          "data_type": "string"
-        },
-        {
-          "data_path": "action_result.data.*.autonomous_system.name",
-          "data_type": "string"
-        },
-        {
-          "data_path": "action_result.data.*.autonomous_system.path",
-          "data_type": "numeric"
-        },
-        {
-          "data_path": "action_result.data.*.autonomous_system.description",
-          "data_type": "string"
-        },
-        {
-          "data_path": "action_result.data.*.autonomous_system.country_code",
-          "data_type": "string"
-        },
-        {
-          "data_path": "action_result.data.*.autonomous_system.organization",
-          "data_type": "string"
-        },
-        {
-          "data_path": "action_result.data.*.autonomous_system.routed_prefix",
-          "data_type": "string"
-        },
-        {
-          "data_path": "action_result.status",
-          "data_type": "string"
-        },
-        {
-          "data_path": "action_result.message",
-          "data_type": "string"
-        },
-        {
-          "data_path": "action_result.summary.protocols",
-          "data_type": "string"
-        },
-        {
-          "data_path": "action_result.parameter.ip",
-          "data_type": "string",
-          "contains": ["ip"]
-        },
-        {
-          "data_path": "summary.total_objects",
-          "data_type": "numeric"
-        },
-        {
-          "data_path": "summary.total_objects_successful",
-          "data_type": "numeric"
+    "package_name": "phantom_censys",
+    "product_vendor": "Censys",
+    "product_name": "Censys",
+    "product_version_regex": ".*",
+    "logo": "logo_censys.svg",
+    "logo_dark": "logo_censys_dark.svg",
+    "min_phantom_version": "1.2.283",
+    "license": "Copyright (c) Phantom Cyber Corporation 2016",
+    "configuration": {
+        "api_id": {
+            "data_type": "string",
+            "order": 0,
+            "description": "API ID",
+            "required": true
+        },
+        "secret": {
+            "data_type": "string",
+            "order": 1,
+            "description": "Secret",
+            "required": true
         }
-      ],
-      "versions": "EQ(*)"
     },
-    {
-      "action": "lookup domain",
-      "description": "Lookup Domain info",
-      "type": "investigate",
-      "identifier": "lookup_domain",
-      "read_only": true,
-      "parameters": {
-        "domain": {
-          "data_type": "string",
-          "description": "Domain to lookup",
-          "contains": ["domain"],
-          "required": true,
-          "primary": true,
-          "order": 0
-          }
-      },
-      "render": {
-        "type": "custom",
-        "width": 10,
-        "height": 5,
-        "view": "censys_view.display_ip_domain_info",
-        "title": "IP Info"
-      },
-      "output": [
-        {
-          "data_path": "action_result.data.*.tags",
-          "data_type": "string"
-        },
-        {
-          "data_path": "action_result.data.*.ports.0.lookup.spf.raw",
-          "data_type": "string"
-        },
-        {
-          "data_path": "action_result.data.*.ports.0.lookup.axfr.servers.*.error",
-          "data_type": "string"
-        },
-        {
-          "data_path": "action_result.data.*.ports.0.lookup.axfr.servers.*.server",
-          "data_type": "string"
-        },
-        {
-          "data_path": "action_result.data.*.ports.0.lookup.axfr.servers.*.status",
-          "data_type": "string"
-        },
-        {
-          "data_path": "action_result.data.*.ports.0.lookup.axfr.support",
-          "data_type": "boolean"
-        },
-        {
-          "data_path": "action_result.data.*.ports.0.lookup.axfr.truncated",
-          "data_type": "boolean"
-        },
-        {
-          "data_path": "action_result.data.*.ports.0.lookup.dmarc.raw",
-          "data_type": "string"
-        },
-        {
-          "data_path": "action_result.data.*.ports.25.smtp.starttls.tls.chain.*.parsed.issuer.country",
-          "data_type": "string"
-        },
-        {
-          "data_path": "action_result.data.*.ports.25.smtp.starttls.tls.chain.*.parsed.issuer.common_name",
-          "data_type": "string"
-        },
-        {
-          "data_path": "action_result.data.*.ports.25.smtp.starttls.tls.chain.*.parsed.issuer.organization",
-          "data_type": "string"
-        },
-        {
-          "data_path": "action_result.data.*.ports.25.smtp.starttls.tls.chain.*.parsed.subject.country",
-          "data_type": "string"
-        },
-        {
-          "data_path": "action_result.data.*.ports.25.smtp.starttls.tls.chain.*.parsed.subject.common_name",
-          "data_type": "string"
-        },
-        {
-          "data_path": "action_result.data.*.ports.25.smtp.starttls.tls.chain.*.parsed.subject.organization",
-          "data_type": "string"
-        },
-        {
-          "data_path": "action_result.data.*.ports.25.smtp.starttls.tls.chain.*.parsed.version",
-          "data_type": "numeric"
-        },
-        {
-          "data_path": "action_result.data.*.ports.25.smtp.starttls.tls.chain.*.parsed.validity.end",
-          "data_type": "string"
-        },
-        {
-          "data_path": "action_result.data.*.ports.25.smtp.starttls.tls.chain.*.parsed.validity.start",
-          "data_type": "string"
-        },
-        {
-          "data_path": "action_result.data.*.ports.25.smtp.starttls.tls.chain.*.parsed.validity.length",
-          "data_type": "numeric"
-        },
-        {
-          "data_path": "action_result.data.*.ports.25.smtp.starttls.tls.chain.*.parsed.issuer_dn",
-          "data_type": "string"
-        },
-        {
-          "data_path": "action_result.data.*.ports.25.smtp.starttls.tls.chain.*.parsed.signature.valid",
-          "data_type": "boolean"
-        },
-        {
-          "data_path": "action_result.data.*.ports.25.smtp.starttls.tls.chain.*.parsed.signature.value",
-          "data_type": "string"
-        },
-        {
-          "data_path": "action_result.data.*.ports.25.smtp.starttls.tls.chain.*.parsed.signature.self_signed",
-          "data_type": "boolean"
-        },
-        {
-          "data_path": "action_result.data.*.ports.25.smtp.starttls.tls.chain.*.parsed.signature.signature_algorithm.oid",
-          "data_type": "string"
-        },
-        {
-          "data_path": "action_result.data.*.ports.25.smtp.starttls.tls.chain.*.parsed.signature.signature_algorithm.name",
-          "data_type": "string"
-        },
-        {
-          "data_path": "action_result.data.*.ports.25.smtp.starttls.tls.chain.*.parsed.extensions.key_usage.value",
-          "data_type": "numeric"
-        },
-        {
-          "data_path": "action_result.data.*.ports.25.smtp.starttls.tls.chain.*.parsed.extensions.key_usage.crl_sign",
-          "data_type": "boolean"
-        },
-        {
-          "data_path": "action_result.data.*.ports.25.smtp.starttls.tls.chain.*.parsed.extensions.key_usage.certificate_sign",
-          "data_type": "boolean"
-        },
-        {
-          "data_path": "action_result.data.*.ports.25.smtp.starttls.tls.chain.*.parsed.extensions.subject_key_id",
-          "data_type": "string"
-        },
-        {
-          "data_path": "action_result.data.*.ports.25.smtp.starttls.tls.chain.*.parsed.extensions.authority_key_id",
-          "data_type": "string"
-        },
-        {
-          "data_path": "action_result.data.*.ports.25.smtp.starttls.tls.chain.*.parsed.extensions.basic_constraints.is_ca",
-          "data_type": "boolean"
-        },
-        {
-          "data_path": "action_result.data.*.ports.25.smtp.starttls.tls.chain.*.parsed.extensions.basic_constraints.max_path_len",
-          "data_type": "numeric"
-        },
-        {
-          "data_path": "action_result.data.*.ports.25.smtp.starttls.tls.chain.*.parsed.extensions.certificate_policies",
-          "data_type": "string"
-        },
-        {
-          "data_path": "action_result.data.*.ports.25.smtp.starttls.tls.chain.*.parsed.extensions.authority_info_access.ocsp_urls",
-          "data_type": "string"
-        },
-        {
-          "data_path": "action_result.data.*.ports.25.smtp.starttls.tls.chain.*.parsed.extensions.crl_distribution_points",
-          "data_type": "string"
-        },
-        {
-          "data_path": "action_result.data.*.ports.25.smtp.starttls.tls.chain.*.parsed.subject_dn",
-          "data_type": "string"
-        },
-        {
-          "data_path": "action_result.data.*.ports.25.smtp.starttls.tls.chain.*.parsed.serial_number",
-          "data_type": "string"
-        },
-        {
-          "data_path": "action_result.data.*.ports.25.smtp.starttls.tls.chain.*.parsed.fingerprint_md5",
-          "data_type": "string",
-          "contains": ["md5"]
-        },
-        {
-          "data_path": "action_result.data.*.ports.25.smtp.starttls.tls.chain.*.parsed.tbs_fingerprint",
-          "data_type": "string"
-        },
-        {
-          "data_path": "action_result.data.*.ports.25.smtp.starttls.tls.chain.*.parsed.fingerprint_sha1",
-          "data_type": "string"
-        },
-        {
-          "data_path": "action_result.data.*.ports.25.smtp.starttls.tls.chain.*.parsed.subject_key_info.key_algorithm.oid",
-          "data_type": "string"
-        },
-        {
-          "data_path": "action_result.data.*.ports.25.smtp.starttls.tls.chain.*.parsed.subject_key_info.key_algorithm.name",
-          "data_type": "string"
-        },
-        {
-          "data_path": "action_result.data.*.ports.25.smtp.starttls.tls.chain.*.parsed.subject_key_info.rsa_public_key.length",
-          "data_type": "numeric"
-        },
-        {
-          "data_path": "action_result.data.*.ports.25.smtp.starttls.tls.chain.*.parsed.subject_key_info.rsa_public_key.modulus",
-          "data_type": "string"
-        },
-        {
-          "data_path": "action_result.data.*.ports.25.smtp.starttls.tls.chain.*.parsed.subject_key_info.rsa_public_key.exponent",
-          "data_type": "numeric"
-        },
-        {
-          "data_path": "action_result.data.*.ports.25.smtp.starttls.tls.chain.*.parsed.subject_key_info.fingerprint_sha256",
-          "data_type": "string",
-          "contains": ["sha256"]
-        },
-        {
-          "data_path": "action_result.data.*.ports.25.smtp.starttls.tls.chain.*.parsed.validation_level",
-          "data_type": "string"
-        },
-        {
-          "data_path": "action_result.data.*.ports.25.smtp.starttls.tls.chain.*.parsed.fingerprint_sha256",
-          "data_type": "string",
-          "contains": ["sha256"]
-        },
-        {
-          "data_path": "action_result.data.*.ports.25.smtp.starttls.tls.chain.*.parsed.signature_algorithm.oid",
-          "data_type": "string"
-        },
-        {
-          "data_path": "action_result.data.*.ports.25.smtp.starttls.tls.chain.*.parsed.signature_algorithm.name",
-          "data_type": "string"
-        },
-        {
-          "data_path": "action_result.data.*.ports.25.smtp.starttls.tls.chain.*.parsed.tbs_noct_fingerprint",
-          "data_type": "string"
-        },
-        {
-          "data_path": "action_result.data.*.ports.25.smtp.starttls.tls.chain.*.parsed.spki_subject_fingerprint",
-          "data_type": "string"
-        },
-        {
-          "data_path": "action_result.data.*.ports.25.smtp.starttls.tls.chain.*.parsed.issuer.organizational_unit",
-          "data_type": "string"
-        },
-        {
-          "data_path": "action_result.data.*.ports.25.smtp.starttls.tls.version",
-          "data_type": "string"
-        },
-        {
-          "data_path": "action_result.data.*.ports.25.smtp.starttls.tls.signature.valid",
-          "data_type": "boolean"
-        },
-        {
-          "data_path": "action_result.data.*.ports.25.smtp.starttls.tls.signature.hash_algorithm",
-          "data_type": "string"
-        },
-        {
-          "data_path": "action_result.data.*.ports.25.smtp.starttls.tls.signature.signature_algorithm",
-          "data_type": "string"
-        },
-        {
-          "data_path": "action_result.data.*.ports.25.smtp.starttls.tls.validation.browser_trusted",
-          "data_type": "boolean"
-        },
-        {
-          "data_path": "action_result.data.*.ports.25.smtp.starttls.tls.certificate.parsed.names",
-          "data_type": "string"
-        },
-        {
-          "data_path": "action_result.data.*.ports.25.smtp.starttls.tls.certificate.parsed.issuer.country",
-          "data_type": "string"
-        },
-        {
-          "data_path": "action_result.data.*.ports.25.smtp.starttls.tls.certificate.parsed.issuer.common_name",
-          "data_type": "string"
-        },
-        {
-          "data_path": "action_result.data.*.ports.25.smtp.starttls.tls.certificate.parsed.issuer.organization",
-          "data_type": "string"
-        },
-        {
-          "data_path": "action_result.data.*.ports.25.smtp.starttls.tls.certificate.parsed.subject.country",
-          "data_type": "string"
-        },
-        {
-          "data_path": "action_result.data.*.ports.25.smtp.starttls.tls.certificate.parsed.subject.locality",
-          "data_type": "string"
-        },
-        {
-          "data_path": "action_result.data.*.ports.25.smtp.starttls.tls.certificate.parsed.subject.province",
-          "data_type": "string"
-        },
-        {
-          "data_path": "action_result.data.*.ports.25.smtp.starttls.tls.certificate.parsed.subject.common_name",
-          "data_type": "string"
-        },
-        {
-          "data_path": "action_result.data.*.ports.25.smtp.starttls.tls.certificate.parsed.subject.organization",
-          "data_type": "string"
-        },
-        {
-          "data_path": "action_result.data.*.ports.25.smtp.starttls.tls.certificate.parsed.version",
-          "data_type": "numeric"
-        },
-        {
-          "data_path": "action_result.data.*.ports.25.smtp.starttls.tls.certificate.parsed.validity.end",
-          "data_type": "string"
-        },
-        {
-          "data_path": "action_result.data.*.ports.25.smtp.starttls.tls.certificate.parsed.validity.start",
-          "data_type": "string"
-        },
-        {
-          "data_path": "action_result.data.*.ports.25.smtp.starttls.tls.certificate.parsed.validity.length",
-          "data_type": "numeric"
-        },
-        {
-          "data_path": "action_result.data.*.ports.25.smtp.starttls.tls.certificate.parsed.issuer_dn",
-          "data_type": "string"
-        },
-        {
-          "data_path": "action_result.data.*.ports.25.smtp.starttls.tls.certificate.parsed.signature.valid",
-          "data_type": "boolean"
-        },
-        {
-          "data_path": "action_result.data.*.ports.25.smtp.starttls.tls.certificate.parsed.signature.value",
-          "data_type": "string"
-        },
-        {
-          "data_path": "action_result.data.*.ports.25.smtp.starttls.tls.certificate.parsed.signature.self_signed",
-          "data_type": "boolean"
-        },
-        {
-          "data_path": "action_result.data.*.ports.25.smtp.starttls.tls.certificate.parsed.signature.signature_algorithm.oid",
-          "data_type": "string"
-        },
-        {
-          "data_path": "action_result.data.*.ports.25.smtp.starttls.tls.certificate.parsed.signature.signature_algorithm.name",
-          "data_type": "string"
-        },
-        {
-          "data_path": "action_result.data.*.ports.25.smtp.starttls.tls.certificate.parsed.extensions.subject_key_id",
-          "data_type": "string"
-        },
-        {
-          "data_path": "action_result.data.*.ports.25.smtp.starttls.tls.certificate.parsed.extensions.authority_key_id",
-          "data_type": "string"
-        },
-        {
-          "data_path": "action_result.data.*.ports.25.smtp.starttls.tls.certificate.parsed.extensions.subject_alt_name.dns_names",
-          "data_type": "string"
-        },
-        {
-          "data_path": "action_result.data.*.ports.25.smtp.starttls.tls.certificate.parsed.extensions.basic_constraints.is_ca",
-          "data_type": "boolean"
-        },
-        {
-          "data_path": "action_result.data.*.ports.25.smtp.starttls.tls.certificate.parsed.extensions.extended_key_usage",
-          "data_type": "numeric"
-        },
-        {
-          "data_path": "action_result.data.*.ports.25.smtp.starttls.tls.certificate.parsed.extensions.certificate_policies",
-          "data_type": "string"
-        },
-        {
-          "data_path": "action_result.data.*.ports.25.smtp.starttls.tls.certificate.parsed.extensions.authority_info_access.ocsp_urls",
-          "data_type": "string"
-        },
-        {
-          "data_path": "action_result.data.*.ports.25.smtp.starttls.tls.certificate.parsed.extensions.authority_info_access.issuer_urls",
-          "data_type": "string"
-        },
-        {
-          "data_path": "action_result.data.*.ports.25.smtp.starttls.tls.certificate.parsed.extensions.crl_distribution_points",
-          "data_type": "string"
-        },
-        {
-          "data_path": "action_result.data.*.ports.25.smtp.starttls.tls.certificate.parsed.subject_dn",
-          "data_type": "string"
-        },
-        {
-          "data_path": "action_result.data.*.ports.25.smtp.starttls.tls.certificate.parsed.serial_number",
-          "data_type": "string"
-        },
-        {
-          "data_path": "action_result.data.*.ports.25.smtp.starttls.tls.certificate.parsed.fingerprint_md5",
-          "data_type": "string"
-        },
-        {
-          "data_path": "action_result.data.*.ports.25.smtp.starttls.tls.certificate.parsed.tbs_fingerprint",
-          "data_type": "string"
-        },
-        {
-          "data_path": "action_result.data.*.ports.25.smtp.starttls.tls.certificate.parsed.fingerprint_sha1",
-          "data_type": "string"
-        },
-        {
-          "data_path": "action_result.data.*.ports.25.smtp.starttls.tls.certificate.parsed.subject_key_info.key_algorithm.oid",
-          "data_type": "string"
-        },
-        {
-          "data_path": "action_result.data.*.ports.25.smtp.starttls.tls.certificate.parsed.subject_key_info.key_algorithm.name",
-          "data_type": "string"
-        },
-        {
-          "data_path": "action_result.data.*.ports.25.smtp.starttls.tls.certificate.parsed.subject_key_info.rsa_public_key.length",
-          "data_type": "numeric"
-        },
-        {
-          "data_path": "action_result.data.*.ports.25.smtp.starttls.tls.certificate.parsed.subject_key_info.rsa_public_key.modulus",
-          "data_type": "string"
-        },
-        {
-          "data_path": "action_result.data.*.ports.25.smtp.starttls.tls.certificate.parsed.subject_key_info.rsa_public_key.exponent",
-          "data_type": "numeric"
-        },
-        {
-          "data_path": "action_result.data.*.ports.25.smtp.starttls.tls.certificate.parsed.subject_key_info.fingerprint_sha256",
-          "data_type": "string",
-          "contains": ["sha256"]
-        },
-        {
-          "data_path": "action_result.data.*.ports.25.smtp.starttls.tls.certificate.parsed.validation_level",
-          "data_type": "string"
-        },
-        {
-          "data_path": "action_result.data.*.ports.25.smtp.starttls.tls.certificate.parsed.fingerprint_sha256",
-          "data_type": "string",
-          "contains": ["sha256"]
-        },
-        {
-          "data_path": "action_result.data.*.ports.25.smtp.starttls.tls.certificate.parsed.signature_algorithm.oid",
-          "data_type": "string"
-        },
-        {
-          "data_path": "action_result.data.*.ports.25.smtp.starttls.tls.certificate.parsed.signature_algorithm.name",
-          "data_type": "string"
-        },
-        {
-          "data_path": "action_result.data.*.ports.25.smtp.starttls.tls.certificate.parsed.tbs_noct_fingerprint",
-          "data_type": "string"
-        },
-        {
-          "data_path": "action_result.data.*.ports.25.smtp.starttls.tls.certificate.parsed.spki_subject_fingerprint",
-          "data_type": "string"
-        },
-        {
-          "data_path": "action_result.data.*.ports.25.smtp.starttls.tls.cipher_suite.id",
-          "data_type": "string"
-        },
-        {
-          "data_path": "action_result.data.*.ports.25.smtp.starttls.tls.cipher_suite.name",
-          "data_type": "string"
-        },
-        {
-          "data_path": "action_result.data.*.ports.25.smtp.starttls.tls.ocsp_stapling",
-          "data_type": "boolean"
-        },
-        {
-          "data_path": "action_result.data.*.ports.25.smtp.starttls.tls.server_key_exchange.ecdh_params.curve_id.id",
-          "data_type": "numeric"
-        },
-        {
-          "data_path": "action_result.data.*.ports.25.smtp.starttls.tls.server_key_exchange.ecdh_params.curve_id.name",
-          "data_type": "string"
-        },
-        {
-          "data_path": "action_result.data.*.ports.25.smtp.starttls.ehlo",
-          "data_type": "string"
-        },
-        {
-          "data_path": "action_result.data.*.ports.25.smtp.starttls.banner",
-          "data_type": "string"
-        },
-        {
-          "data_path": "action_result.data.*.ports.25.smtp.starttls.metadata.product",
-          "data_type": "string"
-        },
-        {
-          "data_path": "action_result.data.*.ports.25.smtp.starttls.metadata.description",
-          "data_type": "string"
-        },
-        {
-          "data_path": "action_result.data.*.ports.25.smtp.starttls.metadata.manufacturer",
-          "data_type": "string"
-        },
-        {
-          "data_path": "action_result.data.*.ports.25.smtp.starttls.starttls",
-          "data_type": "string"
-        },
-        {
-          "data_path": "action_result.data.*.ports.80.http.get.body",
-          "data_type": "string"
-        },
-        {
-          "data_path": "action_result.data.*.ports.80.http.get.title",
-          "data_type": "string"
-        },
-        {
-          "data_path": "action_result.data.*.ports.80.http.get.headers.p3p",
-          "data_type": "string"
-        },
-        {
-          "data_path": "action_result.data.*.ports.80.http.get.headers.server",
-          "data_type": "string"
-        },
-        {
-          "data_path": "action_result.data.*.ports.80.http.get.headers.expires",
-          "data_type": "string"
-        },
-        {
-          "data_path": "action_result.data.*.ports.80.http.get.headers.unknown.*.key",
-          "data_type": "string"
-        },
-        {
-          "data_path": "action_result.data.*.ports.80.http.get.headers.unknown.*.value",
-          "data_type": "string"
-        },
-        {
-          "data_path": "action_result.data.*.ports.80.http.get.headers.content_type",
-          "data_type": "string"
-        },
-        {
-          "data_path": "action_result.data.*.ports.80.http.get.headers.cache_control",
-          "data_type": "string"
-        },
-        {
-          "data_path": "action_result.data.*.ports.80.http.get.headers.x_frame_options",
-          "data_type": "string"
-        },
-        {
-          "data_path": "action_result.data.*.ports.80.http.get.headers.x_xss_protection",
-          "data_type": "string"
-        },
-        {
-          "data_path": "action_result.data.*.ports.80.http.get.body_sha256",
-          "data_type": "string"
-        },
-        {
-          "data_path": "action_result.data.*.ports.80.http.get.status_code",
-          "data_type": "numeric"
-        },
-        {
-          "data_path": "action_result.data.*.ports.80.http.get.status_line",
-          "data_type": "string"
-        },
-        {
-          "data_path": "action_result.data.*.ports.443.https.dhe.support",
-          "data_type": "boolean"
-        },
-        {
-          "data_path": "action_result.data.*.ports.443.https.tls.chain.*.parsed.issuer.country",
-          "data_type": "string"
-        },
-        {
-          "data_path": "action_result.data.*.ports.443.https.tls.chain.*.parsed.issuer.common_name",
-          "data_type": "string"
-        },
-        {
-          "data_path": "action_result.data.*.ports.443.https.tls.chain.*.parsed.issuer.organization",
-          "data_type": "string"
-        },
-        {
-          "data_path": "action_result.data.*.ports.443.https.tls.chain.*.parsed.subject.country",
-          "data_type": "string"
-        },
-        {
-          "data_path": "action_result.data.*.ports.443.https.tls.chain.*.parsed.subject.common_name",
-          "data_type": "string"
-        },
-        {
-          "data_path": "action_result.data.*.ports.443.https.tls.chain.*.parsed.subject.organization",
-          "data_type": "string"
-        },
-        {
-          "data_path": "action_result.data.*.ports.443.https.tls.chain.*.parsed.version",
-          "data_type": "numeric"
-        },
-        {
-          "data_path": "action_result.data.*.ports.443.https.tls.chain.*.parsed.validity.end",
-          "data_type": "string"
-        },
-        {
-          "data_path": "action_result.data.*.ports.443.https.tls.chain.*.parsed.validity.start",
-          "data_type": "string"
-        },
-        {
-          "data_path": "action_result.data.*.ports.443.https.tls.chain.*.parsed.validity.length",
-          "data_type": "numeric"
-        },
-        {
-          "data_path": "action_result.data.*.ports.443.https.tls.chain.*.parsed.issuer_dn",
-          "data_type": "string"
-        },
-        {
-          "data_path": "action_result.data.*.ports.443.https.tls.chain.*.parsed.signature.valid",
-          "data_type": "boolean"
-        },
-        {
-          "data_path": "action_result.data.*.ports.443.https.tls.chain.*.parsed.signature.value",
-          "data_type": "string"
-        },
-        {
-          "data_path": "action_result.data.*.ports.443.https.tls.chain.*.parsed.signature.self_signed",
-          "data_type": "boolean"
-        },
-        {
-          "data_path": "action_result.data.*.ports.443.https.tls.chain.*.parsed.signature.signature_algorithm.oid",
-          "data_type": "string"
-        },
-        {
-          "data_path": "action_result.data.*.ports.443.https.tls.chain.*.parsed.signature.signature_algorithm.name",
-          "data_type": "string"
-        },
-        {
-          "data_path": "action_result.data.*.ports.443.https.tls.chain.*.parsed.extensions.key_usage.value",
-          "data_type": "numeric"
-        },
-        {
-          "data_path": "action_result.data.*.ports.443.https.tls.chain.*.parsed.extensions.key_usage.crl_sign",
-          "data_type": "boolean"
-        },
-        {
-          "data_path": "action_result.data.*.ports.443.https.tls.chain.*.parsed.extensions.key_usage.certificate_sign",
-          "data_type": "boolean"
-        },
-        {
-          "data_path": "action_result.data.*.ports.443.https.tls.chain.*.parsed.extensions.subject_key_id",
-          "data_type": "string"
-        },
-        {
-          "data_path": "action_result.data.*.ports.443.https.tls.chain.*.parsed.extensions.authority_key_id",
-          "data_type": "string"
-        },
-        {
-          "data_path": "action_result.data.*.ports.443.https.tls.chain.*.parsed.extensions.basic_constraints.is_ca",
-          "data_type": "boolean"
-        },
-        {
-          "data_path": "action_result.data.*.ports.443.https.tls.chain.*.parsed.extensions.basic_constraints.max_path_len",
-          "data_type": "numeric"
-        },
-        {
-          "data_path": "action_result.data.*.ports.443.https.tls.chain.*.parsed.extensions.certificate_policies",
-          "data_type": "string"
-        },
-        {
-          "data_path": "action_result.data.*.ports.443.https.tls.chain.*.parsed.extensions.authority_info_access.ocsp_urls",
-          "data_type": "string"
-        },
-        {
-          "data_path": "action_result.data.*.ports.443.https.tls.chain.*.parsed.extensions.crl_distribution_points",
-          "data_type": "string"
-        },
-        {
-          "data_path": "action_result.data.*.ports.443.https.tls.chain.*.parsed.subject_dn",
-          "data_type": "string"
-        },
-        {
-          "data_path": "action_result.data.*.ports.443.https.tls.chain.*.parsed.serial_number",
-          "data_type": "string"
-        },
-        {
-          "data_path": "action_result.data.*.ports.443.https.tls.chain.*.parsed.fingerprint_md5",
-          "data_type": "string"
-        },
-        {
-          "data_path": "action_result.data.*.ports.443.https.tls.chain.*.parsed.tbs_fingerprint",
-          "data_type": "string"
-        },
-        {
-          "data_path": "action_result.data.*.ports.443.https.tls.chain.*.parsed.fingerprint_sha1",
-          "data_type": "string"
-        },
-        {
-          "data_path": "action_result.data.*.ports.443.https.tls.chain.*.parsed.subject_key_info.key_algorithm.oid",
-          "data_type": "string"
-        },
-        {
-          "data_path": "action_result.data.*.ports.443.https.tls.chain.*.parsed.subject_key_info.key_algorithm.name",
-          "data_type": "string"
-        },
-        {
-          "data_path": "action_result.data.*.ports.443.https.tls.chain.*.parsed.subject_key_info.rsa_public_key.length",
-          "data_type": "numeric"
-        },
-        {
-          "data_path": "action_result.data.*.ports.443.https.tls.chain.*.parsed.subject_key_info.rsa_public_key.modulus",
-          "data_type": "string"
-        },
-        {
-          "data_path": "action_result.data.*.ports.443.https.tls.chain.*.parsed.subject_key_info.rsa_public_key.exponent",
-          "data_type": "numeric"
-        },
-        {
-          "data_path": "action_result.data.*.ports.443.https.tls.chain.*.parsed.subject_key_info.fingerprint_sha256",
-          "data_type": "string",
-          "contains": ["sha256"]
-        },
-        {
-          "data_path": "action_result.data.*.ports.443.https.tls.chain.*.parsed.validation_level",
-          "data_type": "string"
-        },
-        {
-          "data_path": "action_result.data.*.ports.443.https.tls.chain.*.parsed.fingerprint_sha256",
-          "data_type": "string",
-          "contains": ["sha256"]
-        },
-        {
-          "data_path": "action_result.data.*.ports.443.https.tls.chain.*.parsed.signature_algorithm.oid",
-          "data_type": "string"
-        },
-        {
-          "data_path": "action_result.data.*.ports.443.https.tls.chain.*.parsed.signature_algorithm.name",
-          "data_type": "string"
-        },
-        {
-          "data_path": "action_result.data.*.ports.443.https.tls.chain.*.parsed.tbs_noct_fingerprint",
-          "data_type": "string"
-        },
-        {
-          "data_path": "action_result.data.*.ports.443.https.tls.chain.*.parsed.spki_subject_fingerprint",
-          "data_type": "string"
-        },
-        {
-          "data_path": "action_result.data.*.ports.443.https.tls.chain.*.parsed.issuer.organizational_unit",
-          "data_type": "string"
-        },
-        {
-          "data_path": "action_result.data.*.ports.443.https.tls.version",
-          "data_type": "string"
-        },
-        {
-          "data_path": "action_result.data.*.ports.443.https.tls.signature.valid",
-          "data_type": "boolean"
-        },
-        {
-          "data_path": "action_result.data.*.ports.443.https.tls.signature.hash_algorithm",
-          "data_type": "string"
-        },
-        {
-          "data_path": "action_result.data.*.ports.443.https.tls.signature.signature_algorithm",
-          "data_type": "string"
-        },
-        {
-          "data_path": "action_result.data.*.ports.443.https.tls.validation.matches_domain",
-          "data_type": "boolean",
-          "contains": [
-            "domain"
-          ]
-        },
-        {
-          "data_path": "action_result.data.*.ports.443.https.tls.validation.browser_trusted",
-          "data_type": "boolean"
-        },
-        {
-          "data_path": "action_result.data.*.ports.443.https.tls.certificate.parsed.names",
-          "data_type": "string"
-        },
-        {
-          "data_path": "action_result.data.*.ports.443.https.tls.certificate.parsed.issuer.country",
-          "data_type": "string"
-        },
-        {
-          "data_path": "action_result.data.*.ports.443.https.tls.certificate.parsed.issuer.common_name",
-          "data_type": "string"
-        },
-        {
-          "data_path": "action_result.data.*.ports.443.https.tls.certificate.parsed.issuer.organization",
-          "data_type": "string"
-        },
-        {
-          "data_path": "action_result.data.*.ports.443.https.tls.certificate.parsed.subject.country",
-          "data_type": "string"
-        },
-        {
-          "data_path": "action_result.data.*.ports.443.https.tls.certificate.parsed.subject.locality",
-          "data_type": "string"
-        },
-        {
-          "data_path": "action_result.data.*.ports.443.https.tls.certificate.parsed.subject.province",
-          "data_type": "string"
-        },
-        {
-          "data_path": "action_result.data.*.ports.443.https.tls.certificate.parsed.subject.common_name",
-          "data_type": "string"
-        },
-        {
-          "data_path": "action_result.data.*.ports.443.https.tls.certificate.parsed.subject.organization",
-          "data_type": "string"
-        },
-        {
-          "data_path": "action_result.data.*.ports.443.https.tls.certificate.parsed.version",
-          "data_type": "numeric"
-        },
-        {
-          "data_path": "action_result.data.*.ports.443.https.tls.certificate.parsed.validity.end",
-          "data_type": "string"
-        },
-        {
-          "data_path": "action_result.data.*.ports.443.https.tls.certificate.parsed.validity.start",
-          "data_type": "string"
-        },
-        {
-          "data_path": "action_result.data.*.ports.443.https.tls.certificate.parsed.validity.length",
-          "data_type": "numeric"
-        },
-        {
-          "data_path": "action_result.data.*.ports.443.https.tls.certificate.parsed.issuer_dn",
-          "data_type": "string"
-        },
-        {
-          "data_path": "action_result.data.*.ports.443.https.tls.certificate.parsed.signature.valid",
-          "data_type": "boolean"
-        },
-        {
-          "data_path": "action_result.data.*.ports.443.https.tls.certificate.parsed.signature.value",
-          "data_type": "string"
-        },
-        {
-          "data_path": "action_result.data.*.ports.443.https.tls.certificate.parsed.signature.self_signed",
-          "data_type": "boolean"
-        },
-        {
-          "data_path": "action_result.data.*.ports.443.https.tls.certificate.parsed.signature.signature_algorithm.oid",
-          "data_type": "string"
-        },
-        {
-          "data_path": "action_result.data.*.ports.443.https.tls.certificate.parsed.signature.signature_algorithm.name",
-          "data_type": "string"
-        },
-        {
-          "data_path": "action_result.data.*.ports.443.https.tls.certificate.parsed.extensions.key_usage.value",
-          "data_type": "numeric"
-        },
-        {
-          "data_path": "action_result.data.*.ports.443.https.tls.certificate.parsed.extensions.key_usage.digital_signature",
-          "data_type": "boolean"
-        },
-        {
-          "data_path": "action_result.data.*.ports.443.https.tls.certificate.parsed.extensions.subject_key_id",
-          "data_type": "string"
-        },
-        {
-          "data_path": "action_result.data.*.ports.443.https.tls.certificate.parsed.extensions.authority_key_id",
-          "data_type": "string"
-        },
-        {
-          "data_path": "action_result.data.*.ports.443.https.tls.certificate.parsed.extensions.subject_alt_name.dns_names",
-          "data_type": "string"
-        },
-        {
-          "data_path": "action_result.data.*.ports.443.https.tls.certificate.parsed.extensions.basic_constraints.is_ca",
-          "data_type": "boolean"
-        },
-        {
-          "data_path": "action_result.data.*.ports.443.https.tls.certificate.parsed.extensions.extended_key_usage",
-          "data_type": "numeric"
-        },
-        {
-          "data_path": "action_result.data.*.ports.443.https.tls.certificate.parsed.extensions.certificate_policies",
-          "data_type": "string"
-        },
-        {
-          "data_path": "action_result.data.*.ports.443.https.tls.certificate.parsed.extensions.authority_info_access.ocsp_urls",
-          "data_type": "string"
-        },
-        {
-          "data_path": "action_result.data.*.ports.443.https.tls.certificate.parsed.extensions.authority_info_access.issuer_urls",
-          "data_type": "string"
-        },
-        {
-          "data_path": "action_result.data.*.ports.443.https.tls.certificate.parsed.extensions.crl_distribution_points",
-          "data_type": "string"
-        },
-        {
-          "data_path": "action_result.data.*.ports.443.https.tls.certificate.parsed.subject_dn",
-          "data_type": "string"
-        },
-        {
-          "data_path": "action_result.data.*.ports.443.https.tls.certificate.parsed.serial_number",
-          "data_type": "string"
-        },
-        {
-          "data_path": "action_result.data.*.ports.443.https.tls.certificate.parsed.fingerprint_md5",
-          "data_type": "string"
-        },
-        {
-          "data_path": "action_result.data.*.ports.443.https.tls.certificate.parsed.tbs_fingerprint",
-          "data_type": "string"
-        },
-        {
-          "data_path": "action_result.data.*.ports.443.https.tls.certificate.parsed.fingerprint_sha1",
-          "data_type": "string"
-        },
-        {
-          "data_path": "action_result.data.*.ports.443.https.tls.certificate.parsed.subject_key_info.key_algorithm.oid",
-          "data_type": "string"
-        },
-        {
-          "data_path": "action_result.data.*.ports.443.https.tls.certificate.parsed.subject_key_info.key_algorithm.name",
-          "data_type": "string"
-        },
-        {
-          "data_path": "action_result.data.*.ports.443.https.tls.certificate.parsed.subject_key_info.ecdsa_public_key.b",
-          "data_type": "string"
-        },
-        {
-          "data_path": "action_result.data.*.ports.443.https.tls.certificate.parsed.subject_key_info.ecdsa_public_key.n",
-          "data_type": "string"
-        },
-        {
-          "data_path": "action_result.data.*.ports.443.https.tls.certificate.parsed.subject_key_info.ecdsa_public_key.p",
-          "data_type": "string"
-        },
-        {
-          "data_path": "action_result.data.*.ports.443.https.tls.certificate.parsed.subject_key_info.ecdsa_public_key.x",
-          "data_type": "string"
-        },
-        {
-          "data_path": "action_result.data.*.ports.443.https.tls.certificate.parsed.subject_key_info.ecdsa_public_key.y",
-          "data_type": "string"
-        },
-        {
-          "data_path": "action_result.data.*.ports.443.https.tls.certificate.parsed.subject_key_info.ecdsa_public_key.gx",
-          "data_type": "string"
-        },
-        {
-          "data_path": "action_result.data.*.ports.443.https.tls.certificate.parsed.subject_key_info.ecdsa_public_key.gy",
-          "data_type": "string"
-        },
-        {
-          "data_path": "action_result.data.*.ports.443.https.tls.certificate.parsed.subject_key_info.ecdsa_public_key.pub",
-          "data_type": "string"
-        },
-        {
-          "data_path": "action_result.data.*.ports.443.https.tls.certificate.parsed.subject_key_info.fingerprint_sha256",
-          "data_type": "string",
-          "contains": ["sha256"]
-        },
-        {
-          "data_path": "action_result.data.*.ports.443.https.tls.certificate.parsed.validation_level",
-          "data_type": "string"
-        },
-        {
-          "data_path": "action_result.data.*.ports.443.https.tls.certificate.parsed.fingerprint_sha256",
-          "data_type": "string",
-          "contains": ["sha256"]
-        },
-        {
-          "data_path": "action_result.data.*.ports.443.https.tls.certificate.parsed.signature_algorithm.oid",
-          "data_type": "string"
-        },
-        {
-          "data_path": "action_result.data.*.ports.443.https.tls.certificate.parsed.signature_algorithm.name",
-          "data_type": "string"
-        },
-        {
-          "data_path": "action_result.data.*.ports.443.https.tls.certificate.parsed.tbs_noct_fingerprint",
-          "data_type": "string"
-        },
-        {
-          "data_path": "action_result.data.*.ports.443.https.tls.certificate.parsed.spki_subject_fingerprint",
-          "data_type": "string"
-        },
-        {
-          "data_path": "action_result.data.*.ports.443.https.tls.cipher_suite.id",
-          "data_type": "string"
-        },
-        {
-          "data_path": "action_result.data.*.ports.443.https.tls.cipher_suite.name",
-          "data_type": "string"
-        },
-        {
-          "data_path": "action_result.data.*.ports.443.https.tls.ocsp_stapling",
-          "data_type": "boolean"
-        },
-        {
-          "data_path": "action_result.data.*.ports.443.https.tls.server_key_exchange.ecdh_params.curve_id.id",
-          "data_type": "numeric"
-        },
-        {
-          "data_path": "action_result.data.*.ports.443.https.tls.server_key_exchange.ecdh_params.curve_id.name",
-          "data_type": "string"
-        },
-        {
-          "data_path": "action_result.data.*.ports.443.https.dhe_export.support",
-          "data_type": "boolean"
-        },
-        {
-          "data_path": "action_result.data.*.ports.443.https.heartbleed.heartbeat_enabled",
-          "data_type": "boolean"
-        },
-        {
-          "data_path": "action_result.data.*.ports.443.https.heartbleed.heartbleed_vulnerable",
-          "data_type": "boolean"
-        },
-        {
-          "data_path": "action_result.data.*.ports.443.https.rsa_export.support",
-          "data_type": "boolean"
-        },
-        {
-          "data_path": "action_result.data.*.domain",
-          "data_type": "string",
-          "contains": [
-            "domain"
-          ]
-        },
-        {
-          "data_path": "action_result.data.*.location.city",
-          "data_type": "string"
-        },
-        {
-          "data_path": "action_result.data.*.location.country",
-          "data_type": "string"
-        },
-        {
-          "data_path": "action_result.data.*.location.latitude",
-          "data_type": "numeric"
-        },
-        {
-          "data_path": "action_result.data.*.location.province",
-          "data_type": "string"
-        },
-        {
-          "data_path": "action_result.data.*.location.timezone",
-          "data_type": "string"
-        },
-        {
-          "data_path": "action_result.data.*.location.continent",
-          "data_type": "string"
-        },
-        {
-          "data_path": "action_result.data.*.location.longitude",
-          "data_type": "numeric"
-        },
-        {
-          "data_path": "action_result.data.*.location.postal_code",
-          "data_type": "string"
-        },
-        {
-          "data_path": "action_result.data.*.location.country_code",
-          "data_type": "string"
-        },
-        {
-          "data_path": "action_result.data.*.location.registered_country",
-          "data_type": "string"
-        },
-        {
-          "data_path": "action_result.data.*.location.registered_country_code",
-          "data_type": "string"
-        },
-        {
-          "data_path": "action_result.data.*.protocols",
-          "data_type": "string"
-        },
-        {
-          "data_path": "action_result.data.*.alexa_rank",
-          "data_type": "numeric"
-        },
-        {
-          "data_path": "action_result.data.*.updated_at",
-          "data_type": "string"
-        },
-        {
-          "data_path": "action_result.data.*.autonomous_system.asn",
-          "data_type": "numeric"
-        },
-        {
-          "data_path": "action_result.data.*.autonomous_system.rir",
-          "data_type": "string"
-        },
-        {
-          "data_path": "action_result.data.*.autonomous_system.name",
-          "data_type": "string"
-        },
-        {
-          "data_path": "action_result.data.*.autonomous_system.path",
-          "data_type": "numeric"
-        },
-        {
-          "data_path": "action_result.data.*.autonomous_system.description",
-          "data_type": "string"
-        },
-        {
-          "data_path": "action_result.data.*.autonomous_system.country_code",
-          "data_type": "string"
-        },
-        {
-          "data_path": "action_result.data.*.autonomous_system.organization",
-          "data_type": "string"
-        },
-        {
-          "data_path": "action_result.data.*.autonomous_system.routed_prefix",
-          "data_type": "string"
-        },
-        {
-          "data_path": "action_result.status",
-          "data_type": "string"
-        },
-        {
-          "data_path": "action_result.message",
-          "data_type": "string"
-        },
-        {
-          "data_path": "action_result.summary.protocols",
-          "data_type": "string"
-        },
-        {
-          "data_path": "action_result.parameter.domain",
-          "data_type": "string",
-          "contains": [
-            "domain"
-          ]
-        },
-        {
-          "data_path": "summary.total_objects",
-          "data_type": "numeric"
-        },
-        {
-          "data_path": "summary.total_objects_successful",
-          "data_type": "numeric"
+    "actions": [
+        {
+            "action": "test connectivity",
+            "description": "Validate connectivity to Censys",
+            "type": "test",
+            "identifier": "test_asset_connectivity",
+            "read_only": true,
+            "parameters": {},
+            "output": [],
+            "versions": "EQ(*)"
+        },
+        {
+            "action": "lookup ip",
+            "description": "Lookup ip info",
+            "type": "investigate",
+            "identifier": "lookup_ip",
+            "read_only": true,
+            "parameters": {
+                "ip": {
+                    "data_type": "string",
+                    "description": "IP to get info of",
+                    "contains": [
+                        "ip"
+                    ],
+                    "required": true,
+                    "primary": true,
+                    "order": 0
+                }
+            },
+            "render": {
+                "type": "custom",
+                "width": 10,
+                "height": 5,
+                "view": "censys_view.display_ip_domain_info",
+                "title": "IP Info"
+            },
+            "output": [
+                {
+                    "data_path": "action_result.status",
+                    "data_type": "string"
+                },
+                {
+                    "data_path": "action_result.parameter.ip",
+                    "data_type": "string",
+                    "contains": [
+                        "ip"
+                    ]
+                },
+                {
+                    "data_path": "action_result.data.*.autonomous_system.asn",
+                    "data_type": "numeric"
+                },
+                {
+                    "data_path": "action_result.data.*.autonomous_system.country_code",
+                    "data_type": "string"
+                },
+                {
+                    "data_path": "action_result.data.*.autonomous_system.description",
+                    "data_type": "string"
+                },
+                {
+                    "data_path": "action_result.data.*.autonomous_system.name",
+                    "data_type": "string"
+                },
+                {
+                    "data_path": "action_result.data.*.autonomous_system.organization",
+                    "data_type": "string"
+                },
+                {
+                    "data_path": "action_result.data.*.autonomous_system.path",
+                    "data_type": "numeric"
+                },
+                {
+                    "data_path": "action_result.data.*.autonomous_system.rir",
+                    "data_type": "string"
+                },
+                {
+                    "data_path": "action_result.data.*.autonomous_system.routed_prefix",
+                    "data_type": "string"
+                },
+                {
+                    "data_path": "action_result.data.*.ip",
+                    "data_type": "string",
+                    "contains": [
+                        "ip"
+                    ]
+                },
+                {
+                    "data_path": "action_result.data.*.location.city",
+                    "data_type": "string"
+                },
+                {
+                    "data_path": "action_result.data.*.location.continent",
+                    "data_type": "string"
+                },
+                {
+                    "data_path": "action_result.data.*.location.country",
+                    "data_type": "string"
+                },
+                {
+                    "data_path": "action_result.data.*.location.country_code",
+                    "data_type": "string"
+                },
+                {
+                    "data_path": "action_result.data.*.location.latitude",
+                    "data_type": "numeric"
+                },
+                {
+                    "data_path": "action_result.data.*.location.longitude",
+                    "data_type": "numeric"
+                },
+                {
+                    "data_path": "action_result.data.*.location.postal_code",
+                    "data_type": "string"
+                },
+                {
+                    "data_path": "action_result.data.*.location.province",
+                    "data_type": "string"
+                },
+                {
+                    "data_path": "action_result.data.*.location.registered_country",
+                    "data_type": "string"
+                },
+                {
+                    "data_path": "action_result.data.*.location.registered_country_code",
+                    "data_type": "string"
+                },
+                {
+                    "data_path": "action_result.data.*.location.timezone",
+                    "data_type": "string"
+                },
+                {
+                    "data_path": "action_result.data.*.ports.443.https.dhe.support",
+                    "data_type": "boolean"
+                },
+                {
+                    "data_path": "action_result.data.*.ports.443.https.dhe_export.support",
+                    "data_type": "boolean"
+                },
+                {
+                    "data_path": "action_result.data.*.ports.443.https.heartbleed.heartbeat_enabled",
+                    "data_type": "boolean"
+                },
+                {
+                    "data_path": "action_result.data.*.ports.443.https.heartbleed.heartbleed_vulnerable",
+                    "data_type": "boolean"
+                },
+                {
+                    "data_path": "action_result.data.*.ports.443.https.rsa_export.support",
+                    "data_type": "boolean"
+                },
+                {
+                    "data_path": "action_result.data.*.ports.443.https.ssl_2.export",
+                    "data_type": "boolean"
+                },
+                {
+                    "data_path": "action_result.data.*.ports.443.https.ssl_2.extra_clear",
+                    "data_type": "boolean"
+                },
+                {
+                    "data_path": "action_result.data.*.ports.443.https.ssl_2.support",
+                    "data_type": "boolean"
+                },
+                {
+                    "data_path": "action_result.data.*.ports.443.https.tls.certificate.parsed.extensions.authority_info_access.issuer_urls",
+                    "data_type": "string"
+                },
+                {
+                    "data_path": "action_result.data.*.ports.443.https.tls.certificate.parsed.extensions.authority_info_access.ocsp_urls",
+                    "data_type": "string"
+                },
+                {
+                    "data_path": "action_result.data.*.ports.443.https.tls.certificate.parsed.extensions.authority_key_id",
+                    "data_type": "string"
+                },
+                {
+                    "data_path": "action_result.data.*.ports.443.https.tls.certificate.parsed.extensions.basic_constraints.is_ca",
+                    "data_type": "boolean"
+                },
+                {
+                    "data_path": "action_result.data.*.ports.443.https.tls.certificate.parsed.extensions.certificate_policies",
+                    "data_type": "string"
+                },
+                {
+                    "data_path": "action_result.data.*.ports.443.https.tls.certificate.parsed.extensions.crl_distribution_points",
+                    "data_type": "string"
+                },
+                {
+                    "data_path": "action_result.data.*.ports.443.https.tls.certificate.parsed.extensions.extended_key_usage",
+                    "data_type": "numeric"
+                },
+                {
+                    "data_path": "action_result.data.*.ports.443.https.tls.certificate.parsed.extensions.key_usage.digital_signature",
+                    "data_type": "boolean"
+                },
+                {
+                    "data_path": "action_result.data.*.ports.443.https.tls.certificate.parsed.extensions.key_usage.key_encipherment",
+                    "data_type": "boolean"
+                },
+                {
+                    "data_path": "action_result.data.*.ports.443.https.tls.certificate.parsed.extensions.key_usage.value",
+                    "data_type": "numeric"
+                },
+                {
+                    "data_path": "action_result.data.*.ports.443.https.tls.certificate.parsed.extensions.subject_alt_name.dns_names",
+                    "data_type": "string"
+                },
+                {
+                    "data_path": "action_result.data.*.ports.443.https.tls.certificate.parsed.fingerprint_md5",
+                    "data_type": "string"
+                },
+                {
+                    "data_path": "action_result.data.*.ports.443.https.tls.certificate.parsed.fingerprint_sha1",
+                    "data_type": "string"
+                },
+                {
+                    "data_path": "action_result.data.*.ports.443.https.tls.certificate.parsed.fingerprint_sha256",
+                    "data_type": "string",
+                    "contains": [
+                        "sha256"
+                    ]
+                },
+                {
+                    "data_path": "action_result.data.*.ports.443.https.tls.certificate.parsed.issuer.common_name",
+                    "data_type": "string"
+                },
+                {
+                    "data_path": "action_result.data.*.ports.443.https.tls.certificate.parsed.issuer.country",
+                    "data_type": "string"
+                },
+                {
+                    "data_path": "action_result.data.*.ports.443.https.tls.certificate.parsed.issuer.organization",
+                    "data_type": "string"
+                },
+                {
+                    "data_path": "action_result.data.*.ports.443.https.tls.certificate.parsed.issuer.organizational_unit",
+                    "data_type": "string"
+                },
+                {
+                    "data_path": "action_result.data.*.ports.443.https.tls.certificate.parsed.issuer_dn",
+                    "data_type": "string"
+                },
+                {
+                    "data_path": "action_result.data.*.ports.443.https.tls.certificate.parsed.names",
+                    "data_type": "string"
+                },
+                {
+                    "data_path": "action_result.data.*.ports.443.https.tls.certificate.parsed.serial_number",
+                    "data_type": "string"
+                },
+                {
+                    "data_path": "action_result.data.*.ports.443.https.tls.certificate.parsed.signature.self_signed",
+                    "data_type": "boolean"
+                },
+                {
+                    "data_path": "action_result.data.*.ports.443.https.tls.certificate.parsed.signature.signature_algorithm.name",
+                    "data_type": "string"
+                },
+                {
+                    "data_path": "action_result.data.*.ports.443.https.tls.certificate.parsed.signature.signature_algorithm.oid",
+                    "data_type": "string"
+                },
+                {
+                    "data_path": "action_result.data.*.ports.443.https.tls.certificate.parsed.signature.valid",
+                    "data_type": "boolean"
+                },
+                {
+                    "data_path": "action_result.data.*.ports.443.https.tls.certificate.parsed.signature.value",
+                    "data_type": "string"
+                },
+                {
+                    "data_path": "action_result.data.*.ports.443.https.tls.certificate.parsed.signature_algorithm.name",
+                    "data_type": "string"
+                },
+                {
+                    "data_path": "action_result.data.*.ports.443.https.tls.certificate.parsed.signature_algorithm.oid",
+                    "data_type": "string"
+                },
+                {
+                    "data_path": "action_result.data.*.ports.443.https.tls.certificate.parsed.spki_subject_fingerprint",
+                    "data_type": "string"
+                },
+                {
+                    "data_path": "action_result.data.*.ports.443.https.tls.certificate.parsed.subject.common_name",
+                    "data_type": "string"
+                },
+                {
+                    "data_path": "action_result.data.*.ports.443.https.tls.certificate.parsed.subject.country",
+                    "data_type": "string"
+                },
+                {
+                    "data_path": "action_result.data.*.ports.443.https.tls.certificate.parsed.subject.locality",
+                    "data_type": "string"
+                },
+                {
+                    "data_path": "action_result.data.*.ports.443.https.tls.certificate.parsed.subject.organization",
+                    "data_type": "string"
+                },
+                {
+                    "data_path": "action_result.data.*.ports.443.https.tls.certificate.parsed.subject.province",
+                    "data_type": "string"
+                },
+                {
+                    "data_path": "action_result.data.*.ports.443.https.tls.certificate.parsed.subject_dn",
+                    "data_type": "string"
+                },
+                {
+                    "data_path": "action_result.data.*.ports.443.https.tls.certificate.parsed.subject_key_info.fingerprint_sha256",
+                    "data_type": "string",
+                    "contains": [
+                        "sha256"
+                    ]
+                },
+                {
+                    "data_path": "action_result.data.*.ports.443.https.tls.certificate.parsed.subject_key_info.key_algorithm.name",
+                    "data_type": "string"
+                },
+                {
+                    "data_path": "action_result.data.*.ports.443.https.tls.certificate.parsed.subject_key_info.key_algorithm.oid",
+                    "data_type": "string"
+                },
+                {
+                    "data_path": "action_result.data.*.ports.443.https.tls.certificate.parsed.subject_key_info.rsa_public_key.exponent",
+                    "data_type": "numeric"
+                },
+                {
+                    "data_path": "action_result.data.*.ports.443.https.tls.certificate.parsed.subject_key_info.rsa_public_key.length",
+                    "data_type": "numeric"
+                },
+                {
+                    "data_path": "action_result.data.*.ports.443.https.tls.certificate.parsed.subject_key_info.rsa_public_key.modulus",
+                    "data_type": "string"
+                },
+                {
+                    "data_path": "action_result.data.*.ports.443.https.tls.certificate.parsed.tbs_fingerprint",
+                    "data_type": "string"
+                },
+                {
+                    "data_path": "action_result.data.*.ports.443.https.tls.certificate.parsed.tbs_noct_fingerprint",
+                    "data_type": "string"
+                },
+                {
+                    "data_path": "action_result.data.*.ports.443.https.tls.certificate.parsed.validation_level",
+                    "data_type": "string"
+                },
+                {
+                    "data_path": "action_result.data.*.ports.443.https.tls.certificate.parsed.validity.end",
+                    "data_type": "string"
+                },
+                {
+                    "data_path": "action_result.data.*.ports.443.https.tls.certificate.parsed.validity.length",
+                    "data_type": "numeric"
+                },
+                {
+                    "data_path": "action_result.data.*.ports.443.https.tls.certificate.parsed.validity.start",
+                    "data_type": "string"
+                },
+                {
+                    "data_path": "action_result.data.*.ports.443.https.tls.certificate.parsed.version",
+                    "data_type": "numeric"
+                },
+                {
+                    "data_path": "action_result.data.*.ports.443.https.tls.chain.*.parsed.extensions.authority_info_access.ocsp_urls",
+                    "data_type": "string"
+                },
+                {
+                    "data_path": "action_result.data.*.ports.443.https.tls.chain.*.parsed.extensions.authority_key_id",
+                    "data_type": "string"
+                },
+                {
+                    "data_path": "action_result.data.*.ports.443.https.tls.chain.*.parsed.extensions.basic_constraints.is_ca",
+                    "data_type": "boolean"
+                },
+                {
+                    "data_path": "action_result.data.*.ports.443.https.tls.chain.*.parsed.extensions.basic_constraints.max_path_len",
+                    "data_type": "numeric"
+                },
+                {
+                    "data_path": "action_result.data.*.ports.443.https.tls.chain.*.parsed.extensions.certificate_policies",
+                    "data_type": "string"
+                },
+                {
+                    "data_path": "action_result.data.*.ports.443.https.tls.chain.*.parsed.extensions.crl_distribution_points",
+                    "data_type": "string"
+                },
+                {
+                    "data_path": "action_result.data.*.ports.443.https.tls.chain.*.parsed.extensions.key_usage.certificate_sign",
+                    "data_type": "boolean"
+                },
+                {
+                    "data_path": "action_result.data.*.ports.443.https.tls.chain.*.parsed.extensions.key_usage.crl_sign",
+                    "data_type": "boolean"
+                },
+                {
+                    "data_path": "action_result.data.*.ports.443.https.tls.chain.*.parsed.extensions.key_usage.value",
+                    "data_type": "numeric"
+                },
+                {
+                    "data_path": "action_result.data.*.ports.443.https.tls.chain.*.parsed.extensions.subject_alt_name.directory_names.*.common_name",
+                    "data_type": "string"
+                },
+                {
+                    "data_path": "action_result.data.*.ports.443.https.tls.chain.*.parsed.extensions.subject_key_id",
+                    "data_type": "string"
+                },
+                {
+                    "data_path": "action_result.data.*.ports.443.https.tls.chain.*.parsed.fingerprint_md5",
+                    "data_type": "string",
+                    "contains": [
+                        "md5"
+                    ]
+                },
+                {
+                    "data_path": "action_result.data.*.ports.443.https.tls.chain.*.parsed.fingerprint_sha1",
+                    "data_type": "string"
+                },
+                {
+                    "data_path": "action_result.data.*.ports.443.https.tls.chain.*.parsed.fingerprint_sha256",
+                    "data_type": "string",
+                    "contains": [
+                        "sha256"
+                    ]
+                },
+                {
+                    "data_path": "action_result.data.*.ports.443.https.tls.chain.*.parsed.issuer.common_name",
+                    "data_type": "string"
+                },
+                {
+                    "data_path": "action_result.data.*.ports.443.https.tls.chain.*.parsed.issuer.country",
+                    "data_type": "string"
+                },
+                {
+                    "data_path": "action_result.data.*.ports.443.https.tls.chain.*.parsed.issuer.organization",
+                    "data_type": "string"
+                },
+                {
+                    "data_path": "action_result.data.*.ports.443.https.tls.chain.*.parsed.issuer.organizational_unit",
+                    "data_type": "string"
+                },
+                {
+                    "data_path": "action_result.data.*.ports.443.https.tls.chain.*.parsed.issuer_dn",
+                    "data_type": "string"
+                },
+                {
+                    "data_path": "action_result.data.*.ports.443.https.tls.chain.*.parsed.serial_number",
+                    "data_type": "string"
+                },
+                {
+                    "data_path": "action_result.data.*.ports.443.https.tls.chain.*.parsed.signature.self_signed",
+                    "data_type": "boolean"
+                },
+                {
+                    "data_path": "action_result.data.*.ports.443.https.tls.chain.*.parsed.signature.signature_algorithm.name",
+                    "data_type": "string"
+                },
+                {
+                    "data_path": "action_result.data.*.ports.443.https.tls.chain.*.parsed.signature.signature_algorithm.oid",
+                    "data_type": "string"
+                },
+                {
+                    "data_path": "action_result.data.*.ports.443.https.tls.chain.*.parsed.signature.valid",
+                    "data_type": "boolean"
+                },
+                {
+                    "data_path": "action_result.data.*.ports.443.https.tls.chain.*.parsed.signature.value",
+                    "data_type": "string"
+                },
+                {
+                    "data_path": "action_result.data.*.ports.443.https.tls.chain.*.parsed.signature_algorithm.name",
+                    "data_type": "string"
+                },
+                {
+                    "data_path": "action_result.data.*.ports.443.https.tls.chain.*.parsed.signature_algorithm.oid",
+                    "data_type": "string"
+                },
+                {
+                    "data_path": "action_result.data.*.ports.443.https.tls.chain.*.parsed.spki_subject_fingerprint",
+                    "data_type": "string"
+                },
+                {
+                    "data_path": "action_result.data.*.ports.443.https.tls.chain.*.parsed.subject.common_name",
+                    "data_type": "string"
+                },
+                {
+                    "data_path": "action_result.data.*.ports.443.https.tls.chain.*.parsed.subject.country",
+                    "data_type": "string"
+                },
+                {
+                    "data_path": "action_result.data.*.ports.443.https.tls.chain.*.parsed.subject.organization",
+                    "data_type": "string"
+                },
+                {
+                    "data_path": "action_result.data.*.ports.443.https.tls.chain.*.parsed.subject.organizational_unit",
+                    "data_type": "string"
+                },
+                {
+                    "data_path": "action_result.data.*.ports.443.https.tls.chain.*.parsed.subject_dn",
+                    "data_type": "string"
+                },
+                {
+                    "data_path": "action_result.data.*.ports.443.https.tls.chain.*.parsed.subject_key_info.fingerprint_sha256",
+                    "data_type": "string",
+                    "contains": [
+                        "sha256"
+                    ]
+                },
+                {
+                    "data_path": "action_result.data.*.ports.443.https.tls.chain.*.parsed.subject_key_info.key_algorithm.name",
+                    "data_type": "string"
+                },
+                {
+                    "data_path": "action_result.data.*.ports.443.https.tls.chain.*.parsed.subject_key_info.key_algorithm.oid",
+                    "data_type": "string"
+                },
+                {
+                    "data_path": "action_result.data.*.ports.443.https.tls.chain.*.parsed.subject_key_info.rsa_public_key.exponent",
+                    "data_type": "numeric"
+                },
+                {
+                    "data_path": "action_result.data.*.ports.443.https.tls.chain.*.parsed.subject_key_info.rsa_public_key.length",
+                    "data_type": "numeric"
+                },
+                {
+                    "data_path": "action_result.data.*.ports.443.https.tls.chain.*.parsed.subject_key_info.rsa_public_key.modulus",
+                    "data_type": "string"
+                },
+                {
+                    "data_path": "action_result.data.*.ports.443.https.tls.chain.*.parsed.tbs_fingerprint",
+                    "data_type": "string"
+                },
+                {
+                    "data_path": "action_result.data.*.ports.443.https.tls.chain.*.parsed.tbs_noct_fingerprint",
+                    "data_type": "string"
+                },
+                {
+                    "data_path": "action_result.data.*.ports.443.https.tls.chain.*.parsed.validation_level",
+                    "data_type": "string"
+                },
+                {
+                    "data_path": "action_result.data.*.ports.443.https.tls.chain.*.parsed.validity.end",
+                    "data_type": "string"
+                },
+                {
+                    "data_path": "action_result.data.*.ports.443.https.tls.chain.*.parsed.validity.length",
+                    "data_type": "numeric"
+                },
+                {
+                    "data_path": "action_result.data.*.ports.443.https.tls.chain.*.parsed.validity.start",
+                    "data_type": "string"
+                },
+                {
+                    "data_path": "action_result.data.*.ports.443.https.tls.chain.*.parsed.version",
+                    "data_type": "numeric"
+                },
+                {
+                    "data_path": "action_result.data.*.ports.443.https.tls.cipher_suite.id",
+                    "data_type": "string"
+                },
+                {
+                    "data_path": "action_result.data.*.ports.443.https.tls.cipher_suite.name",
+                    "data_type": "string"
+                },
+                {
+                    "data_path": "action_result.data.*.ports.443.https.tls.ocsp_stapling",
+                    "data_type": "boolean"
+                },
+                {
+                    "data_path": "action_result.data.*.ports.443.https.tls.server_key_exchange.ecdh_params.curve_id.id",
+                    "data_type": "numeric"
+                },
+                {
+                    "data_path": "action_result.data.*.ports.443.https.tls.server_key_exchange.ecdh_params.curve_id.name",
+                    "data_type": "string"
+                },
+                {
+                    "data_path": "action_result.data.*.ports.443.https.tls.signature.hash_algorithm",
+                    "data_type": "string"
+                },
+                {
+                    "data_path": "action_result.data.*.ports.443.https.tls.signature.signature_algorithm",
+                    "data_type": "string"
+                },
+                {
+                    "data_path": "action_result.data.*.ports.443.https.tls.signature.valid",
+                    "data_type": "boolean"
+                },
+                {
+                    "data_path": "action_result.data.*.ports.443.https.tls.validation.browser_trusted",
+                    "data_type": "boolean"
+                },
+                {
+                    "data_path": "action_result.data.*.ports.443.https.tls.version",
+                    "data_type": "string"
+                },
+                {
+                    "data_path": "action_result.data.*.ports.80.http.get.body",
+                    "data_type": "string"
+                },
+                {
+                    "data_path": "action_result.data.*.ports.80.http.get.body_sha256",
+                    "data_type": "string"
+                },
+                {
+                    "data_path": "action_result.data.*.ports.80.http.get.headers.cache_control",
+                    "data_type": "string"
+                },
+                {
+                    "data_path": "action_result.data.*.ports.80.http.get.headers.connection",
+                    "data_type": "string"
+                },
+                {
+                    "data_path": "action_result.data.*.ports.80.http.get.headers.content_language",
+                    "data_type": "string"
+                },
+                {
+                    "data_path": "action_result.data.*.ports.80.http.get.headers.content_type",
+                    "data_type": "string"
+                },
+                {
+                    "data_path": "action_result.data.*.ports.80.http.get.headers.expires",
+                    "data_type": "string"
+                },
+                {
+                    "data_path": "action_result.data.*.ports.80.http.get.headers.pragma",
+                    "data_type": "string"
+                },
+                {
+                    "data_path": "action_result.data.*.ports.80.http.get.headers.server",
+                    "data_type": "string"
+                },
+                {
+                    "data_path": "action_result.data.*.ports.80.http.get.headers.strict_transport_security",
+                    "data_type": "string"
+                },
+                {
+                    "data_path": "action_result.data.*.ports.80.http.get.headers.unknown.*.key",
+                    "data_type": "string"
+                },
+                {
+                    "data_path": "action_result.data.*.ports.80.http.get.headers.unknown.*.value",
+                    "data_type": "string"
+                },
+                {
+                    "data_path": "action_result.data.*.ports.80.http.get.headers.vary",
+                    "data_type": "string"
+                },
+                {
+                    "data_path": "action_result.data.*.ports.80.http.get.headers.x_frame_options",
+                    "data_type": "string"
+                },
+                {
+                    "data_path": "action_result.data.*.ports.80.http.get.headers.x_ua_compatible",
+                    "data_type": "string"
+                },
+                {
+                    "data_path": "action_result.data.*.ports.80.http.get.status_code",
+                    "data_type": "numeric"
+                },
+                {
+                    "data_path": "action_result.data.*.ports.80.http.get.status_line",
+                    "data_type": "string"
+                },
+                {
+                    "data_path": "action_result.data.*.protocols",
+                    "data_type": "string"
+                },
+                {
+                    "data_path": "action_result.data.*.tags",
+                    "data_type": "string"
+                },
+                {
+                    "data_path": "action_result.data.*.updated_at",
+                    "data_type": "string"
+                },
+                {
+                    "data_path": "action_result.summary.protocols",
+                    "data_type": "string"
+                },
+                {
+                    "data_path": "action_result.message",
+                    "data_type": "string"
+                },
+                {
+                    "data_path": "summary.total_objects",
+                    "data_type": "numeric"
+                },
+                {
+                    "data_path": "summary.total_objects_successful",
+                    "data_type": "numeric"
+                }
+            ],
+            "versions": "EQ(*)"
+        },
+        {
+            "action": "lookup domain",
+            "description": "Lookup Domain info",
+            "type": "investigate",
+            "identifier": "lookup_domain",
+            "read_only": true,
+            "parameters": {
+                "domain": {
+                    "data_type": "string",
+                    "description": "Domain to lookup",
+                    "contains": [
+                        "domain"
+                    ],
+                    "required": true,
+                    "primary": true,
+                    "order": 0
+                }
+            },
+            "render": {
+                "type": "custom",
+                "width": 10,
+                "height": 5,
+                "view": "censys_view.display_ip_domain_info",
+                "title": "IP Info"
+            },
+            "output": [
+                {
+                    "data_path": "action_result.status",
+                    "data_type": "string"
+                },
+                {
+                    "data_path": "action_result.parameter.domain",
+                    "data_type": "string",
+                    "contains": [
+                        "domain"
+                    ]
+                },
+                {
+                    "data_path": "action_result.data.*.alexa_rank",
+                    "data_type": "numeric"
+                },
+                {
+                    "data_path": "action_result.data.*.autonomous_system.asn",
+                    "data_type": "numeric"
+                },
+                {
+                    "data_path": "action_result.data.*.autonomous_system.country_code",
+                    "data_type": "string"
+                },
+                {
+                    "data_path": "action_result.data.*.autonomous_system.description",
+                    "data_type": "string"
+                },
+                {
+                    "data_path": "action_result.data.*.autonomous_system.name",
+                    "data_type": "string"
+                },
+                {
+                    "data_path": "action_result.data.*.autonomous_system.organization",
+                    "data_type": "string"
+                },
+                {
+                    "data_path": "action_result.data.*.autonomous_system.path",
+                    "data_type": "numeric"
+                },
+                {
+                    "data_path": "action_result.data.*.autonomous_system.rir",
+                    "data_type": "string"
+                },
+                {
+                    "data_path": "action_result.data.*.autonomous_system.routed_prefix",
+                    "data_type": "string"
+                },
+                {
+                    "data_path": "action_result.data.*.domain",
+                    "data_type": "string",
+                    "contains": [
+                        "domain"
+                    ]
+                },
+                {
+                    "data_path": "action_result.data.*.location.city",
+                    "data_type": "string"
+                },
+                {
+                    "data_path": "action_result.data.*.location.continent",
+                    "data_type": "string"
+                },
+                {
+                    "data_path": "action_result.data.*.location.country",
+                    "data_type": "string"
+                },
+                {
+                    "data_path": "action_result.data.*.location.country_code",
+                    "data_type": "string"
+                },
+                {
+                    "data_path": "action_result.data.*.location.latitude",
+                    "data_type": "numeric"
+                },
+                {
+                    "data_path": "action_result.data.*.location.longitude",
+                    "data_type": "numeric"
+                },
+                {
+                    "data_path": "action_result.data.*.location.postal_code",
+                    "data_type": "string"
+                },
+                {
+                    "data_path": "action_result.data.*.location.province",
+                    "data_type": "string"
+                },
+                {
+                    "data_path": "action_result.data.*.location.registered_country",
+                    "data_type": "string"
+                },
+                {
+                    "data_path": "action_result.data.*.location.registered_country_code",
+                    "data_type": "string"
+                },
+                {
+                    "data_path": "action_result.data.*.location.timezone",
+                    "data_type": "string"
+                },
+                {
+                    "data_path": "action_result.data.*.ports.0.lookup.axfr.servers.*.error",
+                    "data_type": "string"
+                },
+                {
+                    "data_path": "action_result.data.*.ports.0.lookup.axfr.servers.*.server",
+                    "data_type": "string"
+                },
+                {
+                    "data_path": "action_result.data.*.ports.0.lookup.axfr.servers.*.status",
+                    "data_type": "string"
+                },
+                {
+                    "data_path": "action_result.data.*.ports.0.lookup.axfr.support",
+                    "data_type": "boolean"
+                },
+                {
+                    "data_path": "action_result.data.*.ports.0.lookup.axfr.truncated",
+                    "data_type": "boolean"
+                },
+                {
+                    "data_path": "action_result.data.*.ports.0.lookup.dmarc.raw",
+                    "data_type": "string"
+                },
+                {
+                    "data_path": "action_result.data.*.ports.0.lookup.spf.raw",
+                    "data_type": "string"
+                },
+                {
+                    "data_path": "action_result.data.*.ports.25.smtp.starttls.banner",
+                    "data_type": "string"
+                },
+                {
+                    "data_path": "action_result.data.*.ports.25.smtp.starttls.ehlo",
+                    "data_type": "string"
+                },
+                {
+                    "data_path": "action_result.data.*.ports.25.smtp.starttls.metadata.description",
+                    "data_type": "string"
+                },
+                {
+                    "data_path": "action_result.data.*.ports.25.smtp.starttls.metadata.manufacturer",
+                    "data_type": "string"
+                },
+                {
+                    "data_path": "action_result.data.*.ports.25.smtp.starttls.metadata.product",
+                    "data_type": "string"
+                },
+                {
+                    "data_path": "action_result.data.*.ports.25.smtp.starttls.starttls",
+                    "data_type": "string"
+                },
+                {
+                    "data_path": "action_result.data.*.ports.25.smtp.starttls.tls.certificate.parsed.extensions.authority_info_access.issuer_urls",
+                    "data_type": "string"
+                },
+                {
+                    "data_path": "action_result.data.*.ports.25.smtp.starttls.tls.certificate.parsed.extensions.authority_info_access.ocsp_urls",
+                    "data_type": "string"
+                },
+                {
+                    "data_path": "action_result.data.*.ports.25.smtp.starttls.tls.certificate.parsed.extensions.authority_key_id",
+                    "data_type": "string"
+                },
+                {
+                    "data_path": "action_result.data.*.ports.25.smtp.starttls.tls.certificate.parsed.extensions.basic_constraints.is_ca",
+                    "data_type": "boolean"
+                },
+                {
+                    "data_path": "action_result.data.*.ports.25.smtp.starttls.tls.certificate.parsed.extensions.certificate_policies",
+                    "data_type": "string"
+                },
+                {
+                    "data_path": "action_result.data.*.ports.25.smtp.starttls.tls.certificate.parsed.extensions.crl_distribution_points",
+                    "data_type": "string"
+                },
+                {
+                    "data_path": "action_result.data.*.ports.25.smtp.starttls.tls.certificate.parsed.extensions.extended_key_usage",
+                    "data_type": "numeric"
+                },
+                {
+                    "data_path": "action_result.data.*.ports.25.smtp.starttls.tls.certificate.parsed.extensions.subject_alt_name.dns_names",
+                    "data_type": "string"
+                },
+                {
+                    "data_path": "action_result.data.*.ports.25.smtp.starttls.tls.certificate.parsed.extensions.subject_key_id",
+                    "data_type": "string"
+                },
+                {
+                    "data_path": "action_result.data.*.ports.25.smtp.starttls.tls.certificate.parsed.fingerprint_md5",
+                    "data_type": "string"
+                },
+                {
+                    "data_path": "action_result.data.*.ports.25.smtp.starttls.tls.certificate.parsed.fingerprint_sha1",
+                    "data_type": "string"
+                },
+                {
+                    "data_path": "action_result.data.*.ports.25.smtp.starttls.tls.certificate.parsed.fingerprint_sha256",
+                    "data_type": "string",
+                    "contains": [
+                        "sha256"
+                    ]
+                },
+                {
+                    "data_path": "action_result.data.*.ports.25.smtp.starttls.tls.certificate.parsed.issuer.common_name",
+                    "data_type": "string"
+                },
+                {
+                    "data_path": "action_result.data.*.ports.25.smtp.starttls.tls.certificate.parsed.issuer.country",
+                    "data_type": "string"
+                },
+                {
+                    "data_path": "action_result.data.*.ports.25.smtp.starttls.tls.certificate.parsed.issuer.organization",
+                    "data_type": "string"
+                },
+                {
+                    "data_path": "action_result.data.*.ports.25.smtp.starttls.tls.certificate.parsed.issuer_dn",
+                    "data_type": "string"
+                },
+                {
+                    "data_path": "action_result.data.*.ports.25.smtp.starttls.tls.certificate.parsed.names",
+                    "data_type": "string"
+                },
+                {
+                    "data_path": "action_result.data.*.ports.25.smtp.starttls.tls.certificate.parsed.serial_number",
+                    "data_type": "string"
+                },
+                {
+                    "data_path": "action_result.data.*.ports.25.smtp.starttls.tls.certificate.parsed.signature.self_signed",
+                    "data_type": "boolean"
+                },
+                {
+                    "data_path": "action_result.data.*.ports.25.smtp.starttls.tls.certificate.parsed.signature.signature_algorithm.name",
+                    "data_type": "string"
+                },
+                {
+                    "data_path": "action_result.data.*.ports.25.smtp.starttls.tls.certificate.parsed.signature.signature_algorithm.oid",
+                    "data_type": "string"
+                },
+                {
+                    "data_path": "action_result.data.*.ports.25.smtp.starttls.tls.certificate.parsed.signature.valid",
+                    "data_type": "boolean"
+                },
+                {
+                    "data_path": "action_result.data.*.ports.25.smtp.starttls.tls.certificate.parsed.signature.value",
+                    "data_type": "string"
+                },
+                {
+                    "data_path": "action_result.data.*.ports.25.smtp.starttls.tls.certificate.parsed.signature_algorithm.name",
+                    "data_type": "string"
+                },
+                {
+                    "data_path": "action_result.data.*.ports.25.smtp.starttls.tls.certificate.parsed.signature_algorithm.oid",
+                    "data_type": "string"
+                },
+                {
+                    "data_path": "action_result.data.*.ports.25.smtp.starttls.tls.certificate.parsed.spki_subject_fingerprint",
+                    "data_type": "string"
+                },
+                {
+                    "data_path": "action_result.data.*.ports.25.smtp.starttls.tls.certificate.parsed.subject.common_name",
+                    "data_type": "string"
+                },
+                {
+                    "data_path": "action_result.data.*.ports.25.smtp.starttls.tls.certificate.parsed.subject.country",
+                    "data_type": "string"
+                },
+                {
+                    "data_path": "action_result.data.*.ports.25.smtp.starttls.tls.certificate.parsed.subject.locality",
+                    "data_type": "string"
+                },
+                {
+                    "data_path": "action_result.data.*.ports.25.smtp.starttls.tls.certificate.parsed.subject.organization",
+                    "data_type": "string"
+                },
+                {
+                    "data_path": "action_result.data.*.ports.25.smtp.starttls.tls.certificate.parsed.subject.province",
+                    "data_type": "string"
+                },
+                {
+                    "data_path": "action_result.data.*.ports.25.smtp.starttls.tls.certificate.parsed.subject_dn",
+                    "data_type": "string"
+                },
+                {
+                    "data_path": "action_result.data.*.ports.25.smtp.starttls.tls.certificate.parsed.subject_key_info.fingerprint_sha256",
+                    "data_type": "string",
+                    "contains": [
+                        "sha256"
+                    ]
+                },
+                {
+                    "data_path": "action_result.data.*.ports.25.smtp.starttls.tls.certificate.parsed.subject_key_info.key_algorithm.name",
+                    "data_type": "string"
+                },
+                {
+                    "data_path": "action_result.data.*.ports.25.smtp.starttls.tls.certificate.parsed.subject_key_info.key_algorithm.oid",
+                    "data_type": "string"
+                },
+                {
+                    "data_path": "action_result.data.*.ports.25.smtp.starttls.tls.certificate.parsed.subject_key_info.rsa_public_key.exponent",
+                    "data_type": "numeric"
+                },
+                {
+                    "data_path": "action_result.data.*.ports.25.smtp.starttls.tls.certificate.parsed.subject_key_info.rsa_public_key.length",
+                    "data_type": "numeric"
+                },
+                {
+                    "data_path": "action_result.data.*.ports.25.smtp.starttls.tls.certificate.parsed.subject_key_info.rsa_public_key.modulus",
+                    "data_type": "string"
+                },
+                {
+                    "data_path": "action_result.data.*.ports.25.smtp.starttls.tls.certificate.parsed.tbs_fingerprint",
+                    "data_type": "string"
+                },
+                {
+                    "data_path": "action_result.data.*.ports.25.smtp.starttls.tls.certificate.parsed.tbs_noct_fingerprint",
+                    "data_type": "string"
+                },
+                {
+                    "data_path": "action_result.data.*.ports.25.smtp.starttls.tls.certificate.parsed.validation_level",
+                    "data_type": "string"
+                },
+                {
+                    "data_path": "action_result.data.*.ports.25.smtp.starttls.tls.certificate.parsed.validity.end",
+                    "data_type": "string"
+                },
+                {
+                    "data_path": "action_result.data.*.ports.25.smtp.starttls.tls.certificate.parsed.validity.length",
+                    "data_type": "numeric"
+                },
+                {
+                    "data_path": "action_result.data.*.ports.25.smtp.starttls.tls.certificate.parsed.validity.start",
+                    "data_type": "string"
+                },
+                {
+                    "data_path": "action_result.data.*.ports.25.smtp.starttls.tls.certificate.parsed.version",
+                    "data_type": "numeric"
+                },
+                {
+                    "data_path": "action_result.data.*.ports.25.smtp.starttls.tls.chain.*.parsed.extensions.authority_info_access.ocsp_urls",
+                    "data_type": "string"
+                },
+                {
+                    "data_path": "action_result.data.*.ports.25.smtp.starttls.tls.chain.*.parsed.extensions.authority_key_id",
+                    "data_type": "string"
+                },
+                {
+                    "data_path": "action_result.data.*.ports.25.smtp.starttls.tls.chain.*.parsed.extensions.basic_constraints.is_ca",
+                    "data_type": "boolean"
+                },
+                {
+                    "data_path": "action_result.data.*.ports.25.smtp.starttls.tls.chain.*.parsed.extensions.basic_constraints.max_path_len",
+                    "data_type": "numeric"
+                },
+                {
+                    "data_path": "action_result.data.*.ports.25.smtp.starttls.tls.chain.*.parsed.extensions.certificate_policies",
+                    "data_type": "string"
+                },
+                {
+                    "data_path": "action_result.data.*.ports.25.smtp.starttls.tls.chain.*.parsed.extensions.crl_distribution_points",
+                    "data_type": "string"
+                },
+                {
+                    "data_path": "action_result.data.*.ports.25.smtp.starttls.tls.chain.*.parsed.extensions.key_usage.certificate_sign",
+                    "data_type": "boolean"
+                },
+                {
+                    "data_path": "action_result.data.*.ports.25.smtp.starttls.tls.chain.*.parsed.extensions.key_usage.crl_sign",
+                    "data_type": "boolean"
+                },
+                {
+                    "data_path": "action_result.data.*.ports.25.smtp.starttls.tls.chain.*.parsed.extensions.key_usage.value",
+                    "data_type": "numeric"
+                },
+                {
+                    "data_path": "action_result.data.*.ports.25.smtp.starttls.tls.chain.*.parsed.extensions.subject_key_id",
+                    "data_type": "string"
+                },
+                {
+                    "data_path": "action_result.data.*.ports.25.smtp.starttls.tls.chain.*.parsed.fingerprint_md5",
+                    "data_type": "string",
+                    "contains": [
+                        "md5"
+                    ]
+                },
+                {
+                    "data_path": "action_result.data.*.ports.25.smtp.starttls.tls.chain.*.parsed.fingerprint_sha1",
+                    "data_type": "string"
+                },
+                {
+                    "data_path": "action_result.data.*.ports.25.smtp.starttls.tls.chain.*.parsed.fingerprint_sha256",
+                    "data_type": "string",
+                    "contains": [
+                        "sha256"
+                    ]
+                },
+                {
+                    "data_path": "action_result.data.*.ports.25.smtp.starttls.tls.chain.*.parsed.issuer.common_name",
+                    "data_type": "string"
+                },
+                {
+                    "data_path": "action_result.data.*.ports.25.smtp.starttls.tls.chain.*.parsed.issuer.country",
+                    "data_type": "string"
+                },
+                {
+                    "data_path": "action_result.data.*.ports.25.smtp.starttls.tls.chain.*.parsed.issuer.organization",
+                    "data_type": "string"
+                },
+                {
+                    "data_path": "action_result.data.*.ports.25.smtp.starttls.tls.chain.*.parsed.issuer.organizational_unit",
+                    "data_type": "string"
+                },
+                {
+                    "data_path": "action_result.data.*.ports.25.smtp.starttls.tls.chain.*.parsed.issuer_dn",
+                    "data_type": "string"
+                },
+                {
+                    "data_path": "action_result.data.*.ports.25.smtp.starttls.tls.chain.*.parsed.serial_number",
+                    "data_type": "string"
+                },
+                {
+                    "data_path": "action_result.data.*.ports.25.smtp.starttls.tls.chain.*.parsed.signature.self_signed",
+                    "data_type": "boolean"
+                },
+                {
+                    "data_path": "action_result.data.*.ports.25.smtp.starttls.tls.chain.*.parsed.signature.signature_algorithm.name",
+                    "data_type": "string"
+                },
+                {
+                    "data_path": "action_result.data.*.ports.25.smtp.starttls.tls.chain.*.parsed.signature.signature_algorithm.oid",
+                    "data_type": "string"
+                },
+                {
+                    "data_path": "action_result.data.*.ports.25.smtp.starttls.tls.chain.*.parsed.signature.valid",
+                    "data_type": "boolean"
+                },
+                {
+                    "data_path": "action_result.data.*.ports.25.smtp.starttls.tls.chain.*.parsed.signature.value",
+                    "data_type": "string"
+                },
+                {
+                    "data_path": "action_result.data.*.ports.25.smtp.starttls.tls.chain.*.parsed.signature_algorithm.name",
+                    "data_type": "string"
+                },
+                {
+                    "data_path": "action_result.data.*.ports.25.smtp.starttls.tls.chain.*.parsed.signature_algorithm.oid",
+                    "data_type": "string"
+                },
+                {
+                    "data_path": "action_result.data.*.ports.25.smtp.starttls.tls.chain.*.parsed.spki_subject_fingerprint",
+                    "data_type": "string"
+                },
+                {
+                    "data_path": "action_result.data.*.ports.25.smtp.starttls.tls.chain.*.parsed.subject.common_name",
+                    "data_type": "string"
+                },
+                {
+                    "data_path": "action_result.data.*.ports.25.smtp.starttls.tls.chain.*.parsed.subject.country",
+                    "data_type": "string"
+                },
+                {
+                    "data_path": "action_result.data.*.ports.25.smtp.starttls.tls.chain.*.parsed.subject.organization",
+                    "data_type": "string"
+                },
+                {
+                    "data_path": "action_result.data.*.ports.25.smtp.starttls.tls.chain.*.parsed.subject_dn",
+                    "data_type": "string"
+                },
+                {
+                    "data_path": "action_result.data.*.ports.25.smtp.starttls.tls.chain.*.parsed.subject_key_info.fingerprint_sha256",
+                    "data_type": "string",
+                    "contains": [
+                        "sha256"
+                    ]
+                },
+                {
+                    "data_path": "action_result.data.*.ports.25.smtp.starttls.tls.chain.*.parsed.subject_key_info.key_algorithm.name",
+                    "data_type": "string"
+                },
+                {
+                    "data_path": "action_result.data.*.ports.25.smtp.starttls.tls.chain.*.parsed.subject_key_info.key_algorithm.oid",
+                    "data_type": "string"
+                },
+                {
+                    "data_path": "action_result.data.*.ports.25.smtp.starttls.tls.chain.*.parsed.subject_key_info.rsa_public_key.exponent",
+                    "data_type": "numeric"
+                },
+                {
+                    "data_path": "action_result.data.*.ports.25.smtp.starttls.tls.chain.*.parsed.subject_key_info.rsa_public_key.length",
+                    "data_type": "numeric"
+                },
+                {
+                    "data_path": "action_result.data.*.ports.25.smtp.starttls.tls.chain.*.parsed.subject_key_info.rsa_public_key.modulus",
+                    "data_type": "string"
+                },
+                {
+                    "data_path": "action_result.data.*.ports.25.smtp.starttls.tls.chain.*.parsed.tbs_fingerprint",
+                    "data_type": "string"
+                },
+                {
+                    "data_path": "action_result.data.*.ports.25.smtp.starttls.tls.chain.*.parsed.tbs_noct_fingerprint",
+                    "data_type": "string"
+                },
+                {
+                    "data_path": "action_result.data.*.ports.25.smtp.starttls.tls.chain.*.parsed.validation_level",
+                    "data_type": "string"
+                },
+                {
+                    "data_path": "action_result.data.*.ports.25.smtp.starttls.tls.chain.*.parsed.validity.end",
+                    "data_type": "string"
+                },
+                {
+                    "data_path": "action_result.data.*.ports.25.smtp.starttls.tls.chain.*.parsed.validity.length",
+                    "data_type": "numeric"
+                },
+                {
+                    "data_path": "action_result.data.*.ports.25.smtp.starttls.tls.chain.*.parsed.validity.start",
+                    "data_type": "string"
+                },
+                {
+                    "data_path": "action_result.data.*.ports.25.smtp.starttls.tls.chain.*.parsed.version",
+                    "data_type": "numeric"
+                },
+                {
+                    "data_path": "action_result.data.*.ports.25.smtp.starttls.tls.cipher_suite.id",
+                    "data_type": "string"
+                },
+                {
+                    "data_path": "action_result.data.*.ports.25.smtp.starttls.tls.cipher_suite.name",
+                    "data_type": "string"
+                },
+                {
+                    "data_path": "action_result.data.*.ports.25.smtp.starttls.tls.ocsp_stapling",
+                    "data_type": "boolean"
+                },
+                {
+                    "data_path": "action_result.data.*.ports.25.smtp.starttls.tls.server_key_exchange.ecdh_params.curve_id.id",
+                    "data_type": "numeric"
+                },
+                {
+                    "data_path": "action_result.data.*.ports.25.smtp.starttls.tls.server_key_exchange.ecdh_params.curve_id.name",
+                    "data_type": "string"
+                },
+                {
+                    "data_path": "action_result.data.*.ports.25.smtp.starttls.tls.signature.hash_algorithm",
+                    "data_type": "string"
+                },
+                {
+                    "data_path": "action_result.data.*.ports.25.smtp.starttls.tls.signature.signature_algorithm",
+                    "data_type": "string"
+                },
+                {
+                    "data_path": "action_result.data.*.ports.25.smtp.starttls.tls.signature.valid",
+                    "data_type": "boolean"
+                },
+                {
+                    "data_path": "action_result.data.*.ports.25.smtp.starttls.tls.validation.browser_trusted",
+                    "data_type": "boolean"
+                },
+                {
+                    "data_path": "action_result.data.*.ports.25.smtp.starttls.tls.version",
+                    "data_type": "string"
+                },
+                {
+                    "data_path": "action_result.data.*.ports.443.https.dhe.support",
+                    "data_type": "boolean"
+                },
+                {
+                    "data_path": "action_result.data.*.ports.443.https.dhe_export.support",
+                    "data_type": "boolean"
+                },
+                {
+                    "data_path": "action_result.data.*.ports.443.https.heartbleed.heartbeat_enabled",
+                    "data_type": "boolean"
+                },
+                {
+                    "data_path": "action_result.data.*.ports.443.https.heartbleed.heartbleed_vulnerable",
+                    "data_type": "boolean"
+                },
+                {
+                    "data_path": "action_result.data.*.ports.443.https.rsa_export.support",
+                    "data_type": "boolean"
+                },
+                {
+                    "data_path": "action_result.data.*.ports.443.https.tls.certificate.parsed.extensions.authority_info_access.issuer_urls",
+                    "data_type": "string"
+                },
+                {
+                    "data_path": "action_result.data.*.ports.443.https.tls.certificate.parsed.extensions.authority_info_access.ocsp_urls",
+                    "data_type": "string"
+                },
+                {
+                    "data_path": "action_result.data.*.ports.443.https.tls.certificate.parsed.extensions.authority_key_id",
+                    "data_type": "string"
+                },
+                {
+                    "data_path": "action_result.data.*.ports.443.https.tls.certificate.parsed.extensions.basic_constraints.is_ca",
+                    "data_type": "boolean"
+                },
+                {
+                    "data_path": "action_result.data.*.ports.443.https.tls.certificate.parsed.extensions.certificate_policies",
+                    "data_type": "string"
+                },
+                {
+                    "data_path": "action_result.data.*.ports.443.https.tls.certificate.parsed.extensions.crl_distribution_points",
+                    "data_type": "string"
+                },
+                {
+                    "data_path": "action_result.data.*.ports.443.https.tls.certificate.parsed.extensions.extended_key_usage",
+                    "data_type": "numeric"
+                },
+                {
+                    "data_path": "action_result.data.*.ports.443.https.tls.certificate.parsed.extensions.key_usage.digital_signature",
+                    "data_type": "boolean"
+                },
+                {
+                    "data_path": "action_result.data.*.ports.443.https.tls.certificate.parsed.extensions.key_usage.value",
+                    "data_type": "numeric"
+                },
+                {
+                    "data_path": "action_result.data.*.ports.443.https.tls.certificate.parsed.extensions.subject_alt_name.dns_names",
+                    "data_type": "string"
+                },
+                {
+                    "data_path": "action_result.data.*.ports.443.https.tls.certificate.parsed.extensions.subject_key_id",
+                    "data_type": "string"
+                },
+                {
+                    "data_path": "action_result.data.*.ports.443.https.tls.certificate.parsed.fingerprint_md5",
+                    "data_type": "string"
+                },
+                {
+                    "data_path": "action_result.data.*.ports.443.https.tls.certificate.parsed.fingerprint_sha1",
+                    "data_type": "string"
+                },
+                {
+                    "data_path": "action_result.data.*.ports.443.https.tls.certificate.parsed.fingerprint_sha256",
+                    "data_type": "string",
+                    "contains": [
+                        "sha256"
+                    ]
+                },
+                {
+                    "data_path": "action_result.data.*.ports.443.https.tls.certificate.parsed.issuer.common_name",
+                    "data_type": "string"
+                },
+                {
+                    "data_path": "action_result.data.*.ports.443.https.tls.certificate.parsed.issuer.country",
+                    "data_type": "string"
+                },
+                {
+                    "data_path": "action_result.data.*.ports.443.https.tls.certificate.parsed.issuer.organization",
+                    "data_type": "string"
+                },
+                {
+                    "data_path": "action_result.data.*.ports.443.https.tls.certificate.parsed.issuer_dn",
+                    "data_type": "string"
+                },
+                {
+                    "data_path": "action_result.data.*.ports.443.https.tls.certificate.parsed.names",
+                    "data_type": "string"
+                },
+                {
+                    "data_path": "action_result.data.*.ports.443.https.tls.certificate.parsed.serial_number",
+                    "data_type": "string"
+                },
+                {
+                    "data_path": "action_result.data.*.ports.443.https.tls.certificate.parsed.signature.self_signed",
+                    "data_type": "boolean"
+                },
+                {
+                    "data_path": "action_result.data.*.ports.443.https.tls.certificate.parsed.signature.signature_algorithm.name",
+                    "data_type": "string"
+                },
+                {
+                    "data_path": "action_result.data.*.ports.443.https.tls.certificate.parsed.signature.signature_algorithm.oid",
+                    "data_type": "string"
+                },
+                {
+                    "data_path": "action_result.data.*.ports.443.https.tls.certificate.parsed.signature.valid",
+                    "data_type": "boolean"
+                },
+                {
+                    "data_path": "action_result.data.*.ports.443.https.tls.certificate.parsed.signature.value",
+                    "data_type": "string"
+                },
+                {
+                    "data_path": "action_result.data.*.ports.443.https.tls.certificate.parsed.signature_algorithm.name",
+                    "data_type": "string"
+                },
+                {
+                    "data_path": "action_result.data.*.ports.443.https.tls.certificate.parsed.signature_algorithm.oid",
+                    "data_type": "string"
+                },
+                {
+                    "data_path": "action_result.data.*.ports.443.https.tls.certificate.parsed.spki_subject_fingerprint",
+                    "data_type": "string"
+                },
+                {
+                    "data_path": "action_result.data.*.ports.443.https.tls.certificate.parsed.subject.common_name",
+                    "data_type": "string"
+                },
+                {
+                    "data_path": "action_result.data.*.ports.443.https.tls.certificate.parsed.subject.country",
+                    "data_type": "string"
+                },
+                {
+                    "data_path": "action_result.data.*.ports.443.https.tls.certificate.parsed.subject.locality",
+                    "data_type": "string"
+                },
+                {
+                    "data_path": "action_result.data.*.ports.443.https.tls.certificate.parsed.subject.organization",
+                    "data_type": "string"
+                },
+                {
+                    "data_path": "action_result.data.*.ports.443.https.tls.certificate.parsed.subject.province",
+                    "data_type": "string"
+                },
+                {
+                    "data_path": "action_result.data.*.ports.443.https.tls.certificate.parsed.subject_dn",
+                    "data_type": "string"
+                },
+                {
+                    "data_path": "action_result.data.*.ports.443.https.tls.certificate.parsed.subject_key_info.ecdsa_public_key.b",
+                    "data_type": "string"
+                },
+                {
+                    "data_path": "action_result.data.*.ports.443.https.tls.certificate.parsed.subject_key_info.ecdsa_public_key.gx",
+                    "data_type": "string"
+                },
+                {
+                    "data_path": "action_result.data.*.ports.443.https.tls.certificate.parsed.subject_key_info.ecdsa_public_key.gy",
+                    "data_type": "string"
+                },
+                {
+                    "data_path": "action_result.data.*.ports.443.https.tls.certificate.parsed.subject_key_info.ecdsa_public_key.n",
+                    "data_type": "string"
+                },
+                {
+                    "data_path": "action_result.data.*.ports.443.https.tls.certificate.parsed.subject_key_info.ecdsa_public_key.p",
+                    "data_type": "string"
+                },
+                {
+                    "data_path": "action_result.data.*.ports.443.https.tls.certificate.parsed.subject_key_info.ecdsa_public_key.pub",
+                    "data_type": "string"
+                },
+                {
+                    "data_path": "action_result.data.*.ports.443.https.tls.certificate.parsed.subject_key_info.ecdsa_public_key.x",
+                    "data_type": "string"
+                },
+                {
+                    "data_path": "action_result.data.*.ports.443.https.tls.certificate.parsed.subject_key_info.ecdsa_public_key.y",
+                    "data_type": "string"
+                },
+                {
+                    "data_path": "action_result.data.*.ports.443.https.tls.certificate.parsed.subject_key_info.fingerprint_sha256",
+                    "data_type": "string",
+                    "contains": [
+                        "sha256"
+                    ]
+                },
+                {
+                    "data_path": "action_result.data.*.ports.443.https.tls.certificate.parsed.subject_key_info.key_algorithm.name",
+                    "data_type": "string"
+                },
+                {
+                    "data_path": "action_result.data.*.ports.443.https.tls.certificate.parsed.subject_key_info.key_algorithm.oid",
+                    "data_type": "string"
+                },
+                {
+                    "data_path": "action_result.data.*.ports.443.https.tls.certificate.parsed.tbs_fingerprint",
+                    "data_type": "string"
+                },
+                {
+                    "data_path": "action_result.data.*.ports.443.https.tls.certificate.parsed.tbs_noct_fingerprint",
+                    "data_type": "string"
+                },
+                {
+                    "data_path": "action_result.data.*.ports.443.https.tls.certificate.parsed.validation_level",
+                    "data_type": "string"
+                },
+                {
+                    "data_path": "action_result.data.*.ports.443.https.tls.certificate.parsed.validity.end",
+                    "data_type": "string"
+                },
+                {
+                    "data_path": "action_result.data.*.ports.443.https.tls.certificate.parsed.validity.length",
+                    "data_type": "numeric"
+                },
+                {
+                    "data_path": "action_result.data.*.ports.443.https.tls.certificate.parsed.validity.start",
+                    "data_type": "string"
+                },
+                {
+                    "data_path": "action_result.data.*.ports.443.https.tls.certificate.parsed.version",
+                    "data_type": "numeric"
+                },
+                {
+                    "data_path": "action_result.data.*.ports.443.https.tls.chain.*.parsed.extensions.authority_info_access.ocsp_urls",
+                    "data_type": "string"
+                },
+                {
+                    "data_path": "action_result.data.*.ports.443.https.tls.chain.*.parsed.extensions.authority_key_id",
+                    "data_type": "string"
+                },
+                {
+                    "data_path": "action_result.data.*.ports.443.https.tls.chain.*.parsed.extensions.basic_constraints.is_ca",
+                    "data_type": "boolean"
+                },
+                {
+                    "data_path": "action_result.data.*.ports.443.https.tls.chain.*.parsed.extensions.basic_constraints.max_path_len",
+                    "data_type": "numeric"
+                },
+                {
+                    "data_path": "action_result.data.*.ports.443.https.tls.chain.*.parsed.extensions.certificate_policies",
+                    "data_type": "string"
+                },
+                {
+                    "data_path": "action_result.data.*.ports.443.https.tls.chain.*.parsed.extensions.crl_distribution_points",
+                    "data_type": "string"
+                },
+                {
+                    "data_path": "action_result.data.*.ports.443.https.tls.chain.*.parsed.extensions.key_usage.certificate_sign",
+                    "data_type": "boolean"
+                },
+                {
+                    "data_path": "action_result.data.*.ports.443.https.tls.chain.*.parsed.extensions.key_usage.crl_sign",
+                    "data_type": "boolean"
+                },
+                {
+                    "data_path": "action_result.data.*.ports.443.https.tls.chain.*.parsed.extensions.key_usage.value",
+                    "data_type": "numeric"
+                },
+                {
+                    "data_path": "action_result.data.*.ports.443.https.tls.chain.*.parsed.extensions.subject_key_id",
+                    "data_type": "string"
+                },
+                {
+                    "data_path": "action_result.data.*.ports.443.https.tls.chain.*.parsed.fingerprint_md5",
+                    "data_type": "string"
+                },
+                {
+                    "data_path": "action_result.data.*.ports.443.https.tls.chain.*.parsed.fingerprint_sha1",
+                    "data_type": "string"
+                },
+                {
+                    "data_path": "action_result.data.*.ports.443.https.tls.chain.*.parsed.fingerprint_sha256",
+                    "data_type": "string",
+                    "contains": [
+                        "sha256"
+                    ]
+                },
+                {
+                    "data_path": "action_result.data.*.ports.443.https.tls.chain.*.parsed.issuer.common_name",
+                    "data_type": "string"
+                },
+                {
+                    "data_path": "action_result.data.*.ports.443.https.tls.chain.*.parsed.issuer.country",
+                    "data_type": "string"
+                },
+                {
+                    "data_path": "action_result.data.*.ports.443.https.tls.chain.*.parsed.issuer.organization",
+                    "data_type": "string"
+                },
+                {
+                    "data_path": "action_result.data.*.ports.443.https.tls.chain.*.parsed.issuer.organizational_unit",
+                    "data_type": "string"
+                },
+                {
+                    "data_path": "action_result.data.*.ports.443.https.tls.chain.*.parsed.issuer_dn",
+                    "data_type": "string"
+                },
+                {
+                    "data_path": "action_result.data.*.ports.443.https.tls.chain.*.parsed.serial_number",
+                    "data_type": "string"
+                },
+                {
+                    "data_path": "action_result.data.*.ports.443.https.tls.chain.*.parsed.signature.self_signed",
+                    "data_type": "boolean"
+                },
+                {
+                    "data_path": "action_result.data.*.ports.443.https.tls.chain.*.parsed.signature.signature_algorithm.name",
+                    "data_type": "string"
+                },
+                {
+                    "data_path": "action_result.data.*.ports.443.https.tls.chain.*.parsed.signature.signature_algorithm.oid",
+                    "data_type": "string"
+                },
+                {
+                    "data_path": "action_result.data.*.ports.443.https.tls.chain.*.parsed.signature.valid",
+                    "data_type": "boolean"
+                },
+                {
+                    "data_path": "action_result.data.*.ports.443.https.tls.chain.*.parsed.signature.value",
+                    "data_type": "string"
+                },
+                {
+                    "data_path": "action_result.data.*.ports.443.https.tls.chain.*.parsed.signature_algorithm.name",
+                    "data_type": "string"
+                },
+                {
+                    "data_path": "action_result.data.*.ports.443.https.tls.chain.*.parsed.signature_algorithm.oid",
+                    "data_type": "string"
+                },
+                {
+                    "data_path": "action_result.data.*.ports.443.https.tls.chain.*.parsed.spki_subject_fingerprint",
+                    "data_type": "string"
+                },
+                {
+                    "data_path": "action_result.data.*.ports.443.https.tls.chain.*.parsed.subject.common_name",
+                    "data_type": "string"
+                },
+                {
+                    "data_path": "action_result.data.*.ports.443.https.tls.chain.*.parsed.subject.country",
+                    "data_type": "string"
+                },
+                {
+                    "data_path": "action_result.data.*.ports.443.https.tls.chain.*.parsed.subject.organization",
+                    "data_type": "string"
+                },
+                {
+                    "data_path": "action_result.data.*.ports.443.https.tls.chain.*.parsed.subject_dn",
+                    "data_type": "string"
+                },
+                {
+                    "data_path": "action_result.data.*.ports.443.https.tls.chain.*.parsed.subject_key_info.fingerprint_sha256",
+                    "data_type": "string",
+                    "contains": [
+                        "sha256"
+                    ]
+                },
+                {
+                    "data_path": "action_result.data.*.ports.443.https.tls.chain.*.parsed.subject_key_info.key_algorithm.name",
+                    "data_type": "string"
+                },
+                {
+                    "data_path": "action_result.data.*.ports.443.https.tls.chain.*.parsed.subject_key_info.key_algorithm.oid",
+                    "data_type": "string"
+                },
+                {
+                    "data_path": "action_result.data.*.ports.443.https.tls.chain.*.parsed.subject_key_info.rsa_public_key.exponent",
+                    "data_type": "numeric"
+                },
+                {
+                    "data_path": "action_result.data.*.ports.443.https.tls.chain.*.parsed.subject_key_info.rsa_public_key.length",
+                    "data_type": "numeric"
+                },
+                {
+                    "data_path": "action_result.data.*.ports.443.https.tls.chain.*.parsed.subject_key_info.rsa_public_key.modulus",
+                    "data_type": "string"
+                },
+                {
+                    "data_path": "action_result.data.*.ports.443.https.tls.chain.*.parsed.tbs_fingerprint",
+                    "data_type": "string"
+                },
+                {
+                    "data_path": "action_result.data.*.ports.443.https.tls.chain.*.parsed.tbs_noct_fingerprint",
+                    "data_type": "string"
+                },
+                {
+                    "data_path": "action_result.data.*.ports.443.https.tls.chain.*.parsed.validation_level",
+                    "data_type": "string"
+                },
+                {
+                    "data_path": "action_result.data.*.ports.443.https.tls.chain.*.parsed.validity.end",
+                    "data_type": "string"
+                },
+                {
+                    "data_path": "action_result.data.*.ports.443.https.tls.chain.*.parsed.validity.length",
+                    "data_type": "numeric"
+                },
+                {
+                    "data_path": "action_result.data.*.ports.443.https.tls.chain.*.parsed.validity.start",
+                    "data_type": "string"
+                },
+                {
+                    "data_path": "action_result.data.*.ports.443.https.tls.chain.*.parsed.version",
+                    "data_type": "numeric"
+                },
+                {
+                    "data_path": "action_result.data.*.ports.443.https.tls.cipher_suite.id",
+                    "data_type": "string"
+                },
+                {
+                    "data_path": "action_result.data.*.ports.443.https.tls.cipher_suite.name",
+                    "data_type": "string"
+                },
+                {
+                    "data_path": "action_result.data.*.ports.443.https.tls.ocsp_stapling",
+                    "data_type": "boolean"
+                },
+                {
+                    "data_path": "action_result.data.*.ports.443.https.tls.server_key_exchange.ecdh_params.curve_id.id",
+                    "data_type": "numeric"
+                },
+                {
+                    "data_path": "action_result.data.*.ports.443.https.tls.server_key_exchange.ecdh_params.curve_id.name",
+                    "data_type": "string"
+                },
+                {
+                    "data_path": "action_result.data.*.ports.443.https.tls.signature.hash_algorithm",
+                    "data_type": "string"
+                },
+                {
+                    "data_path": "action_result.data.*.ports.443.https.tls.signature.signature_algorithm",
+                    "data_type": "string"
+                },
+                {
+                    "data_path": "action_result.data.*.ports.443.https.tls.signature.valid",
+                    "data_type": "boolean"
+                },
+                {
+                    "data_path": "action_result.data.*.ports.443.https.tls.validation.browser_trusted",
+                    "data_type": "boolean"
+                },
+                {
+                    "data_path": "action_result.data.*.ports.443.https.tls.validation.matches_domain",
+                    "data_type": "boolean",
+                    "contains": [
+                        "domain"
+                    ]
+                },
+                {
+                    "data_path": "action_result.data.*.ports.443.https.tls.version",
+                    "data_type": "string"
+                },
+                {
+                    "data_path": "action_result.data.*.ports.80.http.get.body",
+                    "data_type": "string"
+                },
+                {
+                    "data_path": "action_result.data.*.ports.80.http.get.body_sha256",
+                    "data_type": "string"
+                },
+                {
+                    "data_path": "action_result.data.*.ports.80.http.get.headers.cache_control",
+                    "data_type": "string"
+                },
+                {
+                    "data_path": "action_result.data.*.ports.80.http.get.headers.content_type",
+                    "data_type": "string"
+                },
+                {
+                    "data_path": "action_result.data.*.ports.80.http.get.headers.expires",
+                    "data_type": "string"
+                },
+                {
+                    "data_path": "action_result.data.*.ports.80.http.get.headers.p3p",
+                    "data_type": "string"
+                },
+                {
+                    "data_path": "action_result.data.*.ports.80.http.get.headers.server",
+                    "data_type": "string"
+                },
+                {
+                    "data_path": "action_result.data.*.ports.80.http.get.headers.unknown.*.key",
+                    "data_type": "string"
+                },
+                {
+                    "data_path": "action_result.data.*.ports.80.http.get.headers.unknown.*.value",
+                    "data_type": "string"
+                },
+                {
+                    "data_path": "action_result.data.*.ports.80.http.get.headers.x_frame_options",
+                    "data_type": "string"
+                },
+                {
+                    "data_path": "action_result.data.*.ports.80.http.get.headers.x_xss_protection",
+                    "data_type": "string"
+                },
+                {
+                    "data_path": "action_result.data.*.ports.80.http.get.status_code",
+                    "data_type": "numeric"
+                },
+                {
+                    "data_path": "action_result.data.*.ports.80.http.get.status_line",
+                    "data_type": "string"
+                },
+                {
+                    "data_path": "action_result.data.*.ports.80.http.get.title",
+                    "data_type": "string"
+                },
+                {
+                    "data_path": "action_result.data.*.protocols",
+                    "data_type": "string"
+                },
+                {
+                    "data_path": "action_result.data.*.tags",
+                    "data_type": "string"
+                },
+                {
+                    "data_path": "action_result.data.*.updated_at",
+                    "data_type": "string"
+                },
+                {
+                    "data_path": "action_result.summary.protocols",
+                    "data_type": "string"
+                },
+                {
+                    "data_path": "action_result.message",
+                    "data_type": "string"
+                },
+                {
+                    "data_path": "summary.total_objects",
+                    "data_type": "numeric"
+                },
+                {
+                    "data_path": "summary.total_objects_successful",
+                    "data_type": "numeric"
+                }
+            ],
+            "versions": "EQ(*)"
+        },
+        {
+            "action": "lookup certificate",
+            "description": "Lookup certificate info",
+            "type": "investigate",
+            "identifier": "lookup_certificate",
+            "read_only": true,
+            "parameters": {
+                "sha256": {
+                    "data_type": "string",
+                    "description": "SHA256 fingerprint of certificate",
+                    "contains": [
+                        "hash",
+                        "sha256"
+                    ],
+                    "required": true,
+                    "primary": true,
+                    "order": 0
+                }
+            },
+            "render": {
+                "type": "custom",
+                "width": 10,
+                "height": 5,
+                "view": "censys_view.display_cert_info",
+                "title": "Get System Info"
+            },
+            "output": [
+                {
+                    "data_path": "action_result.status",
+                    "data_type": "string"
+                },
+                {
+                    "data_path": "action_result.parameter.sha256",
+                    "data_type": "string",
+                    "contains": [
+                        "hash",
+                        "sha256"
+                    ]
+                },
+                {
+                    "data_path": "action_result.data.*.audit.nss.is_in",
+                    "data_type": "boolean"
+                },
+                {
+                    "data_path": "action_result.data.*.audit.nss.was_in",
+                    "data_type": "boolean"
+                },
+                {
+                    "data_path": "action_result.data.*.ct.digicert_ct1.added_to_ct_at",
+                    "data_type": "string"
+                },
+                {
+                    "data_path": "action_result.data.*.ct.digicert_ct1.ct_to_censys_at",
+                    "data_type": "string"
+                },
+                {
+                    "data_path": "action_result.data.*.ct.digicert_ct1.index",
+                    "data_type": "numeric"
+                },
+                {
+                    "data_path": "action_result.data.*.ct.google_aviator.added_to_ct_at",
+                    "data_type": "string"
+                },
+                {
+                    "data_path": "action_result.data.*.ct.google_aviator.censys_to_ct_at",
+                    "data_type": "string"
+                },
+                {
+                    "data_path": "action_result.data.*.ct.google_aviator.censys_to_ct_status",
+                    "data_type": "string"
+                },
+                {
+                    "data_path": "action_result.data.*.ct.google_aviator.ct_to_censys_at",
+                    "data_type": "string"
+                },
+                {
+                    "data_path": "action_result.data.*.ct.google_aviator.index",
+                    "data_type": "numeric"
+                },
+                {
+                    "data_path": "action_result.data.*.ct.google_aviator.sct",
+                    "data_type": "string"
+                },
+                {
+                    "data_path": "action_result.data.*.ct.google_pilot.added_to_ct_at",
+                    "data_type": "string"
+                },
+                {
+                    "data_path": "action_result.data.*.ct.google_pilot.censys_to_ct_at",
+                    "data_type": "string"
+                },
+                {
+                    "data_path": "action_result.data.*.ct.google_pilot.censys_to_ct_status",
+                    "data_type": "string"
+                },
+                {
+                    "data_path": "action_result.data.*.ct.google_pilot.ct_to_censys_at",
+                    "data_type": "string"
+                },
+                {
+                    "data_path": "action_result.data.*.ct.google_pilot.index",
+                    "data_type": "numeric"
+                },
+                {
+                    "data_path": "action_result.data.*.ct.google_pilot.sct",
+                    "data_type": "string"
+                },
+                {
+                    "data_path": "action_result.data.*.ct.google_rocketeer.added_to_ct_at",
+                    "data_type": "string"
+                },
+                {
+                    "data_path": "action_result.data.*.ct.google_rocketeer.censys_to_ct_at",
+                    "data_type": "string"
+                },
+                {
+                    "data_path": "action_result.data.*.ct.google_rocketeer.censys_to_ct_status",
+                    "data_type": "string"
+                },
+                {
+                    "data_path": "action_result.data.*.ct.google_rocketeer.ct_to_censys_at",
+                    "data_type": "string"
+                },
+                {
+                    "data_path": "action_result.data.*.ct.google_rocketeer.index",
+                    "data_type": "numeric"
+                },
+                {
+                    "data_path": "action_result.data.*.ct.google_rocketeer.sct",
+                    "data_type": "string"
+                },
+                {
+                    "data_path": "action_result.data.*.ct.google_submariner.added_to_ct_at",
+                    "data_type": "string"
+                },
+                {
+                    "data_path": "action_result.data.*.ct.google_submariner.ct_to_censys_at",
+                    "data_type": "string"
+                },
+                {
+                    "data_path": "action_result.data.*.ct.google_submariner.index",
+                    "data_type": "numeric"
+                },
+                {
+                    "data_path": "action_result.data.*.ct.symantec_ws_ct.added_to_ct_at",
+                    "data_type": "string"
+                },
+                {
+                    "data_path": "action_result.data.*.ct.symantec_ws_ct.ct_to_censys_at",
+                    "data_type": "string"
+                },
+                {
+                    "data_path": "action_result.data.*.ct.symantec_ws_ct.index",
+                    "data_type": "numeric"
+                },
+                {
+                    "data_path": "action_result.data.*.ct.symantec_ws_deneb.added_to_ct_at",
+                    "data_type": "string"
+                },
+                {
+                    "data_path": "action_result.data.*.ct.symantec_ws_deneb.ct_to_censys_at",
+                    "data_type": "string"
+                },
+                {
+                    "data_path": "action_result.data.*.ct.symantec_ws_deneb.index",
+                    "data_type": "numeric"
+                },
+                {
+                    "data_path": "action_result.data.*.ct.symantec_ws_vega.added_to_ct_at",
+                    "data_type": "string"
+                },
+                {
+                    "data_path": "action_result.data.*.ct.symantec_ws_vega.ct_to_censys_at",
+                    "data_type": "string"
+                },
+                {
+                    "data_path": "action_result.data.*.ct.symantec_ws_vega.index",
+                    "data_type": "numeric"
+                },
+                {
+                    "data_path": "action_result.data.*.ct.venafi_api_ctlog.added_to_ct_at",
+                    "data_type": "string"
+                },
+                {
+                    "data_path": "action_result.data.*.ct.venafi_api_ctlog.ct_to_censys_at",
+                    "data_type": "string"
+                },
+                {
+                    "data_path": "action_result.data.*.ct.venafi_api_ctlog.index",
+                    "data_type": "numeric"
+                },
+                {
+                    "data_path": "action_result.data.*.ct.wosign_ctlog.added_to_ct_at",
+                    "data_type": "string"
+                },
+                {
+                    "data_path": "action_result.data.*.ct.wosign_ctlog.ct_to_censys_at",
+                    "data_type": "string"
+                },
+                {
+                    "data_path": "action_result.data.*.ct.wosign_ctlog.index",
+                    "data_type": "numeric"
+                },
+                {
+                    "data_path": "action_result.data.*.current_in_nss",
+                    "data_type": "boolean"
+                },
+                {
+                    "data_path": "action_result.data.*.current_valid_nss",
+                    "data_type": "boolean"
+                },
+                {
+                    "data_path": "action_result.data.*.in_nss",
+                    "data_type": "boolean"
+                },
+                {
+                    "data_path": "action_result.data.*.parents",
+                    "data_type": "string"
+                },
+                {
+                    "data_path": "action_result.data.*.parsed.extensions.authority_info_access.ocsp_urls",
+                    "data_type": "string"
+                },
+                {
+                    "data_path": "action_result.data.*.parsed.extensions.authority_key_id",
+                    "data_type": "string"
+                },
+                {
+                    "data_path": "action_result.data.*.parsed.extensions.basic_constraints.is_ca",
+                    "data_type": "boolean"
+                },
+                {
+                    "data_path": "action_result.data.*.parsed.extensions.basic_constraints.max_path_len",
+                    "data_type": "numeric"
+                },
+                {
+                    "data_path": "action_result.data.*.parsed.extensions.certificate_policies",
+                    "data_type": "string"
+                },
+                {
+                    "data_path": "action_result.data.*.parsed.extensions.crl_distribution_points",
+                    "data_type": "string"
+                },
+                {
+                    "data_path": "action_result.data.*.parsed.extensions.key_usage.certificate_sign",
+                    "data_type": "boolean"
+                },
+                {
+                    "data_path": "action_result.data.*.parsed.extensions.key_usage.crl_sign",
+                    "data_type": "boolean"
+                },
+                {
+                    "data_path": "action_result.data.*.parsed.extensions.key_usage.value",
+                    "data_type": "numeric"
+                },
+                {
+                    "data_path": "action_result.data.*.parsed.extensions.subject_alt_name.directory_names.*.common_name",
+                    "data_type": "string"
+                },
+                {
+                    "data_path": "action_result.data.*.parsed.extensions.subject_key_id",
+                    "data_type": "string"
+                },
+                {
+                    "data_path": "action_result.data.*.parsed.fingerprint_md5",
+                    "data_type": "string"
+                },
+                {
+                    "data_path": "action_result.data.*.parsed.fingerprint_sha1",
+                    "data_type": "string"
+                },
+                {
+                    "data_path": "action_result.data.*.parsed.fingerprint_sha256",
+                    "data_type": "string",
+                    "contains": [
+                        "sha256"
+                    ]
+                },
+                {
+                    "data_path": "action_result.data.*.parsed.issuer.common_name",
+                    "data_type": "string"
+                },
+                {
+                    "data_path": "action_result.data.*.parsed.issuer.country",
+                    "data_type": "string"
+                },
+                {
+                    "data_path": "action_result.data.*.parsed.issuer.organization",
+                    "data_type": "string"
+                },
+                {
+                    "data_path": "action_result.data.*.parsed.issuer.organizational_unit",
+                    "data_type": "string"
+                },
+                {
+                    "data_path": "action_result.data.*.parsed.issuer_dn",
+                    "data_type": "string"
+                },
+                {
+                    "data_path": "action_result.data.*.parsed.serial_number",
+                    "data_type": "string"
+                },
+                {
+                    "data_path": "action_result.data.*.parsed.signature.self_signed",
+                    "data_type": "boolean"
+                },
+                {
+                    "data_path": "action_result.data.*.parsed.signature.signature_algorithm.name",
+                    "data_type": "string"
+                },
+                {
+                    "data_path": "action_result.data.*.parsed.signature.signature_algorithm.oid",
+                    "data_type": "string"
+                },
+                {
+                    "data_path": "action_result.data.*.parsed.signature.valid",
+                    "data_type": "boolean"
+                },
+                {
+                    "data_path": "action_result.data.*.parsed.signature.value",
+                    "data_type": "string"
+                },
+                {
+                    "data_path": "action_result.data.*.parsed.signature_algorithm.name",
+                    "data_type": "string"
+                },
+                {
+                    "data_path": "action_result.data.*.parsed.signature_algorithm.oid",
+                    "data_type": "string"
+                },
+                {
+                    "data_path": "action_result.data.*.parsed.spki_subject_fingerprint",
+                    "data_type": "string"
+                },
+                {
+                    "data_path": "action_result.data.*.parsed.subject.common_name",
+                    "data_type": "string"
+                },
+                {
+                    "data_path": "action_result.data.*.parsed.subject.country",
+                    "data_type": "string"
+                },
+                {
+                    "data_path": "action_result.data.*.parsed.subject.organization",
+                    "data_type": "string"
+                },
+                {
+                    "data_path": "action_result.data.*.parsed.subject.organizational_unit",
+                    "data_type": "string"
+                },
+                {
+                    "data_path": "action_result.data.*.parsed.subject_dn",
+                    "data_type": "string"
+                },
+                {
+                    "data_path": "action_result.data.*.parsed.subject_key_info.fingerprint_sha256",
+                    "data_type": "string",
+                    "contains": [
+                        "sha256"
+                    ]
+                },
+                {
+                    "data_path": "action_result.data.*.parsed.subject_key_info.key_algorithm.name",
+                    "data_type": "string"
+                },
+                {
+                    "data_path": "action_result.data.*.parsed.subject_key_info.key_algorithm.oid",
+                    "data_type": "string"
+                },
+                {
+                    "data_path": "action_result.data.*.parsed.subject_key_info.rsa_public_key.exponent",
+                    "data_type": "numeric"
+                },
+                {
+                    "data_path": "action_result.data.*.parsed.subject_key_info.rsa_public_key.length",
+                    "data_type": "numeric"
+                },
+                {
+                    "data_path": "action_result.data.*.parsed.subject_key_info.rsa_public_key.modulus",
+                    "data_type": "string"
+                },
+                {
+                    "data_path": "action_result.data.*.parsed.tbs_fingerprint",
+                    "data_type": "string"
+                },
+                {
+                    "data_path": "action_result.data.*.parsed.tbs_noct_fingerprint",
+                    "data_type": "string"
+                },
+                {
+                    "data_path": "action_result.data.*.parsed.validation_level",
+                    "data_type": "string"
+                },
+                {
+                    "data_path": "action_result.data.*.parsed.validity.end",
+                    "data_type": "string"
+                },
+                {
+                    "data_path": "action_result.data.*.parsed.validity.length",
+                    "data_type": "numeric"
+                },
+                {
+                    "data_path": "action_result.data.*.parsed.validity.start",
+                    "data_type": "string"
+                },
+                {
+                    "data_path": "action_result.data.*.parsed.version",
+                    "data_type": "numeric"
+                },
+                {
+                    "data_path": "action_result.data.*.post_processed",
+                    "data_type": "boolean"
+                },
+                {
+                    "data_path": "action_result.data.*.precert",
+                    "data_type": "boolean"
+                },
+                {
+                    "data_path": "action_result.data.*.raw",
+                    "data_type": "string"
+                },
+                {
+                    "data_path": "action_result.data.*.seen_in_scan",
+                    "data_type": "boolean"
+                },
+                {
+                    "data_path": "action_result.data.*.source",
+                    "data_type": "string"
+                },
+                {
+                    "data_path": "action_result.data.*.updated_at",
+                    "data_type": "string"
+                },
+                {
+                    "data_path": "action_result.data.*.valid_nss",
+                    "data_type": "boolean"
+                },
+                {
+                    "data_path": "action_result.data.*.validation_timestamp",
+                    "data_type": "string"
+                },
+                {
+                    "data_path": "action_result.data.*.was_in_nss",
+                    "data_type": "boolean"
+                },
+                {
+                    "data_path": "action_result.data.*.was_valid_nss",
+                    "data_type": "boolean"
+                },
+                {
+                    "data_path": "action_result.summary.issuer_dn",
+                    "data_type": "string"
+                },
+                {
+                    "data_path": "action_result.summary.subject_dn",
+                    "data_type": "string"
+                },
+                {
+                    "data_path": "action_result.summary.valid_from",
+                    "data_type": "string"
+                },
+                {
+                    "data_path": "action_result.summary.valid_to",
+                    "data_type": "string"
+                },
+                {
+                    "data_path": "action_result.message",
+                    "data_type": "string"
+                },
+                {
+                    "data_path": "summary.total_objects",
+                    "data_type": "numeric"
+                },
+                {
+                    "data_path": "summary.total_objects_successful",
+                    "data_type": "numeric"
+                }
+            ],
+            "versions": "EQ(*)"
         }
-      ],
-      "versions": "EQ(*)"
-    },
-    {
-      "action": "lookup certificate",
-      "description": "Lookup certificate info",
-      "type": "investigate",
-      "identifier": "lookup_certificate",
-      "read_only": true,
-      "parameters": {
-        "sha256": {
-          "data_type": "string",
-          "description": "SHA256 fingerprint of certificate",
-          "contains": ["hash", "sha256"],
-          "required": true,
-          "primary": true,
-          "order": 0
-          }
-      },
-      "render": {
-        "type": "custom",
-        "width": 10,
-        "height": 5,
-        "view": "censys_view.display_cert_info",
-        "title": "Get System Info"
-      },
-      "output": [
-        {
-          "data_path": "action_result.data.*.ct.digicert_ct1.index",
-          "data_type": "numeric"
-        },
-        {
-          "data_path": "action_result.data.*.ct.digicert_ct1.added_to_ct_at",
-          "data_type": "string"
-        },
-        {
-          "data_path": "action_result.data.*.ct.digicert_ct1.ct_to_censys_at",
-          "data_type": "string"
-        },
-        {
-          "data_path": "action_result.data.*.ct.google_pilot.sct",
-          "data_type": "string"
-        },
-        {
-          "data_path": "action_result.data.*.ct.google_pilot.index",
-          "data_type": "numeric"
-        },
-        {
-          "data_path": "action_result.data.*.ct.google_pilot.added_to_ct_at",
-          "data_type": "string"
-        },
-        {
-          "data_path": "action_result.data.*.ct.google_pilot.censys_to_ct_at",
-          "data_type": "string"
-        },
-        {
-          "data_path": "action_result.data.*.ct.google_pilot.ct_to_censys_at",
-          "data_type": "string"
-        },
-        {
-          "data_path": "action_result.data.*.ct.google_pilot.censys_to_ct_status",
-          "data_type": "string"
-        },
-        {
-          "data_path": "action_result.data.*.ct.wosign_ctlog.index",
-          "data_type": "numeric"
-        },
-        {
-          "data_path": "action_result.data.*.ct.wosign_ctlog.added_to_ct_at",
-          "data_type": "string"
-        },
-        {
-          "data_path": "action_result.data.*.ct.wosign_ctlog.ct_to_censys_at",
-          "data_type": "string"
-        },
-        {
-          "data_path": "action_result.data.*.ct.google_aviator.sct",
-          "data_type": "string"
-        },
-        {
-          "data_path": "action_result.data.*.ct.google_aviator.index",
-          "data_type": "numeric"
-        },
-        {
-          "data_path": "action_result.data.*.ct.google_aviator.added_to_ct_at",
-          "data_type": "string"
-        },
-        {
-          "data_path": "action_result.data.*.ct.google_aviator.censys_to_ct_at",
-          "data_type": "string"
-        },
-        {
-          "data_path": "action_result.data.*.ct.google_aviator.ct_to_censys_at",
-          "data_type": "string"
-        },
-        {
-          "data_path": "action_result.data.*.ct.google_aviator.censys_to_ct_status",
-          "data_type": "string"
-        },
-        {
-          "data_path": "action_result.data.*.ct.symantec_ws_ct.index",
-          "data_type": "numeric"
-        },
-        {
-          "data_path": "action_result.data.*.ct.symantec_ws_ct.added_to_ct_at",
-          "data_type": "string"
-        },
-        {
-          "data_path": "action_result.data.*.ct.symantec_ws_ct.ct_to_censys_at",
-          "data_type": "string"
-        },
-        {
-          "data_path": "action_result.data.*.ct.google_rocketeer.sct",
-          "data_type": "string"
-        },
-        {
-          "data_path": "action_result.data.*.ct.google_rocketeer.index",
-          "data_type": "numeric"
-        },
-        {
-          "data_path": "action_result.data.*.ct.google_rocketeer.added_to_ct_at",
-          "data_type": "string"
-        },
-        {
-          "data_path": "action_result.data.*.ct.google_rocketeer.censys_to_ct_at",
-          "data_type": "string"
-        },
-        {
-          "data_path": "action_result.data.*.ct.google_rocketeer.ct_to_censys_at",
-          "data_type": "string"
-        },
-        {
-          "data_path": "action_result.data.*.ct.google_rocketeer.censys_to_ct_status",
-          "data_type": "string"
-        },
-        {
-          "data_path": "action_result.data.*.ct.symantec_ws_vega.index",
-          "data_type": "numeric"
-        },
-        {
-          "data_path": "action_result.data.*.ct.symantec_ws_vega.added_to_ct_at",
-          "data_type": "string"
-        },
-        {
-          "data_path": "action_result.data.*.ct.symantec_ws_vega.ct_to_censys_at",
-          "data_type": "string"
-        },
-        {
-          "data_path": "action_result.data.*.ct.venafi_api_ctlog.index",
-          "data_type": "numeric"
-        },
-        {
-          "data_path": "action_result.data.*.ct.venafi_api_ctlog.added_to_ct_at",
-          "data_type": "string"
-        },
-        {
-          "data_path": "action_result.data.*.ct.venafi_api_ctlog.ct_to_censys_at",
-          "data_type": "string"
-        },
-        {
-          "data_path": "action_result.data.*.ct.google_submariner.index",
-          "data_type": "numeric"
-        },
-        {
-          "data_path": "action_result.data.*.ct.google_submariner.added_to_ct_at",
-          "data_type": "string"
-        },
-        {
-          "data_path": "action_result.data.*.ct.google_submariner.ct_to_censys_at",
-          "data_type": "string"
-        },
-        {
-          "data_path": "action_result.data.*.ct.symantec_ws_deneb.index",
-          "data_type": "numeric"
-        },
-        {
-          "data_path": "action_result.data.*.ct.symantec_ws_deneb.added_to_ct_at",
-          "data_type": "string"
-        },
-        {
-          "data_path": "action_result.data.*.ct.symantec_ws_deneb.ct_to_censys_at",
-          "data_type": "string"
-        },
-        {
-          "data_path": "action_result.data.*.raw",
-          "data_type": "string"
-        },
-        {
-          "data_path": "action_result.data.*.audit.nss.is_in",
-          "data_type": "boolean"
-        },
-        {
-          "data_path": "action_result.data.*.audit.nss.was_in",
-          "data_type": "boolean"
-        },
-        {
-          "data_path": "action_result.data.*.in_nss",
-          "data_type": "boolean"
-        },
-        {
-          "data_path": "action_result.data.*.parsed.issuer.country",
-          "data_type": "string"
-        },
-        {
-          "data_path": "action_result.data.*.parsed.issuer.common_name",
-          "data_type": "string"
-        },
-        {
-          "data_path": "action_result.data.*.parsed.issuer.organization",
-          "data_type": "string"
-        },
-        {
-          "data_path": "action_result.data.*.parsed.issuer.organizational_unit",
-          "data_type": "string"
-        },
-        {
-          "data_path": "action_result.data.*.parsed.subject.country",
-          "data_type": "string"
-        },
-        {
-          "data_path": "action_result.data.*.parsed.subject.common_name",
-          "data_type": "string"
-        },
-        {
-          "data_path": "action_result.data.*.parsed.subject.organization",
-          "data_type": "string"
-        },
-        {
-          "data_path": "action_result.data.*.parsed.subject.organizational_unit",
-          "data_type": "string"
-        },
-        {
-          "data_path": "action_result.data.*.parsed.version",
-          "data_type": "numeric"
-        },
-        {
-          "data_path": "action_result.data.*.parsed.validity.end",
-          "data_type": "string"
-        },
-        {
-          "data_path": "action_result.data.*.parsed.validity.start",
-          "data_type": "string"
-        },
-        {
-          "data_path": "action_result.data.*.parsed.validity.length",
-          "data_type": "numeric"
-        },
-        {
-          "data_path": "action_result.data.*.parsed.issuer_dn",
-          "data_type": "string"
-        },
-        {
-          "data_path": "action_result.data.*.parsed.signature.valid",
-          "data_type": "boolean"
-        },
-        {
-          "data_path": "action_result.data.*.parsed.signature.value",
-          "data_type": "string"
-        },
-        {
-          "data_path": "action_result.data.*.parsed.signature.self_signed",
-          "data_type": "boolean"
-        },
-        {
-          "data_path": "action_result.data.*.parsed.signature.signature_algorithm.oid",
-          "data_type": "string"
-        },
-        {
-          "data_path": "action_result.data.*.parsed.signature.signature_algorithm.name",
-          "data_type": "string"
-        },
-        {
-          "data_path": "action_result.data.*.parsed.extensions.key_usage.value",
-          "data_type": "numeric"
-        },
-        {
-          "data_path": "action_result.data.*.parsed.extensions.key_usage.crl_sign",
-          "data_type": "boolean"
-        },
-        {
-          "data_path": "action_result.data.*.parsed.extensions.key_usage.certificate_sign",
-          "data_type": "boolean"
-        },
-        {
-          "data_path": "action_result.data.*.parsed.extensions.subject_key_id",
-          "data_type": "string"
-        },
-        {
-          "data_path": "action_result.data.*.parsed.extensions.authority_key_id",
-          "data_type": "string"
-        },
-        {
-          "data_path": "action_result.data.*.parsed.extensions.subject_alt_name.directory_names.*.common_name",
-          "data_type": "string"
-        },
-        {
-          "data_path": "action_result.data.*.parsed.extensions.basic_constraints.is_ca",
-          "data_type": "boolean"
-        },
-        {
-          "data_path": "action_result.data.*.parsed.extensions.basic_constraints.max_path_len",
-          "data_type": "numeric"
-        },
-        {
-          "data_path": "action_result.data.*.parsed.extensions.certificate_policies",
-          "data_type": "string"
-        },
-        {
-          "data_path": "action_result.data.*.parsed.extensions.authority_info_access.ocsp_urls",
-          "data_type": "string"
-        },
-        {
-          "data_path": "action_result.data.*.parsed.extensions.crl_distribution_points",
-          "data_type": "string"
-        },
-        {
-          "data_path": "action_result.data.*.parsed.subject_dn",
-          "data_type": "string"
-        },
-        {
-          "data_path": "action_result.data.*.parsed.serial_number",
-          "data_type": "string"
-        },
-        {
-          "data_path": "action_result.data.*.parsed.fingerprint_md5",
-          "data_type": "string"
-        },
-        {
-          "data_path": "action_result.data.*.parsed.tbs_fingerprint",
-          "data_type": "string"
-        },
-        {
-          "data_path": "action_result.data.*.parsed.fingerprint_sha1",
-          "data_type": "string"
-        },
-        {
-          "data_path": "action_result.data.*.parsed.subject_key_info.key_algorithm.oid",
-          "data_type": "string"
-        },
-        {
-          "data_path": "action_result.data.*.parsed.subject_key_info.key_algorithm.name",
-          "data_type": "string"
-        },
-        {
-          "data_path": "action_result.data.*.parsed.subject_key_info.rsa_public_key.length",
-          "data_type": "numeric"
-        },
-        {
-          "data_path": "action_result.data.*.parsed.subject_key_info.rsa_public_key.modulus",
-          "data_type": "string"
-        },
-        {
-          "data_path": "action_result.data.*.parsed.subject_key_info.rsa_public_key.exponent",
-          "data_type": "numeric"
-        },
-        {
-          "data_path": "action_result.data.*.parsed.subject_key_info.fingerprint_sha256",
-          "data_type": "string",
-          "contains": [ "sha256" ]
-        },
-        {
-          "data_path": "action_result.data.*.parsed.validation_level",
-          "data_type": "string"
-        },
-        {
-          "data_path": "action_result.data.*.parsed.fingerprint_sha256",
-          "data_type": "string",
-          "contains": [ "sha256" ]
-        },
-        {
-          "data_path": "action_result.data.*.parsed.signature_algorithm.oid",
-          "data_type": "string"
-        },
-        {
-          "data_path": "action_result.data.*.parsed.signature_algorithm.name",
-          "data_type": "string"
-        },
-        {
-          "data_path": "action_result.data.*.parsed.tbs_noct_fingerprint",
-          "data_type": "string"
-        },
-        {
-          "data_path": "action_result.data.*.parsed.spki_subject_fingerprint",
-          "data_type": "string"
-        },
-        {
-          "data_path": "action_result.data.*.source",
-          "data_type": "string"
-        },
-        {
-          "data_path": "action_result.data.*.parents",
-          "data_type": "string"
-        },
-        {
-          "data_path": "action_result.data.*.precert",
-          "data_type": "boolean"
-        },
-        {
-          "data_path": "action_result.data.*.valid_nss",
-          "data_type": "boolean"
-        },
-        {
-          "data_path": "action_result.data.*.updated_at",
-          "data_type": "string"
-        },
-        {
-          "data_path": "action_result.data.*.was_in_nss",
-          "data_type": "boolean"
-        },
-        {
-          "data_path": "action_result.data.*.seen_in_scan",
-          "data_type": "boolean"
-        },
-        {
-          "data_path": "action_result.data.*.was_valid_nss",
-          "data_type": "boolean"
-        },
-        {
-          "data_path": "action_result.data.*.current_in_nss",
-          "data_type": "boolean"
-        },
-        {
-          "data_path": "action_result.data.*.post_processed",
-          "data_type": "boolean"
-        },
-        {
-          "data_path": "action_result.data.*.current_valid_nss",
-          "data_type": "boolean"
-        },
-        {
-          "data_path": "action_result.data.*.validation_timestamp",
-          "data_type": "string"
-        },
-        {
-          "data_path": "action_result.status",
-          "data_type": "string"
-        },
-        {
-          "data_path": "action_result.message",
-          "data_type": "string"
-        },
-        {
-          "data_path": "action_result.summary.valid_to",
-          "data_type": "string"
-        },
-        {
-          "data_path": "action_result.summary.issuer_dn",
-          "data_type": "string"
-        },
-        {
-          "data_path": "action_result.summary.subject_dn",
-          "data_type": "string"
-        },
-        {
-          "data_path": "action_result.summary.valid_from",
-          "data_type": "string"
-        },
-        {
-          "data_path": "action_result.parameter.sha256",
-          "data_type": "string",
-          "contains": [ "hash", "sha256" ]
-        },
-        {
-          "data_path": "summary.total_objects",
-          "data_type": "numeric"
-        },
-        {
-          "data_path": "summary.total_objects_successful",
-          "data_type": "numeric"
-        }
-      ],
-      "versions": "EQ(*)"
-    }
-  ]
+    ]
 }
