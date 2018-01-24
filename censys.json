@@ -14,7 +14,7 @@
     "logo": "logo_censys.svg",
     "logo_dark": "logo_censys_dark.svg",
     "min_phantom_version": "3.0.247",
-    "license": "Copyright (c) Phantom Cyber Corporation 2016-2017",
+    "license": "Copyright (c) Phantom Cyber Corporation, 2016-2018",
     "configuration": {
         "api_id": {
             "data_type": "string",
