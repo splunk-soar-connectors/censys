@@ -17,13 +17,13 @@
     "license": "Copyright (c) 2016-2018 Splunk Inc.",
     "configuration": {
         "api_id": {
-            "data_type": "string",
+            "data_type": "password",
             "order": 0,
             "description": "API ID",
             "required": true
         },
         "secret": {
-            "data_type": "string",
+            "data_type": "password",
             "order": 1,
             "description": "Secret",
             "required": true
