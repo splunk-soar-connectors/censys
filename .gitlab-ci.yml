@@ -1,3 +1,0 @@
-include:
-  - project: 'phantom/app_release'
-    file: '.gitlab-ci.yml'
