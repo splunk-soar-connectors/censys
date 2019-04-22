@@ -18,9 +18,12 @@ import json
 
 class CensysConnector(BaseConnector):
 
-    ACTION_QUERY_IP = "lookup_ip"
-    ACTION_QUERY_CERTIFICATE = "lookup_certificate"
-    ACTION_QUERY_DOMAIN = "lookup_domain"
+    ACTION_LOOKUP_IP = "lookup_ip"
+    ACTION_LOOKUP_CERTIFICATE = "lookup_certificate"
+    ACTION_LOOKUP_DOMAIN = "lookup_domain"
+    ACTION_QUERY_IP = "query_ip"
+    ACTION_QUERY_CERTIFICATE = "query_certificate"
+    ACTION_QUERY_DOMAIN = "query_domain"
 
     def __init__(self):
         self._headers = {}
@@ -35,16 +38,15 @@ class CensysConnector(BaseConnector):
         try:
             resp_json = r.json()
         except:
-            return (action_result.set_status(phantom.APP_ERROR, "Unable to Parse response as JSON"), None)
+            return (action_result.set_status(phantom.APP_ERROR, "Unable to parse response as JSON"), None)
 
-        message = "Server returned error with Status: {0}, Type: {1}, Detail: {2}".format(
+        message = "Server returned error with status: {0}, Type: {1}, Detail: {2}".format(
                 resp_json.get('status', 'NA'), resp_json.get('error_type', 'NA'), resp_json.get('error', 'NA'))
 
         return action_result.set_status(phantom.APP_ERROR, message)
 
     def _make_rest_call(self, endpoint, action_result, data=None, method="post"):
 
-        # Create the header
         resp_json = None
 
         config = self.get_config()
@@ -58,7 +60,6 @@ class CensysConnector(BaseConnector):
             return (action_result.set_status(phantom.APP_ERROR, "Unable to connect to the server", e), resp_json)
 
         if (response.status_code not in (200, 429)):
-            # error, possibly
             return (self._parse_http_error(action_result, response), {})
 
         try:
@@ -89,27 +90,49 @@ class CensysConnector(BaseConnector):
         return self.set_status(phantom.APP_SUCCESS, "Connectivity test passed")
 
     def _check_datapath(self, datadict):
-            for i in datadict.keys():
-                if "." in i:
-                    datadict[i.replace(".", "_")] = datadict[i]
-                    del(datadict[i])
-            return datadict
+        for i in datadict.keys():
+            if "." in i:
+                datadict[i.replace(".", "_")] = datadict[i]
+                del(datadict[i])
+        return datadict
 
-    def _handle_search(self, query_string, search_action, action_result):
+    def _handle_search(self, query_string, censys_io_dataset, action_result):
+        """ Search Censys using the given query string in the Censys search language. censys_io_dataset specifies
+            which type of data you are searching. At the time of writing there are 3 datasets: certificates,
+            ipv4hosts, and websites (domains).
+        """
 
-            req_method, api = CENSYS_API_METHOD_MAP.get("search")
+        req_method, api = CENSYS_API_METHOD_MAP.get("search")
+        data = {"query": query_string}
 
-            data = {"query": query_string}
+        ret_val, response = self._make_rest_call(api + censys_io_dataset, action_result, data=data, method=req_method)
 
-            ret_val, response = self._make_rest_call(api + search_action, action_result, data=data, method=req_method)
+        num_pages = response.get('metadata', {}).get('pages', None)
+        if num_pages is None:
+            return (action_result.set_status(phantom.APP_ERROR), None)
 
-            if phantom.is_fail(ret_val):
-                return action_result.get_status()
+        for res in response.get("results", []):
+            action_result.add_data(self._check_datapath(res))
 
-            for res in response.get("results", []):
-                action_result.add_data(self._check_datapath(res))
+        headers = {'Content-type': 'application/json', 'Accept': 'text/plain'}
+        config = self.get_config()
+        auth = (config[CENSYS_JSON_API_ID], config[CENSYS_JSON_SECRET])
+        for page in range(2, num_pages + 1):
+            self.debug_print("requesting page {} out of {}".format(page, num_pages))
+            data['page'] = page
+            page_response = requests.post(CENSYS_API_URL + api + censys_io_dataset, data=json.dumps(data), headers=headers, auth=auth)
+            if page_response.status_code != 200:
+                self.debug_print("received {} response with body {}".format(page_response.status_code, page_response.text))
+                return action_result.set_status(phantom.APP_SUCCESS), response
 
-            action_result.set_status(phantom.APP_SUCCESS)
+            response_json = page_response.json()
+            for result in response_json.get("results", []):
+                action_result.add_data(self._check_datapath(result))
+
+        if phantom.is_fail(ret_val):
+            return action_result.get_status(), None
+
+        return (action_result.set_status(phantom.APP_SUCCESS), response)
 
     def _handle_view(self, query_string, search_action, action_result):
 
@@ -151,7 +174,7 @@ class CensysConnector(BaseConnector):
 
         return response
 
-    def _query_ip(self, param):
+    def _lookup_ip(self, param):
 
         action_result = self.add_action_result(ActionResult(param))
         ret_val, response = self._handle_view(param[CENSYS_JSON_IP], "ipv4", action_result)
@@ -166,7 +189,7 @@ class CensysConnector(BaseConnector):
 
         return ret_val
 
-    def _query_certificate(self, param):
+    def _lookup_certificate(self, param):
 
         action_result = self.add_action_result(ActionResult(param))
         ret_val, response = self._handle_view(param[CENSYS_JSON_SHA256], "certificates", action_result)
@@ -210,7 +233,7 @@ class CensysConnector(BaseConnector):
 
         return action_result
 
-    def _query_domain(self, param):
+    def _lookup_domain(self, param):
 
         action_result = self.add_action_result(ActionResult(param))
         ret_val, response = self._handle_view(param[CENSYS_JSON_DOMAIN], "websites", action_result)
@@ -225,6 +248,25 @@ class CensysConnector(BaseConnector):
 
         return ret_val
 
+    def _query_dataset(self, param, dataset):
+        """ Use handle_search to query the correct dataset with the query string
+        """
+
+        action_result = self.add_action_result(ActionResult(param))
+
+        ret_val, response = self._handle_search(param[CENSYS_JSON_QUERY], dataset, action_result)
+
+        if (phantom.is_fail(ret_val)):
+            return ret_val
+
+        try:
+            action_result.update_summary({'result_count': response['metadata']['count']})
+        except:
+            action_result.update_summary({'result_count': 'Not found'})
+            return action_result.set_status(phantom.APP_ERROR, 'unable to parse result count')
+
+        return ret_val
+
     def handle_action(self, param):
 
         action = self.get_action_identifier()
@@ -233,12 +275,18 @@ class CensysConnector(BaseConnector):
 
         if (action == phantom.ACTION_ID_TEST_ASSET_CONNECTIVITY):
             ret_val = self._test_connectivity(param)
+        elif (action == self.ACTION_LOOKUP_IP):
+            ret_val = self._lookup_ip(param)
+        elif (action == self.ACTION_LOOKUP_CERTIFICATE):
+            ret_val = self._lookup_certificate(param)
+        elif (action == self.ACTION_LOOKUP_DOMAIN):
+            ret_val = self._lookup_domain(param)
         elif (action == self.ACTION_QUERY_IP):
-            ret_val = self._query_ip(param)
-        elif (action == self.ACTION_QUERY_CERTIFICATE):
-            ret_val = self._query_certificate(param)
+            ret_val = self._query_dataset(param, QUERY_IP_DATASET)
         elif (action == self.ACTION_QUERY_DOMAIN):
-            ret_val = self._query_domain(param)
+            ret_val = self._query_dataset(param, QUERY_DOMAIN_DATASET)
+        elif (action == self.ACTION_QUERY_CERTIFICATE):
+            ret_val = self._query_dataset(param, QUERY_CERTIFICATE_DATASET)
 
         return ret_val
 
