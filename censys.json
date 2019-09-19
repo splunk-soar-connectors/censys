@@ -5,27 +5,27 @@
     "publisher": "Splunk",
     "type": "information",
     "main_module": "censys_connector.pyc",
-    "app_version": "1.0.26",
-    "utctime_updated": "2019-04-25T00:39:46.000000Z",
+    "app_version": "1.0.29",
+    "utctime_updated": "2019-09-19T08:20:26.000000Z",
     "package_name": "phantom_censys",
     "product_vendor": "Censys",
     "product_name": "Censys",
     "product_version_regex": ".*",
     "logo": "logo_censys.svg",
     "logo_dark": "logo_censys_dark.svg",
-    "min_phantom_version": "4.0.1068",
+    "min_phantom_version": "4.2.7532",
     "license": "Copyright (c) 2016-2019 Splunk Inc.",
     "configuration": {
         "api_id": {
+            "description": "API ID",
             "data_type": "password",
             "order": 0,
-            "description": "API ID",
             "required": true
         },
         "secret": {
+            "description": "Secret",
             "data_type": "password",
             "order": 1,
-            "description": "Secret",
             "required": true
         }
     },
