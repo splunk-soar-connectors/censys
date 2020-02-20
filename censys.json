@@ -1,11 +1,11 @@
 {
     "appid": "97C8DF6F-C870-4482-B6CA-B6C31745FBAB",
     "name": "Censys",
-    "description": "This app implements investigative actions to get information from the censys search engine",
+    "description": "This app implements investigative actions to get information from the Censys search engine",
     "publisher": "Splunk",
     "type": "information",
-    "main_module": "censys_connector.pyc",
-    "app_version": "1.0.29",
+    "main_module": "censys_connector.py",
+    "app_version": "2.0.0",
     "utctime_updated": "2019-09-19T08:20:26.000000Z",
     "package_name": "phantom_censys",
     "product_vendor": "Censys",
@@ -13,8 +13,12 @@
     "product_version_regex": ".*",
     "logo": "logo_censys.svg",
     "logo_dark": "logo_censys_dark.svg",
-    "min_phantom_version": "4.2.7532",
-    "license": "Copyright (c) 2016-2019 Splunk Inc.",
+    "min_phantom_version": "4.6.19142",
+    "python_version": "3",
+    "latest_tested_versions": [
+        "Cloud v1 API tested 2-20-2020"
+    ],
+    "license": "Copyright (c) 2016-2020 Splunk Inc.",
     "configuration": {
         "api_id": {
             "description": "API ID",
@@ -58,13 +62,6 @@
                     "primary": true,
                     "order": 0
                 }
-            },
-            "render": {
-                "type": "custom",
-                "width": 10,
-                "height": 5,
-                "view": "censys_view.display_cert_info",
-                "title": "Get System Info"
             },
             "output": [
                 {
@@ -518,6 +515,13 @@
                     "data_type": "numeric"
                 }
             ],
+            "render": {
+                "type": "custom",
+                "width": 10,
+                "height": 5,
+                "view": "censys_view.display_cert_info",
+                "title": "Get System Info"
+            },
             "versions": "EQ(*)"
         },
         {
@@ -537,13 +541,6 @@
                     "primary": true,
                     "order": 0
                 }
-            },
-            "render": {
-                "type": "custom",
-                "width": 10,
-                "height": 5,
-                "view": "censys_view.display_ip_domain_info",
-                "title": "IP Info"
             },
             "output": [
                 {
@@ -1200,6 +1197,13 @@
                     "data_type": "numeric"
                 }
             ],
+            "render": {
+                "type": "custom",
+                "width": 10,
+                "height": 5,
+                "view": "censys_view.display_ip_domain_info",
+                "title": "IP Info"
+            },
             "versions": "EQ(*)"
         },
         {
@@ -1219,13 +1223,6 @@
                     "primary": true,
                     "order": 0
                 }
-            },
-            "render": {
-                "type": "custom",
-                "width": 10,
-                "height": 5,
-                "view": "censys_view.display_ip_domain_info",
-                "title": "IP Info"
             },
             "output": [
                 {
@@ -2337,6 +2334,13 @@
                     "data_type": "numeric"
                 }
             ],
+            "render": {
+                "type": "custom",
+                "width": 10,
+                "height": 5,
+                "view": "censys_view.display_ip_domain_info",
+                "title": "IP Info"
+            },
             "versions": "EQ(*)"
         },
         {
@@ -2353,12 +2357,6 @@
                     "primary": false,
                     "order": 0
                 }
-            },
-            "render": {
-                "type": "table",
-                "width": 12,
-                "height": 5,
-                "title": "Censys Query Domain Results"
             },
             "output": [
                 {
@@ -2425,6 +2423,12 @@
                     ]
                 }
             ],
+            "render": {
+                "type": "table",
+                "width": 12,
+                "height": 5,
+                "title": "Censys Query Domain Results"
+            },
             "versions": "EQ(*)"
         },
         {
@@ -2441,12 +2445,6 @@
                     "primary": false,
                     "order": 0
                 }
-            },
-            "render": {
-                "type": "table",
-                "width": 12,
-                "height": 5,
-                "title": "Censys Query Certificate Results"
             },
             "output": [
                 {
@@ -2526,6 +2524,12 @@
                     ]
                 }
             ],
+            "render": {
+                "type": "table",
+                "width": 12,
+                "height": 5,
+                "title": "Censys Query Certificate Results"
+            },
             "versions": "EQ(*)"
         },
         {
@@ -2542,12 +2546,6 @@
                     "primary": false,
                     "order": 0
                 }
-            },
-            "render": {
-                "type": "table",
-                "width": 12,
-                "height": 5,
-                "title": "Censys Query IP Results"
             },
             "output": [
                 {
@@ -2695,6 +2693,12 @@
                     ]
                 }
             ],
+            "render": {
+                "type": "table",
+                "width": 12,
+                "height": 5,
+                "title": "Censys Query IP Results"
+            },
             "versions": "EQ(*)"
         }
     ]
