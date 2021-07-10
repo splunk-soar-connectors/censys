@@ -1,5 +1,5 @@
 # File: censys_connector.py
-# Copyright (c) 2016-2020 Splunk Inc.
+# Copyright (c) 2016-2021 Splunk Inc.
 #
 # SPLUNK CONFIDENTIAL - Use or disclosure of this material in whole or in part
 # without a valid written license from Splunk Inc. is PROHIBITED.
@@ -106,6 +106,9 @@ class CensysConnector(BaseConnector):
         data = {"query": query_string}
 
         ret_val, response = self._make_rest_call(api + censys_io_dataset, action_result, data=data, method=req_method)
+
+        if phantom.is_fail(ret_val):
+            return (action_result.get_status(), action_result.get_message())
 
         num_pages = response.get('metadata', {}).get('pages', None)
         if num_pages is None:
