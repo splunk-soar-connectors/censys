@@ -1,5 +1,5 @@
 # File: censys_connector.py
-# Copyright (c) 2016-2019 Splunk Inc.
+# Copyright (c) 2016-2021 Splunk Inc.
 #
 # SPLUNK CONFIDENTIAL - Use or disclosure of this material in whole or in part
 # without a valid written license from Splunk Inc. is PROHIBITED.
@@ -90,7 +90,7 @@ class CensysConnector(BaseConnector):
         return self.set_status(phantom.APP_SUCCESS, "Connectivity test passed")
 
     def _check_datapath(self, datadict):
-        for i in datadict.keys():
+        for i in list(datadict.keys()):
             if "." in i:
                 datadict[i.replace(".", "_")] = datadict[i]
                 del(datadict[i])
@@ -106,6 +106,9 @@ class CensysConnector(BaseConnector):
         data = {"query": query_string}
 
         ret_val, response = self._make_rest_call(api + censys_io_dataset, action_result, data=data, method=req_method)
+
+        if phantom.is_fail(ret_val):
+            return (action_result.get_status(), action_result.get_message())
 
         num_pages = response.get('metadata', {}).get('pages', None)
         if num_pages is None:
@@ -317,9 +320,10 @@ if __name__ == '__main__':
         password = getpass.getpass("Password: ")
 
     if (username and password):
+        login_url = BaseConnector._get_phantom_base_url() + "login"
         try:
-            print ("Accessing the Login page")
-            r = requests.get("https://127.0.0.1/login", verify=False)
+            print("Accessing the Login page")
+            r = requests.get(login_url, verify=False)
             csrftoken = r.cookies['csrftoken']
 
             data = dict()
@@ -329,13 +333,13 @@ if __name__ == '__main__':
 
             headers = dict()
             headers['Cookie'] = 'csrftoken=' + csrftoken
-            headers['Referer'] = 'https://127.0.0.1/login'
+            headers['Referer'] = login_url
 
-            print ("Logging into Platform to get the session id")
-            r2 = requests.post("https://127.0.0.1/login", verify=False, data=data, headers=headers)
+            print("Logging into Platform to get the session id")
+            r2 = requests.post(login_url, verify=False, data=data, headers=headers)
             session_id = r2.cookies['sessionid']
         except Exception as e:
-            print ("Unable to get session id from the platfrom. Error: " + str(e))
+            print("Unable to get session id from the platfrom. Error: " + str(e))
             exit(1)
 
     with open(args.input_test_json) as f:
@@ -351,6 +355,6 @@ if __name__ == '__main__':
             connector._set_csrf_info(csrftoken, headers['Referer'])
 
         ret_val = connector._handle_action(json.dumps(in_json), None)
-        print (json.dumps(json.loads(ret_val), indent=4))
+        print(json.dumps(json.loads(ret_val), indent=4))
 
     exit(0)
