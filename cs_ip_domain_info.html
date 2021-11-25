@@ -78,219 +78,236 @@
 
 <!------------------- For each Result ---------------------->
 
-<h3 class="wf-h3-style">Info</h3>
-<table class="wf-table-vertical">
-{% if result.param.ip %}
-<tr>
-  <td><b>IP</b></td>
-  <td>
-    <a href="javascript:;" onclick="context_menu(this, [{'contains': ['ip'], 'value': '{{ result.param.ip }}' }], 0, {{ container.id }}, null, false);">
-    {{ result.param.ip }}
-    &nbsp;<span class="fa fa-caret-down" style="font-size: smaller;"></span>
-    </a>
-  </td>
-</tr>
-{% endif %}
-{% if result.param.domain %}
-<tr>
-  <td><b>Domain</b></td>
-  <td>
-    <a href="javascript:;" onclick="context_menu(this, [{'contains': ['domain'], 'value': '{{ result.param.domain }}' }], 0, {{ container.id }}, null, false);">
-    {{ result.param.domain }}
-    &nbsp;<span class="fa fa-caret-down" style="font-size: smaller;"></span>
-    </a>
-  </td>
-</tr>
-{% endif %}
-{% if result.data.alexa_rank %}
-<tr>
-  <td><b>Alexa Rank</b></td>
-  <td>{{ result.data.alexa_rank }}</td>
-</tr>
-{% endif %}
-</table>
+{% if not result.data %}
+  <h4 class="wf-h4-style">No data found</h4>
 
-{% if result.message %}
-<p>{% autoescape off %}{{ result.message }}{% endautoescape %}</p>
-{% endif %}
+{% else %}
+  <h3 class="wf-h3-style">Info</h3>
+  <table class="wf-table-vertical">
+  {% if result.param.ip %}
+  <tr>
+    <td><b>IP</b></td>
+    <td>
+      <a href="javascript:;" onclick="context_menu(this, [{'contains': ['ip', 'ipv6'], 'value': '{{ result.param.ip }}' }], 0, {{ container.id }}, null, false);">
+      {{ result.param.ip }}
+      &nbsp;<span class="fa fa-caret-down" style="font-size: smaller;"></span>
+      </a>
+    </td>
+  </tr>
+  {% endif %}
+  {% if result.param.domain %}
+  <tr>
+    <td><b>Domain</b></td>
+    <td>
+      <a href="javascript:;" onclick="context_menu(this, [{'contains': ['domain'], 'value': '{{ result.param.domain }}' }], 0, {{ container.id }}, null, false);">
+      {{ result.param.domain }}
+      &nbsp;<span class="fa fa-caret-down" style="font-size: smaller;"></span>
+      </a>
+    </td>
+  </tr>
+  {% endif %}
+  {% if result.data.alexa_rank %}
+  <tr>
+    <td><b>Alexa Rank</b></td>
+    <td>{{ result.data.alexa_rank }}</td>
+  </tr>
+  {% endif %}
+  </table>
 
-{% if result.data.autonomous_system %}
-<h3 class="wf-h3-style">AS Info</h3>
-<table class="wf-table-vertical">
-<tr>
-  <td><b>ASN</b></td>
-  <td>{{ result.data.autonomous_system.asn }}</td>
-</tr>
-<tr>
-  <td><b>Name</b></td>
-  <td>{{ result.data.autonomous_system.name }}</td>
-</tr>
-<tr>
-  <td><b>Organization</b></td>
-  <td>{{ result.data.autonomous_system.organization }}</td>
-</tr>
-<tr>
-  <td><b>Description</b></td>
-  <td>{{ result.data.autonomous_system.description }}</td>
-</tr>
-<tr>
-  <td><b>Country Code</b></td>
-  <td>{{ result.data.autonomous_system.country_code }}</td>
-</tr>
-<tr>
-  <td><b>Prefix</b></td>
-  <td>{{ result.data.autonomous_system.routed_prefix }}</td>
-</tr>
-</table>
-<br>
-{% endif %}
+  {% if result.message %}
+  <p>{% autoescape off %}{{ result.message }}{% endautoescape %}</p>
+  {% endif %}
 
-{% if result.data.location %}
-<h3 class="wf-h3-style">Location</h3>
-<table class="wf-table-vertical">
-<tr>
-  <td><b>City</b></td>
-  <td>{{ result.data.location.city }}</td>
-</tr>
-<tr>
-  <td><b>Province</b></td>
-  <td>{{ result.data.location.province }}</td>
-</tr>
-<tr>
-  <td><b>Postal Code</b></td>
-  <td>{{ result.data.location.postal_code }}</td>
-</tr>
-<tr>
-  <td><b>Country</b></td>
-  <td>{{ result.data.location.country }}</td>
-</tr>
-<tr>
-  <td><b>Country Code</b></td>
-  <td>{{ result.data.location.country_code }}</td>
-</tr>
-<tr>
-  <td><b>Time Zone</b></td>
-  <td>{{ result.data.location.timezone }}</td>
-</tr>
-<tr>
-  <td><b>Continent</b></td>
-  <td>{{ result.data.location.continent }}</td>
-</tr>
-<tr>
-  <td><b>Latitude</b></td>
-  <td>{{ result.data.location.latitude }}</td>
-</tr>
-<tr>
-  <td><b>Longitude</b></td>
-  <td>{{ result.data.location.longitude }}</td>
-</tr>
-<tr>
-  <td><b>Registered Country</b></td>
-  <td>{{ result.data.location.registered_country }}</td>
-</tr>
-<tr>
-  <td><b>Registered Country Code</b></td>
-  <td>{{ result.data.location.registered_country_code }}</td>
-</tr>
-</table>
-<br>
-{% endif %}
+  {% if result.data.result.autonomous_system %}
+  <h3 class="wf-h3-style">AS Info</h3>
+  <table class="wf-table-vertical">
+  <tr>
+    <td><b>ASN</b></td>
+    <td>{{ result.data.result.autonomous_system.asn }}</td>
+  </tr>
+  <tr>
+    <td><b>Name</b></td>
+    <td>{{ result.data.result.autonomous_system.name }}</td>
+  </tr>
+  <tr>
+    <td><b>Description</b></td>
+    <td>{{ result.data.result.autonomous_system.description }}</td>
+  </tr>
+  <tr>
+    <td><b>Country Code</b></td>
+    <td>{{ result.data.result.autonomous_system.country_code }}</td>
+  </tr>
+  <tr>
+    <td><b>Prefix</b></td>
+    <td>{{ result.data.result.autonomous_system.bgp_prefix }}</td>
+  </tr>
+  </table>
+  <br>
+  {% endif %}
 
-{% if result.data.ports %}
-<h3 class="wf-h3-style">Ports</h3>
+  {% if result.data.result.location %}
+  <h3 class="wf-h3-style">Location</h3>
+  <table class="wf-table-vertical">
+  <tr>
+    <td><b>City</b></td>
+    <td>{{ result.data.result.location.city }}</td>
+  </tr>
+  <tr>
+    <td><b>Province</b></td>
+    <td>{{ result.data.result.location.province }}</td>
+  </tr>
+  <tr>
+    <td><b>Postal Code</b></td>
+    <td>{{ result.data.result.location.postal_code }}</td>
+  </tr>
+  <tr>
+    <td><b>Country</b></td>
+    <td>{{ result.data.result.location.country }}</td>
+  </tr>
+  <tr>
+    <td><b>Country Code</b></td>
+    <td>{{ result.data.result.location.country_code }}</td>
+  </tr>
+  <tr>
+    <td><b>Time Zone</b></td>
+    <td>{{ result.data.result.location.timezone }}</td>
+  </tr>
+  <tr>
+    <td><b>Continent</b></td>
+    <td>{{ result.data.result.location.continent }}</td>
+  </tr>
+  <tr>
+    <td><b>Latitude</b></td>
+    <td>{{ result.data.result.location.coordinates.latitude }}</td>
+  </tr>
+  <tr>
+    <td><b>Longitude</b></td>
+    <td>{{ result.data.result.location.coordinates.longitude }}</td>
+  </tr>
+  <tr>
+    <td><b>Registered Country</b></td>
+    <td>{{ result.data.result.location.registered_country }}</td>
+  </tr>
+  <tr>
+    <td><b>Registered Country Code</b></td>
+    <td>{{ result.data.result.location.registered_country_code }}</td>
+  </tr>
+  </table>
+  <br>
+  {% endif %}
 
-
-<!------- Table -------->
-<select class="wf-table-vertical" onchange="show_port_contents(this)">
-  {% for curr_port in result.data.ports %}
-  <option value="port_content{{ forloop.counter0 }}">{{ curr_port }}</option>
+  {% if result.data.result.services.0.tls.certificates.chain %}
+  {% for chains in result.data.result.services.0.tls.certificates.chain %}
+  <h3 class="wf-h3-style">TLS Cert Info</h3>
+  <table class="wf-table-vertical">
+  <tr>
+    <td><b>Fingerprint</b></td>
+    <td>{{ chains.fingerprint }}</td>
+  </tr>
+  <tr>
+    <td><b>Subject DN</b></td>
+    <td>{{ chains.subject_dn }}</td>
+  </tr>
+  </table>
   {% endfor %}
-</select>
+  {% endif %}
 
-{% for curr_port in result.data.ports %}
-<div id="port_content{{ forloop.counter0 }}" {% if not forloop.first %} style="display:none;" {% endif %} class="port_content">
-
-  {% for curr_protocol in result.data.ports|by_key:curr_port %}
-
-    <h4 class="wf-h4-style">{{ curr_protocol }}</h4>
+  {% if result.data.ports %}
+  <h3 class="wf-h3-style">Ports</h3>
 
 
-      {% if result.data.ports|by_key:curr_port|by_key:curr_protocol|by_key:'heartbleed' %}
-        <h5 class="wf-h4-style">Heartbleed</h5>
-        <table class="wf-table-vertical">
-        <tr>
-          <td><b>Enabled</b></td>
-          <td>{{ result.data.ports|by_key:curr_port|by_key:curr_protocol|by_key:'heartbleed'|by_key:'heartbeat_enabled' }}</td>
-        </tr>
-        <tr>
-          <td><b>Vulnerable</b></td>
-          <td>{{ result.data.ports|by_key:curr_port|by_key:curr_protocol|by_key:'heartbleed'|by_key:'heartbleed_vulnerable' }}</td>
-        </tr>
-        </table>
-      {% endif %} <!---- heartbleed ---->
+  <!------- Table -------->
+  <select class="wf-table-vertical" onchange="show_port_contents(this)">
+    {% for curr_port in result.data.ports %}
+    <option value="port_content{{ forloop.counter0 }}">{{ curr_port }}</option>
+    {% endfor %}
+  </select>
 
-      {% if result.data.ports|by_key:curr_port|by_key:curr_protocol|by_key:'tls' %}
-        <h5 class="wf-h4-style">TLS Cert Info</h5>
-        <table class="wf-table-vertical">
-        <tr>
-          <td><b>Finderprint SHA256</b></td>
-          <td>
-            <a href="javascript:;" onclick="context_menu(this, [{'contains': ['sha256'], 'value': '{{ result.data.ports|by_key:curr_port|by_key:curr_protocol|by_key:'tls'|by_key:'certificate'|by_key:'parsed'|by_key:'fingerprint_sha256' }}' }], 0, {{ container.id }}, null, false);">
-          {{ result.data.ports|by_key:curr_port|by_key:curr_protocol|by_key:'tls'|by_key:'certificate'|by_key:'parsed'|by_key:'fingerprint_sha256' }}
-          &nbsp;<span class="fa fa-caret-down" style="font-size: smaller;"></span>
-            </a>
-          </td>
-        </tr>
-        <tr>
-          <td><b>Subject DN</b></td>
-          <td>{{ result.data.ports|by_key:curr_port|by_key:curr_protocol|by_key:'tls'|by_key:'certificate'|by_key:'parsed'|by_key:'subject_dn' }}</td>
-        </tr>
-        </table>
-      {% endif %} <!---- cert fingerprint ---->
+  {% for curr_port in result.data.ports %}
+  <div id="port_content{{ forloop.counter0 }}" {% if not forloop.first %} style="display:none;" {% endif %} class="port_content">
 
-      {% if result.data.ports|by_key:curr_port|by_key:curr_protocol|by_key:'axfr' %}
-        <table class="wf-table-horizontal">
-        <tr><th>NS</th><th>AXFR</th><th>Error</th></tr>
-        {% for curr_server in result.data.ports|by_key:curr_port|by_key:curr_protocol|by_key:'axfr'|by_key:'servers' %}
-        <tr><td>{{ curr_server.ns }} </td><td>{{ curr_server.axfr }} </td><td>{{ curr_server.error }}</td></tr>
-        {% endfor %}
-        </table>
-      {% endif %} <!---- axfr.servers ---->
+    {% for curr_protocol in result.data.ports|by_key:curr_port %}
 
-      {% if result.data.ports|by_key:curr_port|by_key:'http' %}
-        {% for curr_method in result.data.ports|by_key:curr_port|by_key:'http' %}
-        <h5 class="wf-h5-sytle">{{ curr_method }} Headers</h5>
-          <table class="wf-table-horizontal">
-            <tr><th>Header</th><th>Value</th></tr>
-            {% for curr_header in result.data.ports|by_key:curr_port|by_key:'http'|by_key:curr_method|by_key:'headers' %}
-              <tr><td><b>{{ curr_header }}</b></td><td>{{ result.data.ports|by_key:curr_port|by_key:'http'|by_key:curr_method|by_key:'headers'|by_key:curr_header }}</td></tr>
-            {% endfor %}
+      <h4 class="wf-h4-style">{{ curr_protocol }}</h4>
+
+
+        {% if result.data.ports|by_key:curr_port|by_key:curr_protocol|by_key:'heartbleed' %}
+          <h5 class="wf-h4-style">Heartbleed</h5>
+          <table class="wf-table-vertical">
+          <tr>
+            <td><b>Enabled</b></td>
+            <td>{{ result.data.ports|by_key:curr_port|by_key:curr_protocol|by_key:'heartbleed'|by_key:'heartbeat_enabled' }}</td>
+          </tr>
+          <tr>
+            <td><b>Vulnerable</b></td>
+            <td>{{ result.data.ports|by_key:curr_port|by_key:curr_protocol|by_key:'heartbleed'|by_key:'heartbleed_vulnerable' }}</td>
+          </tr>
           </table>
-        {% endfor %} <!---- curr_method ---->
-      {% endif %} <!---- http ---->
+        {% endif %} <!---- heartbleed ---->
 
-      {% if result.data.ports|by_key:curr_port|by_key:curr_protocol|by_key:'starttls' %}
-        <table class="wf-table-vertical">
-        <tr>
-          <td><b>EHLO</b></td>
-          <td>{{ result.data.ports|by_key:curr_port|by_key:curr_protocol|by_key:'starttls'|by_key:'ehlo' }}</td>
-        </tr>
-        <tr>
-          <td><b>StartTLS</b></td>
-          <td>{{ result.data.ports|by_key:curr_port|by_key:curr_protocol|by_key:'starttls'|by_key:'starttls' }}</td>
-        </tr>
-        </table>
-      {% endif %} <!---- starttls ---->
+        {% if result.data.ports|by_key:curr_port|by_key:curr_protocol|by_key:'tls' %}
+          <h5 class="wf-h4-style">TLS Cert Info</h5>
+          <table class="wf-table-vertical">
+          <tr>
+            <td><b>Finderprint SHA256</b></td>
+            <td>
+              <a href="javascript:;" onclick="context_menu(this, [{'contains': ['sha256'], 'value': '{{ result.data.ports|by_key:curr_port|by_key:curr_protocol|by_key:'tls'|by_key:'certificate'|by_key:'parsed'|by_key:'fingerprint_sha256' }}' }], 0, {{ container.id }}, null, false);">
+            {{ result.data.ports|by_key:curr_port|by_key:curr_protocol|by_key:'tls'|by_key:'certificate'|by_key:'parsed'|by_key:'fingerprint_sha256' }}
+            &nbsp;<span class="fa fa-caret-down" style="font-size: smaller;"></span>
+              </a>
+            </td>
+          </tr>
+          <tr>
+            <td><b>Subject DN</b></td>
+            <td>{{ result.data.ports|by_key:curr_port|by_key:curr_protocol|by_key:'tls'|by_key:'certificate'|by_key:'parsed'|by_key:'subject_dn' }}</td>
+          </tr>
+          </table>
+        {% endif %} <!---- cert fingerprint ---->
 
-  {% endfor %} <!---- curr_protocol ---->
+        {% if result.data.ports|by_key:curr_port|by_key:curr_protocol|by_key:'axfr' %}
+          <table class="wf-table-horizontal">
+          <tr><th>NS</th><th>AXFR</th><th>Error</th></tr>
+          {% for curr_server in result.data.ports|by_key:curr_port|by_key:curr_protocol|by_key:'axfr'|by_key:'servers' %}
+          <tr><td>{{ curr_server.ns }} </td><td>{{ curr_server.axfr }} </td><td>{{ curr_server.error }}</td></tr>
+          {% endfor %}
+          </table>
+        {% endif %} <!---- axfr.servers ---->
 
-</div>
-{% endfor %} <!---- for curr_port ---->
+        {% if result.data.ports|by_key:curr_port|by_key:'http' %}
+          {% for curr_method in result.data.ports|by_key:curr_port|by_key:'http' %}
+          <h5 class="wf-h5-sytle">{{ curr_method }} Headers</h5>
+            <table class="wf-table-horizontal">
+              <tr><th>Header</th><th>Value</th></tr>
+              {% for curr_header in result.data.ports|by_key:curr_port|by_key:'http'|by_key:curr_method|by_key:'headers' %}
+                <tr><td><b>{{ curr_header }}</b></td><td>{{ result.data.ports|by_key:curr_port|by_key:'http'|by_key:curr_method|by_key:'headers'|by_key:curr_header }}</td></tr>
+              {% endfor %}
+            </table>
+          {% endfor %} <!---- curr_method ---->
+        {% endif %} <!---- http ---->
+
+        {% if result.data.ports|by_key:curr_port|by_key:curr_protocol|by_key:'starttls' %}
+          <table class="wf-table-vertical">
+          <tr>
+            <td><b>EHLO</b></td>
+            <td>{{ result.data.ports|by_key:curr_port|by_key:curr_protocol|by_key:'starttls'|by_key:'ehlo' }}</td>
+          </tr>
+          <tr>
+            <td><b>StartTLS</b></td>
+            <td>{{ result.data.ports|by_key:curr_port|by_key:curr_protocol|by_key:'starttls'|by_key:'starttls' }}</td>
+          </tr>
+          </table>
+        {% endif %} <!---- starttls ---->
+
+    {% endfor %} <!---- curr_protocol ---->
+
+  </div>
+  {% endfor %} <!---- for curr_port ---->
 
 
 
-{% endif %} <!---- result.data.ports ---->
+  {% endif %} <!---- result.data.ports ---->
 
+{% endif %}
 
 <!-------- Each subject ------>
 {% endfor %} <!-- loop for each result end -->

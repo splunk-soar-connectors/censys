@@ -73,7 +73,7 @@
 <br>
 
 <!------------------- For each Result ---------------------->
-
+{% if result.data %}
 <h3 class="wf-h3-style">Info</h3>
 <table class="wf-table-vertical">
 <tr>
@@ -85,7 +85,6 @@
     </a>
   </td>
 </tr>
-{% if result.data %}
 <tr>
   <td><b>Valid From</b></td>
   <td>
@@ -111,10 +110,9 @@
   </td>
 </tr>
 </table>
-{% endif %}
 <br>
-{% if result.message %}
-<p>{{ result.message }}</p>
+{% else %}
+<h2>No Data Found</h2>
 {% endif %}
 
 <!------------------- For each Result END ---------------------->
