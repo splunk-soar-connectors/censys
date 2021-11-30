@@ -16,7 +16,7 @@
     "min_phantom_version": "5.0.0",
     "python_version": "3",
     "latest_tested_versions": [
-        "Cloud v2 API tested 22 November 2021"
+        "Cloud v2 API tested 30 November 2021"
     ],
     "license": "Copyright (c) 2016-2021 Splunk Inc.",
     "configuration": {
