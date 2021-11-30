@@ -5,18 +5,18 @@
     "publisher": "Splunk",
     "type": "information",
     "main_module": "censys_connector.py",
-    "app_version": "2.0.8",
-    "utctime_updated": "2021-07-14T00:40:46.000000Z",
+    "app_version": "2.1.3",
+    "utctime_updated": "2021-11-25T16:53:58.000000Z",
     "package_name": "phantom_censys",
     "product_vendor": "Censys",
     "product_name": "Censys",
     "product_version_regex": ".*",
     "logo": "logo_censys.svg",
     "logo_dark": "logo_censys_dark.svg",
-    "min_phantom_version": "4.9.39220",
+    "min_phantom_version": "5.0.0",
     "python_version": "3",
     "latest_tested_versions": [
-        "Cloud v1 API tested 2-20-2020"
+        "Cloud v2 API tested 22 November 2021"
     ],
     "license": "Copyright (c) 2016-2021 Splunk Inc.",
     "configuration": {
@@ -78,15 +78,47 @@
                     "contains": [
                         "hash",
                         "sha256"
+                    ],
+                    "example_values": [
+                        "54c8df22f5307f78229f3fed069c67cdba9ed96a10332a2713abc427c1debbbf"
                     ]
                 },
                 {
                     "data_path": "action_result.data.*.audit.nss.is_in",
-                    "data_type": "boolean"
+                    "data_type": "boolean",
+                    "example_values": [
+                        true,
+                        false
+                    ]
                 },
                 {
                     "data_path": "action_result.data.*.audit.nss.was_in",
-                    "data_type": "boolean"
+                    "data_type": "boolean",
+                    "example_values": [
+                        true,
+                        false
+                    ]
+                },
+                {
+                    "data_path": "action_result.data.*.ct.comodo_dodo.added_to_ct_at",
+                    "data_type": "string",
+                    "example_values": [
+                        "2018-09-10T20:39:13.358Z"
+                    ]
+                },
+                {
+                    "data_path": "action_result.data.*.ct.comodo_dodo.ct_to_censys_at",
+                    "data_type": "string",
+                    "example_values": [
+                        "2018-09-10T20:45:02.084909144Z"
+                    ]
+                },
+                {
+                    "data_path": "action_result.data.*.ct.comodo_dodo.index",
+                    "data_type": "numeric",
+                    "example_values": [
+                        4520662
+                    ]
                 },
                 {
                     "data_path": "action_result.data.*.ct.digicert_ct1.added_to_ct_at",
@@ -94,15 +126,24 @@
                 },
                 {
                     "data_path": "action_result.data.*.ct.digicert_ct1.ct_to_censys_at",
-                    "data_type": "string"
+                    "data_type": "string",
+                    "example_values": [
+                        "1970-01-01T00:00:00Z"
+                    ]
                 },
                 {
                     "data_path": "action_result.data.*.ct.digicert_ct1.index",
-                    "data_type": "numeric"
+                    "data_type": "numeric",
+                    "example_values": [
+                        22130687
+                    ]
                 },
                 {
                     "data_path": "action_result.data.*.ct.google_aviator.added_to_ct_at",
-                    "data_type": "string"
+                    "data_type": "string",
+                    "example_values": [
+                        "1970-01-01T00:00:00Z"
+                    ]
                 },
                 {
                     "data_path": "action_result.data.*.ct.google_aviator.censys_to_ct_at",
@@ -114,11 +155,17 @@
                 },
                 {
                     "data_path": "action_result.data.*.ct.google_aviator.ct_to_censys_at",
-                    "data_type": "string"
+                    "data_type": "string",
+                    "example_values": [
+                        "1970-01-01T00:00:00Z"
+                    ]
                 },
                 {
                     "data_path": "action_result.data.*.ct.google_aviator.index",
-                    "data_type": "numeric"
+                    "data_type": "numeric",
+                    "example_values": [
+                        22130687
+                    ]
                 },
                 {
                     "data_path": "action_result.data.*.ct.google_aviator.sct",
@@ -126,7 +173,10 @@
                 },
                 {
                     "data_path": "action_result.data.*.ct.google_pilot.added_to_ct_at",
-                    "data_type": "string"
+                    "data_type": "string",
+                    "example_values": [
+                        "1970-01-01T00:00:00Z"
+                    ]
                 },
                 {
                     "data_path": "action_result.data.*.ct.google_pilot.censys_to_ct_at",
@@ -138,11 +188,17 @@
                 },
                 {
                     "data_path": "action_result.data.*.ct.google_pilot.ct_to_censys_at",
-                    "data_type": "string"
+                    "data_type": "string",
+                    "example_values": [
+                        "1970-01-01T00:00:00Z"
+                    ]
                 },
                 {
                     "data_path": "action_result.data.*.ct.google_pilot.index",
-                    "data_type": "numeric"
+                    "data_type": "numeric",
+                    "example_values": [
+                        22130687
+                    ]
                 },
                 {
                     "data_path": "action_result.data.*.ct.google_pilot.sct",
@@ -150,7 +206,10 @@
                 },
                 {
                     "data_path": "action_result.data.*.ct.google_rocketeer.added_to_ct_at",
-                    "data_type": "string"
+                    "data_type": "string",
+                    "example_values": [
+                        "1970-01-01T00:00:00Z"
+                    ]
                 },
                 {
                     "data_path": "action_result.data.*.ct.google_rocketeer.censys_to_ct_at",
@@ -162,11 +221,17 @@
                 },
                 {
                     "data_path": "action_result.data.*.ct.google_rocketeer.ct_to_censys_at",
-                    "data_type": "string"
+                    "data_type": "string",
+                    "example_values": [
+                        "1970-01-01T00:00:00Z"
+                    ]
                 },
                 {
                     "data_path": "action_result.data.*.ct.google_rocketeer.index",
-                    "data_type": "numeric"
+                    "data_type": "numeric",
+                    "example_values": [
+                        22130687
+                    ]
                 },
                 {
                     "data_path": "action_result.data.*.ct.google_rocketeer.sct",
@@ -174,87 +239,223 @@
                 },
                 {
                     "data_path": "action_result.data.*.ct.google_submariner.added_to_ct_at",
-                    "data_type": "string"
+                    "data_type": "string",
+                    "example_values": [
+                        "1970-01-01T00:00:00Z"
+                    ]
                 },
                 {
                     "data_path": "action_result.data.*.ct.google_submariner.ct_to_censys_at",
-                    "data_type": "string"
+                    "data_type": "string",
+                    "example_values": [
+                        "1970-01-01T00:00:00Z"
+                    ]
                 },
                 {
                     "data_path": "action_result.data.*.ct.google_submariner.index",
-                    "data_type": "numeric"
+                    "data_type": "numeric",
+                    "example_values": [
+                        22130687
+                    ]
                 },
                 {
                     "data_path": "action_result.data.*.ct.symantec_ws_ct.added_to_ct_at",
-                    "data_type": "string"
+                    "data_type": "string",
+                    "example_values": [
+                        "1970-01-01T00:00:00Z"
+                    ]
                 },
                 {
                     "data_path": "action_result.data.*.ct.symantec_ws_ct.ct_to_censys_at",
-                    "data_type": "string"
+                    "data_type": "string",
+                    "example_values": [
+                        "1970-01-01T00:00:00Z"
+                    ]
                 },
                 {
                     "data_path": "action_result.data.*.ct.symantec_ws_ct.index",
-                    "data_type": "numeric"
+                    "data_type": "numeric",
+                    "example_values": [
+                        22130687
+                    ]
                 },
                 {
                     "data_path": "action_result.data.*.ct.symantec_ws_deneb.added_to_ct_at",
-                    "data_type": "string"
+                    "data_type": "string",
+                    "example_values": [
+                        "1970-01-01T00:00:00Z"
+                    ]
                 },
                 {
                     "data_path": "action_result.data.*.ct.symantec_ws_deneb.ct_to_censys_at",
-                    "data_type": "string"
+                    "data_type": "string",
+                    "example_values": [
+                        "1970-01-01T00:00:00Z"
+                    ]
                 },
                 {
                     "data_path": "action_result.data.*.ct.symantec_ws_deneb.index",
-                    "data_type": "numeric"
+                    "data_type": "numeric",
+                    "example_values": [
+                        22130687
+                    ]
                 },
                 {
                     "data_path": "action_result.data.*.ct.symantec_ws_vega.added_to_ct_at",
-                    "data_type": "string"
+                    "data_type": "string",
+                    "example_values": [
+                        "1970-01-01T00:00:00Z"
+                    ]
                 },
                 {
                     "data_path": "action_result.data.*.ct.symantec_ws_vega.ct_to_censys_at",
-                    "data_type": "string"
+                    "data_type": "string",
+                    "example_values": [
+                        "1970-01-01T00:00:00Z"
+                    ]
                 },
                 {
                     "data_path": "action_result.data.*.ct.symantec_ws_vega.index",
-                    "data_type": "numeric"
+                    "data_type": "numeric",
+                    "example_values": [
+                        22130687
+                    ]
                 },
                 {
                     "data_path": "action_result.data.*.ct.venafi_api_ctlog.added_to_ct_at",
-                    "data_type": "string"
+                    "data_type": "string",
+                    "example_values": [
+                        "1970-01-01T00:00:00Z"
+                    ]
                 },
                 {
                     "data_path": "action_result.data.*.ct.venafi_api_ctlog.ct_to_censys_at",
-                    "data_type": "string"
+                    "data_type": "string",
+                    "example_values": [
+                        "1970-01-01T00:00:00Z"
+                    ]
                 },
                 {
                     "data_path": "action_result.data.*.ct.venafi_api_ctlog.index",
-                    "data_type": "numeric"
+                    "data_type": "numeric",
+                    "example_values": [
+                        22130687
+                    ]
                 },
                 {
                     "data_path": "action_result.data.*.ct.wosign_ctlog.added_to_ct_at",
-                    "data_type": "string"
+                    "data_type": "string",
+                    "example_values": [
+                        "1970-01-01T00:00:00Z"
+                    ]
                 },
                 {
                     "data_path": "action_result.data.*.ct.wosign_ctlog.ct_to_censys_at",
-                    "data_type": "string"
+                    "data_type": "string",
+                    "example_values": [
+                        "1970-01-01T00:00:00Z"
+                    ]
                 },
                 {
                     "data_path": "action_result.data.*.ct.wosign_ctlog.index",
-                    "data_type": "numeric"
+                    "data_type": "numeric",
+                    "example_values": [
+                        22130687
+                    ]
                 },
                 {
                     "data_path": "action_result.data.*.current_in_nss",
-                    "data_type": "boolean"
+                    "data_type": "boolean",
+                    "example_values": [
+                        true,
+                        false
+                    ]
                 },
                 {
                     "data_path": "action_result.data.*.current_valid_nss",
-                    "data_type": "boolean"
+                    "data_type": "boolean",
+                    "example_values": [
+                        true,
+                        false
+                    ]
+                },
+                {
+                    "data_path": "action_result.data.*.fingerprint_sha256",
+                    "data_type": "string",
+                    "example_values": [
+                        "54c8df22f5307f78229f3fed069c67cdba9ed96a10332a2713abc427c1debbbf"
+                    ]
                 },
                 {
                     "data_path": "action_result.data.*.in_nss",
-                    "data_type": "boolean"
+                    "data_type": "boolean",
+                    "example_values": [
+                        true,
+                        false
+                    ]
+                },
+                {
+                    "data_path": "action_result.data.*.metadata.added_at",
+                    "data_type": "string",
+                    "example_values": [
+                        "1970-01-01T00:00:00Z"
+                    ]
+                },
+                {
+                    "data_path": "action_result.data.*.metadata.parse_status",
+                    "data_type": "string",
+                    "example_values": [
+                        "success"
+                    ]
+                },
+                {
+                    "data_path": "action_result.data.*.metadata.parse_version",
+                    "data_type": "numeric",
+                    "example_values": [
+                        1
+                    ]
+                },
+                {
+                    "data_path": "action_result.data.*.metadata.post_processed",
+                    "data_type": "boolean",
+                    "example_values": [
+                        true
+                    ]
+                },
+                {
+                    "data_path": "action_result.data.*.metadata.post_processed_at",
+                    "data_type": "string",
+                    "example_values": [
+                        "2018-09-10T20:45:09Z"
+                    ]
+                },
+                {
+                    "data_path": "action_result.data.*.metadata.seen_in_scan",
+                    "data_type": "boolean",
+                    "example_values": [
+                        false
+                    ]
+                },
+                {
+                    "data_path": "action_result.data.*.metadata.source",
+                    "data_type": "string",
+                    "example_values": [
+                        "ct"
+                    ]
+                },
+                {
+                    "data_path": "action_result.data.*.metadata.updated_at",
+                    "data_type": "string",
+                    "example_values": [
+                        "2018-09-10T20:45:10Z"
+                    ]
+                },
+                {
+                    "data_path": "action_result.data.*.parent_spki_subject_fingerprint",
+                    "data_type": "string",
+                    "example_values": [
+                        "b761d93f79ebf6b87109a479e3583d167aed68378264548381ff11ba5fb19a47"
+                    ]
                 },
                 {
                     "data_path": "action_result.data.*.parents",
@@ -270,7 +471,11 @@
                 },
                 {
                     "data_path": "action_result.data.*.parsed.extensions.basic_constraints.is_ca",
-                    "data_type": "boolean"
+                    "data_type": "boolean",
+                    "example_values": [
+                        true,
+                        false
+                    ]
                 },
                 {
                     "data_path": "action_result.data.*.parsed.extensions.basic_constraints.max_path_len",
@@ -281,16 +486,73 @@
                     "data_type": "string"
                 },
                 {
+                    "data_path": "action_result.data.*.parsed.extensions.certificate_policies.*.id",
+                    "data_type": "string",
+                    "example_values": [
+                        "2.23.140.1.2.2"
+                    ]
+                },
+                {
+                    "data_path": "action_result.data.*.parsed.extensions.certificate_policies.*.user_notice.*.explicit_text",
+                    "data_type": "string",
+                    "example_values": [
+                        "https://www.thawte.com/repository"
+                    ]
+                },
+                {
                     "data_path": "action_result.data.*.parsed.extensions.crl_distribution_points",
                     "data_type": "string"
                 },
                 {
+                    "data_path": "action_result.data.*.parsed.extensions.ct_poison",
+                    "data_type": "boolean",
+                    "example_values": [
+                        true
+                    ]
+                },
+                {
+                    "data_path": "action_result.data.*.parsed.extensions.extended_key_usage.client_auth",
+                    "data_type": "boolean",
+                    "example_values": [
+                        true
+                    ]
+                },
+                {
+                    "data_path": "action_result.data.*.parsed.extensions.extended_key_usage.server_auth",
+                    "data_type": "boolean",
+                    "example_values": [
+                        true
+                    ]
+                },
+                {
                     "data_path": "action_result.data.*.parsed.extensions.key_usage.certificate_sign",
-                    "data_type": "boolean"
+                    "data_type": "boolean",
+                    "example_values": [
+                        true,
+                        false
+                    ]
                 },
                 {
                     "data_path": "action_result.data.*.parsed.extensions.key_usage.crl_sign",
-                    "data_type": "boolean"
+                    "data_type": "boolean",
+                    "example_values": [
+                        true,
+                        false
+                    ]
+                },
+                {
+                    "data_path": "action_result.data.*.parsed.extensions.key_usage.digital_signature",
+                    "data_type": "boolean",
+                    "example_values": [
+                        true
+                    ]
+                },
+                {
+                    "data_path": "action_result.data.*.parsed.extensions.key_usage.key_encipherment",
+                    "data_type": "boolean",
+                    "example_values": [
+                        true
+                    ]
                 },
                 {
                     "data_path": "action_result.data.*.parsed.extensions.key_usage.value",
@@ -302,21 +564,33 @@
                 },
                 {
                     "data_path": "action_result.data.*.parsed.extensions.subject_key_id",
-                    "data_type": "string"
+                    "data_type": "string",
+                    "example_values": [
+                        "736b5edbcfc9191d5bd01f8ce3ab5638189f024f"
+                    ]
                 },
                 {
                     "data_path": "action_result.data.*.parsed.fingerprint_md5",
-                    "data_type": "string"
+                    "data_type": "string",
+                    "example_values": [
+                        "950098276a495286eb2a2556fbab6d83"
+                    ]
                 },
                 {
                     "data_path": "action_result.data.*.parsed.fingerprint_sha1",
-                    "data_type": "string"
+                    "data_type": "string",
+                    "example_values": [
+                        "6ece5ece4192683d2d84e25b0ba7e04f9cb7eb7c"
+                    ]
                 },
                 {
                     "data_path": "action_result.data.*.parsed.fingerprint_sha256",
                     "data_type": "string",
                     "contains": [
                         "sha256"
+                    ],
+                    "example_values": [
+                        "87f2085c32b6a2cc709b365f55873e207a9caa10bffecf2fd16d3cf9d94d390c"
                     ]
                 },
                 {
@@ -340,12 +614,23 @@
                     "data_type": "string"
                 },
                 {
+                    "data_path": "action_result.data.*.parsed.redacted",
+                    "data_type": "boolean",
+                    "example_values": [
+                        true
+                    ]
+                },
+                {
                     "data_path": "action_result.data.*.parsed.serial_number",
                     "data_type": "string"
                 },
                 {
                     "data_path": "action_result.data.*.parsed.signature.self_signed",
-                    "data_type": "boolean"
+                    "data_type": "boolean",
+                    "example_values": [
+                        true,
+                        false
+                    ]
                 },
                 {
                     "data_path": "action_result.data.*.parsed.signature.signature_algorithm.name",
@@ -357,7 +642,11 @@
                 },
                 {
                     "data_path": "action_result.data.*.parsed.signature.valid",
-                    "data_type": "boolean"
+                    "data_type": "boolean",
+                    "example_values": [
+                        true,
+                        false
+                    ]
                 },
                 {
                     "data_path": "action_result.data.*.parsed.signature.value",
@@ -452,19 +741,34 @@
                 },
                 {
                     "data_path": "action_result.data.*.post_processed",
-                    "data_type": "boolean"
+                    "data_type": "boolean",
+                    "example_values": [
+                        true,
+                        false
+                    ]
                 },
                 {
                     "data_path": "action_result.data.*.precert",
-                    "data_type": "boolean"
+                    "data_type": "boolean",
+                    "example_values": [
+                        true,
+                        false
+                    ]
                 },
                 {
                     "data_path": "action_result.data.*.raw",
-                    "data_type": "string"
+                    "data_type": "string",
+                    "example_values": [
+                        "MIIDIzCCAgugAwIBAgIECLsA7jANBgkqhkiG9w0BAQsFADBCMQkwBwYDVQQGEwAxCTAHBgNVBAgTADEJMAcGA1UEBxMAMQkwBwYDVQQKEwAxCTAHBgNVBAsTADEJMAcGA1UEAxMAMB4XDTE1MDUyMDE4MjYyNFoXDTI1MDUxNzE4MjYyNFowQjEJMAcGA1UEBhMAMQkwBwYDVQQIEwAxCTAHBgNVBAcTADEJMAcGA1UEChMAMQkwBwYDVQQLEwAxCTAHBgNVBAMTADCCASIwDQYJKoZIhvcNAQEBBQADggEPADCCAQoCggEBAJjXGpNxjm97YowJUxMyM/QBjGTnyUqMXt1IsXArVdop3F/fGdhsmWkExTt8AfjWm9TL2I3KCVKqBhQ9U8+W+l3JAPNaqLnOqRSfeQ+SQ0tmLuVn1AVQt1RKYZGo+o70G/yAXBNwCQ3mUisLe6Ln926E3seZM6gb8HesF/w+2sCcQ2UaqLY3hKVIDYvlenNaNMxtaw+8A/3udT+pIX1JyrlIlt0SDg5Ya2opwYTFJM64KbuyDKkK213A5Sz00Rh13PVRKWlpfVtgoh9BNupzJOG/GE/x0XmXCYAOIGrm8uujAtUWJ5nkbaczf2ldnITJBw+3iQrtE1LEM8aUJeKRCVkCAwEAAaMhMB8wHQYDVR0OBBYEFHNrXtvPyRkdW9AfjOOrVjgYnwJPMA0GCSqGSIb3DQEBCwUAA4IBAQBU9S+o9YRFBTzcCeZ4phipmwJ9PsIFKoidgkTekbt3EzyL+Q+nySQ/Gn4ZXdliFYxKNcRmxbSWCa9jX6qJb6t7gcLBP8Hp7kWLsNdbk19+iSDphVfO6UdL6ZVIbIy0vNO0/LgEKVi7tzE84elcaS45ZSPY+HnySF2sP3SF0n9iF/bWdzYOjLcPpgavsT66KLrileXkYjCWFOXufnZgpf11pGd3wTJEIenSabc90LQ4rAvBJPicY/AfhIth/g4GiDG+M1DmzlV+1F0nNr3KuNGjeghLVegKoRq/b5PF+0kpSK7HUwIdrgZsqz1ORsMToEyv8LvxIyL0DTCLBJSHmgJy"
+                    ]
                 },
                 {
                     "data_path": "action_result.data.*.seen_in_scan",
-                    "data_type": "boolean"
+                    "data_type": "boolean",
+                    "example_values": [
+                        true,
+                        false
+                    ]
                 },
                 {
                     "data_path": "action_result.data.*.source",
@@ -476,7 +780,242 @@
                 },
                 {
                     "data_path": "action_result.data.*.valid_nss",
-                    "data_type": "boolean"
+                    "data_type": "boolean",
+                    "example_values": [
+                        true,
+                        false
+                    ]
+                },
+                {
+                    "data_path": "action_result.data.*.validation.apple.blacklisted",
+                    "data_type": "boolean",
+                    "example_values": [
+                        false
+                    ]
+                },
+                {
+                    "data_path": "action_result.data.*.validation.apple.had_trusted_path",
+                    "data_type": "boolean",
+                    "example_values": [
+                        true
+                    ]
+                },
+                {
+                    "data_path": "action_result.data.*.validation.apple.in_revocation_set",
+                    "data_type": "boolean",
+                    "example_values": [
+                        false
+                    ]
+                },
+                {
+                    "data_path": "action_result.data.*.validation.apple.trusted_path",
+                    "data_type": "boolean",
+                    "example_values": [
+                        false
+                    ]
+                },
+                {
+                    "data_path": "action_result.data.*.validation.apple.type",
+                    "data_type": "string",
+                    "example_values": [
+                        "leaf"
+                    ]
+                },
+                {
+                    "data_path": "action_result.data.*.validation.apple.valid",
+                    "data_type": "boolean",
+                    "example_values": [
+                        false
+                    ]
+                },
+                {
+                    "data_path": "action_result.data.*.validation.apple.was_valid",
+                    "data_type": "boolean",
+                    "example_values": [
+                        true
+                    ]
+                },
+                {
+                    "data_path": "action_result.data.*.validation.apple.whitelisted",
+                    "data_type": "boolean",
+                    "example_values": [
+                        false
+                    ]
+                },
+                {
+                    "data_path": "action_result.data.*.validation.google_ct_primary.blacklisted",
+                    "data_type": "boolean",
+                    "example_values": [
+                        false
+                    ]
+                },
+                {
+                    "data_path": "action_result.data.*.validation.google_ct_primary.had_trusted_path",
+                    "data_type": "boolean",
+                    "example_values": [
+                        true
+                    ]
+                },
+                {
+                    "data_path": "action_result.data.*.validation.google_ct_primary.in_revocation_set",
+                    "data_type": "boolean",
+                    "example_values": [
+                        false
+                    ]
+                },
+                {
+                    "data_path": "action_result.data.*.validation.google_ct_primary.trusted_path",
+                    "data_type": "boolean",
+                    "example_values": [
+                        false
+                    ]
+                },
+                {
+                    "data_path": "action_result.data.*.validation.google_ct_primary.type",
+                    "data_type": "string",
+                    "example_values": [
+                        "leaf"
+                    ]
+                },
+                {
+                    "data_path": "action_result.data.*.validation.google_ct_primary.valid",
+                    "data_type": "boolean",
+                    "example_values": [
+                        false
+                    ]
+                },
+                {
+                    "data_path": "action_result.data.*.validation.google_ct_primary.was_valid",
+                    "data_type": "boolean",
+                    "example_values": [
+                        true
+                    ]
+                },
+                {
+                    "data_path": "action_result.data.*.validation.google_ct_primary.whitelisted",
+                    "data_type": "boolean",
+                    "example_values": [
+                        false
+                    ]
+                },
+                {
+                    "data_path": "action_result.data.*.validation.microsoft.blacklisted",
+                    "data_type": "boolean",
+                    "example_values": [
+                        false
+                    ]
+                },
+                {
+                    "data_path": "action_result.data.*.validation.microsoft.had_trusted_path",
+                    "data_type": "boolean",
+                    "example_values": [
+                        true
+                    ]
+                },
+                {
+                    "data_path": "action_result.data.*.validation.microsoft.in_revocation_set",
+                    "data_type": "boolean",
+                    "example_values": [
+                        false
+                    ]
+                },
+                {
+                    "data_path": "action_result.data.*.validation.microsoft.trusted_path",
+                    "data_type": "boolean",
+                    "example_values": [
+                        false
+                    ]
+                },
+                {
+                    "data_path": "action_result.data.*.validation.microsoft.type",
+                    "data_type": "string",
+                    "example_values": [
+                        "leaf"
+                    ]
+                },
+                {
+                    "data_path": "action_result.data.*.validation.microsoft.valid",
+                    "data_type": "boolean",
+                    "example_values": [
+                        false
+                    ]
+                },
+                {
+                    "data_path": "action_result.data.*.validation.microsoft.was_valid",
+                    "data_type": "boolean",
+                    "example_values": [
+                        true
+                    ]
+                },
+                {
+                    "data_path": "action_result.data.*.validation.microsoft.whitelisted",
+                    "data_type": "boolean",
+                    "example_values": [
+                        false
+                    ]
+                },
+                {
+                    "data_path": "action_result.data.*.validation.nss.blacklisted",
+                    "data_type": "boolean",
+                    "example_values": [
+                        false
+                    ]
+                },
+                {
+                    "data_path": "action_result.data.*.validation.nss.had_trusted_path",
+                    "data_type": "boolean",
+                    "example_values": [
+                        true
+                    ]
+                },
+                {
+                    "data_path": "action_result.data.*.validation.nss.in_revocation_set",
+                    "data_type": "boolean",
+                    "example_values": [
+                        false
+                    ]
+                },
+                {
+                    "data_path": "action_result.data.*.validation.nss.trusted_path",
+                    "data_type": "boolean",
+                    "example_values": [
+                        false
+                    ]
+                },
+                {
+                    "data_path": "action_result.data.*.validation.nss.type",
+                    "data_type": "string",
+                    "example_values": [
+                        "leaf"
+                    ]
+                },
+                {
+                    "data_path": "action_result.data.*.validation.nss.valid",
+                    "data_type": "boolean",
+                    "example_values": [
+                        false
+                    ]
+                },
+                {
+                    "data_path": "action_result.data.*.validation.nss.was_valid",
+                    "data_type": "boolean",
+                    "example_values": [
+                        true
+                    ]
+                },
+                {
+                    "data_path": "action_result.data.*.validation.nss.whitelisted",
+                    "data_type": "boolean",
+                    "example_values": [
+                        false
+                    ]
+                },
+                {
+                    "data_path": "action_result.data.*.validation.revoked",
+                    "data_type": "boolean",
+                    "example_values": [
+                        false
+                    ]
                 },
                 {
                     "data_path": "action_result.data.*.validation_timestamp",
@@ -484,39 +1023,124 @@
                 },
                 {
                     "data_path": "action_result.data.*.was_in_nss",
-                    "data_type": "boolean"
+                    "data_type": "boolean",
+                    "example_values": [
+                        true,
+                        false
+                    ]
                 },
                 {
                     "data_path": "action_result.data.*.was_valid_nss",
-                    "data_type": "boolean"
+                    "data_type": "boolean",
+                    "example_values": [
+                        true,
+                        false
+                    ]
+                },
+                {
+                    "data_path": "action_result.data.*.zlint.errors_present",
+                    "data_type": "boolean",
+                    "example_values": [
+                        false
+                    ]
+                },
+                {
+                    "data_path": "action_result.data.*.zlint.fatals_present",
+                    "data_type": "boolean",
+                    "example_values": [
+                        false
+                    ]
+                },
+                {
+                    "data_path": "action_result.data.*.zlint.lints.n_contains_redacted_dnsname",
+                    "data_type": "boolean",
+                    "example_values": [
+                        true
+                    ]
+                },
+                {
+                    "data_path": "action_result.data.*.zlint.lints.n_subject_common_name_included",
+                    "data_type": "boolean",
+                    "example_values": [
+                        true
+                    ]
+                },
+                {
+                    "data_path": "action_result.data.*.zlint.lints.w_ext_subject_key_identifier_missing_sub_cert",
+                    "data_type": "boolean",
+                    "example_values": [
+                        true
+                    ]
+                },
+                {
+                    "data_path": "action_result.data.*.zlint.notices_present",
+                    "data_type": "boolean",
+                    "example_values": [
+                        true
+                    ]
+                },
+                {
+                    "data_path": "action_result.data.*.zlint.version",
+                    "data_type": "numeric",
+                    "example_values": [
+                        3
+                    ]
+                },
+                {
+                    "data_path": "action_result.data.*.zlint.warnings_present",
+                    "data_type": "boolean",
+                    "example_values": [
+                        true
+                    ]
                 },
                 {
                     "data_path": "action_result.summary.issuer_dn",
-                    "data_type": "string"
+                    "data_type": "string",
+                    "example_values": [
+                        "C=, ST=, L=, O=, OU=, CN="
+                    ]
                 },
                 {
                     "data_path": "action_result.summary.subject_dn",
-                    "data_type": "string"
+                    "data_type": "string",
+                    "example_values": [
+                        "C=, ST=, L=, O=, OU=, CN="
+                    ]
                 },
                 {
                     "data_path": "action_result.summary.valid_from",
-                    "data_type": "string"
+                    "data_type": "string",
+                    "example_values": [
+                        "2015-05-20T18:26:24Z"
+                    ]
                 },
                 {
                     "data_path": "action_result.summary.valid_to",
-                    "data_type": "string"
+                    "data_type": "string",
+                    "example_values": [
+                        "2025-05-17T18:26:24Z"
+                    ]
                 },
                 {
                     "data_path": "action_result.message",
-                    "data_type": "string"
+                    "data_type": "string",
+                    "example_values": [
+                        "Valid from: 2015-05-20T18:26:24Z, Valid to: 2025-05-17T18:26:24Z, Issuer dn: C=, ST=, L=, O=, OU=, CN=, Subject dn: C=, ST=, L=, O=, OU=, CN="
+                    ]
                 },
                 {
                     "data_path": "summary.total_objects",
-                    "data_type": "numeric"
+                    "data_type": "numeric",
+                    "example_values": [
+                        1
+                    ]
                 },
                 {
                     "data_path": "summary.total_objects_successful",
-                    "data_type": "numeric"
+                    "data_type": "numeric",
+                    "example_values": [
+                        1
+                    ]
                 }
             ],
             "render": {
@@ -539,7 +1163,8 @@
                     "data_type": "string",
                     "description": "IP to get info of",
                     "contains": [
-                        "ip"
+                        "ip",
+                        "ipv6"
                     ],
                     "required": true,
                     "primary": true,
@@ -559,650 +1184,1467 @@
                     "data_path": "action_result.parameter.ip",
                     "data_type": "string",
                     "contains": [
-                        "ip"
+                        "ip",
+                        "ipv6"
+                    ],
+                    "example_values": [
+                        "3.0.0.8",
+                        "2001:db8:3333:4444:5555:6666:7777:8888"
+                    ]
+                },
+                {
+                    "data_path": "action_result.data.*.443.https.dhe.support",
+                    "data_type": "boolean",
+                    "example_values": [
+                        false
+                    ]
+                },
+                {
+                    "data_path": "action_result.data.*.443.https.dhe_export.support",
+                    "data_type": "boolean",
+                    "example_values": [
+                        false
+                    ]
+                },
+                {
+                    "data_path": "action_result.data.*.443.https.rsa_export.support",
+                    "data_type": "boolean",
+                    "example_values": [
+                        false
                     ]
                 },
                 {
                     "data_path": "action_result.data.*.autonomous_system.asn",
-                    "data_type": "numeric"
+                    "data_type": "numeric",
+                    "example_values": [
+                        13335
+                    ]
                 },
                 {
                     "data_path": "action_result.data.*.autonomous_system.country_code",
-                    "data_type": "string"
+                    "data_type": "string",
+                    "example_values": [
+                        "US"
+                    ]
                 },
                 {
                     "data_path": "action_result.data.*.autonomous_system.description",
-                    "data_type": "string"
+                    "data_type": "string",
+                    "example_values": [
+                        "CLOUDFLARENET"
+                    ]
                 },
                 {
                     "data_path": "action_result.data.*.autonomous_system.name",
-                    "data_type": "string"
-                },
-                {
-                    "data_path": "action_result.data.*.autonomous_system.organization",
-                    "data_type": "string"
-                },
-                {
-                    "data_path": "action_result.data.*.autonomous_system.path",
-                    "data_type": "numeric"
+                    "data_type": "string",
+                    "example_values": [
+                        "CLOUDFLARENET"
+                    ]
                 },
                 {
                     "data_path": "action_result.data.*.autonomous_system.rir",
-                    "data_type": "string"
+                    "data_type": "string",
+                    "example_values": [
+                        "unknown"
+                    ]
                 },
                 {
                     "data_path": "action_result.data.*.autonomous_system.routed_prefix",
-                    "data_type": "string"
+                    "data_type": "string",
+                    "example_values": [
+                        "1.0.0.0/24"
+                    ]
+                },
+                {
+                    "data_path": "action_result.data.*.code",
+                    "data_type": "numeric",
+                    "example_values": [
+                        200
+                    ]
                 },
                 {
                     "data_path": "action_result.data.*.ip",
                     "data_type": "string",
+                    "example_values": [
+                        "1.0.0.0"
+                    ],
                     "contains": [
-                        "ip"
+                        "ip",
+                        "ipv6"
                     ]
-                },
-                {
-                    "data_path": "action_result.data.*.location.city",
-                    "data_type": "string"
                 },
                 {
                     "data_path": "action_result.data.*.location.continent",
-                    "data_type": "string"
+                    "data_type": "string",
+                    "example_values": [
+                        "Oceania"
+                    ]
                 },
                 {
                     "data_path": "action_result.data.*.location.country",
-                    "data_type": "string"
+                    "data_type": "string",
+                    "example_values": [
+                        "Australia"
+                    ]
                 },
                 {
                     "data_path": "action_result.data.*.location.country_code",
-                    "data_type": "string"
+                    "data_type": "string",
+                    "example_values": [
+                        "AU"
+                    ]
                 },
                 {
                     "data_path": "action_result.data.*.location.latitude",
-                    "data_type": "numeric"
+                    "data_type": "numeric",
+                    "example_values": [
+                        -33.494
+                    ]
                 },
                 {
                     "data_path": "action_result.data.*.location.longitude",
-                    "data_type": "numeric"
-                },
-                {
-                    "data_path": "action_result.data.*.location.postal_code",
-                    "data_type": "string"
-                },
-                {
-                    "data_path": "action_result.data.*.location.province",
-                    "data_type": "string"
+                    "data_type": "numeric",
+                    "example_values": [
+                        143.2104
+                    ]
                 },
                 {
                     "data_path": "action_result.data.*.location.registered_country",
-                    "data_type": "string"
+                    "data_type": "string",
+                    "example_values": [
+                        "Australia"
+                    ]
                 },
                 {
                     "data_path": "action_result.data.*.location.registered_country_code",
-                    "data_type": "string"
+                    "data_type": "string",
+                    "example_values": [
+                        "AU"
+                    ]
                 },
                 {
                     "data_path": "action_result.data.*.location.timezone",
-                    "data_type": "string"
-                },
-                {
-                    "data_path": "action_result.data.*.ports.443.https.dhe.support",
-                    "data_type": "boolean"
-                },
-                {
-                    "data_path": "action_result.data.*.ports.443.https.dhe_export.support",
-                    "data_type": "boolean"
-                },
-                {
-                    "data_path": "action_result.data.*.ports.443.https.heartbleed.heartbeat_enabled",
-                    "data_type": "boolean"
-                },
-                {
-                    "data_path": "action_result.data.*.ports.443.https.heartbleed.heartbleed_vulnerable",
-                    "data_type": "boolean"
-                },
-                {
-                    "data_path": "action_result.data.*.ports.443.https.rsa_export.support",
-                    "data_type": "boolean"
-                },
-                {
-                    "data_path": "action_result.data.*.ports.443.https.ssl_2.export",
-                    "data_type": "boolean"
-                },
-                {
-                    "data_path": "action_result.data.*.ports.443.https.ssl_2.extra_clear",
-                    "data_type": "boolean"
-                },
-                {
-                    "data_path": "action_result.data.*.ports.443.https.ssl_2.support",
-                    "data_type": "boolean"
-                },
-                {
-                    "data_path": "action_result.data.*.ports.443.https.tls.certificate.parsed.extensions.authority_info_access.issuer_urls",
-                    "data_type": "string"
-                },
-                {
-                    "data_path": "action_result.data.*.ports.443.https.tls.certificate.parsed.extensions.authority_info_access.ocsp_urls",
-                    "data_type": "string"
-                },
-                {
-                    "data_path": "action_result.data.*.ports.443.https.tls.certificate.parsed.extensions.authority_key_id",
-                    "data_type": "string"
-                },
-                {
-                    "data_path": "action_result.data.*.ports.443.https.tls.certificate.parsed.extensions.basic_constraints.is_ca",
-                    "data_type": "boolean"
-                },
-                {
-                    "data_path": "action_result.data.*.ports.443.https.tls.certificate.parsed.extensions.certificate_policies",
-                    "data_type": "string"
-                },
-                {
-                    "data_path": "action_result.data.*.ports.443.https.tls.certificate.parsed.extensions.crl_distribution_points",
-                    "data_type": "string"
-                },
-                {
-                    "data_path": "action_result.data.*.ports.443.https.tls.certificate.parsed.extensions.extended_key_usage",
-                    "data_type": "numeric"
-                },
-                {
-                    "data_path": "action_result.data.*.ports.443.https.tls.certificate.parsed.extensions.key_usage.digital_signature",
-                    "data_type": "boolean"
-                },
-                {
-                    "data_path": "action_result.data.*.ports.443.https.tls.certificate.parsed.extensions.key_usage.key_encipherment",
-                    "data_type": "boolean"
-                },
-                {
-                    "data_path": "action_result.data.*.ports.443.https.tls.certificate.parsed.extensions.key_usage.value",
-                    "data_type": "numeric"
-                },
-                {
-                    "data_path": "action_result.data.*.ports.443.https.tls.certificate.parsed.extensions.subject_alt_name.dns_names",
-                    "data_type": "string"
-                },
-                {
-                    "data_path": "action_result.data.*.ports.443.https.tls.certificate.parsed.fingerprint_md5",
-                    "data_type": "string"
-                },
-                {
-                    "data_path": "action_result.data.*.ports.443.https.tls.certificate.parsed.fingerprint_sha1",
-                    "data_type": "string"
-                },
-                {
-                    "data_path": "action_result.data.*.ports.443.https.tls.certificate.parsed.fingerprint_sha256",
                     "data_type": "string",
-                    "contains": [
-                        "sha256"
+                    "example_values": [
+                        "Australia/Sydney"
                     ]
                 },
                 {
-                    "data_path": "action_result.data.*.ports.443.https.tls.certificate.parsed.issuer.common_name",
-                    "data_type": "string"
-                },
-                {
-                    "data_path": "action_result.data.*.ports.443.https.tls.certificate.parsed.issuer.country",
-                    "data_type": "string"
-                },
-                {
-                    "data_path": "action_result.data.*.ports.443.https.tls.certificate.parsed.issuer.organization",
-                    "data_type": "string"
-                },
-                {
-                    "data_path": "action_result.data.*.ports.443.https.tls.certificate.parsed.issuer.organizational_unit",
-                    "data_type": "string"
-                },
-                {
-                    "data_path": "action_result.data.*.ports.443.https.tls.certificate.parsed.issuer_dn",
-                    "data_type": "string"
-                },
-                {
-                    "data_path": "action_result.data.*.ports.443.https.tls.certificate.parsed.names",
-                    "data_type": "string"
-                },
-                {
-                    "data_path": "action_result.data.*.ports.443.https.tls.certificate.parsed.serial_number",
-                    "data_type": "string"
-                },
-                {
-                    "data_path": "action_result.data.*.ports.443.https.tls.certificate.parsed.signature.self_signed",
-                    "data_type": "boolean"
-                },
-                {
-                    "data_path": "action_result.data.*.ports.443.https.tls.certificate.parsed.signature.signature_algorithm.name",
-                    "data_type": "string"
-                },
-                {
-                    "data_path": "action_result.data.*.ports.443.https.tls.certificate.parsed.signature.signature_algorithm.oid",
-                    "data_type": "string"
-                },
-                {
-                    "data_path": "action_result.data.*.ports.443.https.tls.certificate.parsed.signature.valid",
-                    "data_type": "boolean"
-                },
-                {
-                    "data_path": "action_result.data.*.ports.443.https.tls.certificate.parsed.signature.value",
-                    "data_type": "string"
-                },
-                {
-                    "data_path": "action_result.data.*.ports.443.https.tls.certificate.parsed.signature_algorithm.name",
-                    "data_type": "string"
-                },
-                {
-                    "data_path": "action_result.data.*.ports.443.https.tls.certificate.parsed.signature_algorithm.oid",
-                    "data_type": "string"
-                },
-                {
-                    "data_path": "action_result.data.*.ports.443.https.tls.certificate.parsed.spki_subject_fingerprint",
-                    "data_type": "string"
-                },
-                {
-                    "data_path": "action_result.data.*.ports.443.https.tls.certificate.parsed.subject.common_name",
-                    "data_type": "string"
-                },
-                {
-                    "data_path": "action_result.data.*.ports.443.https.tls.certificate.parsed.subject.country",
-                    "data_type": "string"
-                },
-                {
-                    "data_path": "action_result.data.*.ports.443.https.tls.certificate.parsed.subject.locality",
-                    "data_type": "string"
-                },
-                {
-                    "data_path": "action_result.data.*.ports.443.https.tls.certificate.parsed.subject.organization",
-                    "data_type": "string"
-                },
-                {
-                    "data_path": "action_result.data.*.ports.443.https.tls.certificate.parsed.subject.province",
-                    "data_type": "string"
-                },
-                {
-                    "data_path": "action_result.data.*.ports.443.https.tls.certificate.parsed.subject_dn",
-                    "data_type": "string"
-                },
-                {
-                    "data_path": "action_result.data.*.ports.443.https.tls.certificate.parsed.subject_key_info.fingerprint_sha256",
-                    "data_type": "string",
-                    "contains": [
-                        "sha256"
+                    "data_path": "action_result.data.*.result.autonomous_system.asn",
+                    "data_type": "numeric",
+                    "example_values": [
+                        16509
                     ]
                 },
                 {
-                    "data_path": "action_result.data.*.ports.443.https.tls.certificate.parsed.subject_key_info.key_algorithm.name",
-                    "data_type": "string"
-                },
-                {
-                    "data_path": "action_result.data.*.ports.443.https.tls.certificate.parsed.subject_key_info.key_algorithm.oid",
-                    "data_type": "string"
-                },
-                {
-                    "data_path": "action_result.data.*.ports.443.https.tls.certificate.parsed.subject_key_info.rsa_public_key.exponent",
-                    "data_type": "numeric"
-                },
-                {
-                    "data_path": "action_result.data.*.ports.443.https.tls.certificate.parsed.subject_key_info.rsa_public_key.length",
-                    "data_type": "numeric"
-                },
-                {
-                    "data_path": "action_result.data.*.ports.443.https.tls.certificate.parsed.subject_key_info.rsa_public_key.modulus",
-                    "data_type": "string"
-                },
-                {
-                    "data_path": "action_result.data.*.ports.443.https.tls.certificate.parsed.tbs_fingerprint",
-                    "data_type": "string"
-                },
-                {
-                    "data_path": "action_result.data.*.ports.443.https.tls.certificate.parsed.tbs_noct_fingerprint",
-                    "data_type": "string"
-                },
-                {
-                    "data_path": "action_result.data.*.ports.443.https.tls.certificate.parsed.validation_level",
-                    "data_type": "string"
-                },
-                {
-                    "data_path": "action_result.data.*.ports.443.https.tls.certificate.parsed.validity.end",
-                    "data_type": "string"
-                },
-                {
-                    "data_path": "action_result.data.*.ports.443.https.tls.certificate.parsed.validity.length",
-                    "data_type": "numeric"
-                },
-                {
-                    "data_path": "action_result.data.*.ports.443.https.tls.certificate.parsed.validity.start",
-                    "data_type": "string"
-                },
-                {
-                    "data_path": "action_result.data.*.ports.443.https.tls.certificate.parsed.version",
-                    "data_type": "numeric"
-                },
-                {
-                    "data_path": "action_result.data.*.ports.443.https.tls.chain.*.parsed.extensions.authority_info_access.ocsp_urls",
-                    "data_type": "string"
-                },
-                {
-                    "data_path": "action_result.data.*.ports.443.https.tls.chain.*.parsed.extensions.authority_key_id",
-                    "data_type": "string"
-                },
-                {
-                    "data_path": "action_result.data.*.ports.443.https.tls.chain.*.parsed.extensions.basic_constraints.is_ca",
-                    "data_type": "boolean"
-                },
-                {
-                    "data_path": "action_result.data.*.ports.443.https.tls.chain.*.parsed.extensions.basic_constraints.max_path_len",
-                    "data_type": "numeric"
-                },
-                {
-                    "data_path": "action_result.data.*.ports.443.https.tls.chain.*.parsed.extensions.certificate_policies",
-                    "data_type": "string"
-                },
-                {
-                    "data_path": "action_result.data.*.ports.443.https.tls.chain.*.parsed.extensions.crl_distribution_points",
-                    "data_type": "string"
-                },
-                {
-                    "data_path": "action_result.data.*.ports.443.https.tls.chain.*.parsed.extensions.key_usage.certificate_sign",
-                    "data_type": "boolean"
-                },
-                {
-                    "data_path": "action_result.data.*.ports.443.https.tls.chain.*.parsed.extensions.key_usage.crl_sign",
-                    "data_type": "boolean"
-                },
-                {
-                    "data_path": "action_result.data.*.ports.443.https.tls.chain.*.parsed.extensions.key_usage.value",
-                    "data_type": "numeric"
-                },
-                {
-                    "data_path": "action_result.data.*.ports.443.https.tls.chain.*.parsed.extensions.subject_alt_name.directory_names.*.common_name",
-                    "data_type": "string"
-                },
-                {
-                    "data_path": "action_result.data.*.ports.443.https.tls.chain.*.parsed.extensions.subject_key_id",
-                    "data_type": "string"
-                },
-                {
-                    "data_path": "action_result.data.*.ports.443.https.tls.chain.*.parsed.fingerprint_md5",
+                    "data_path": "action_result.data.*.result.autonomous_system.bgp_prefix",
                     "data_type": "string",
-                    "contains": [
-                        "md5"
+                    "example_values": [
+                        "54.239.16.0/20"
                     ]
                 },
                 {
-                    "data_path": "action_result.data.*.ports.443.https.tls.chain.*.parsed.fingerprint_sha1",
-                    "data_type": "string"
-                },
-                {
-                    "data_path": "action_result.data.*.ports.443.https.tls.chain.*.parsed.fingerprint_sha256",
+                    "data_path": "action_result.data.*.result.autonomous_system.country_code",
                     "data_type": "string",
-                    "contains": [
-                        "sha256"
+                    "example_values": [
+                        "US"
                     ]
                 },
                 {
-                    "data_path": "action_result.data.*.ports.443.https.tls.chain.*.parsed.issuer.common_name",
-                    "data_type": "string"
-                },
-                {
-                    "data_path": "action_result.data.*.ports.443.https.tls.chain.*.parsed.issuer.country",
-                    "data_type": "string"
-                },
-                {
-                    "data_path": "action_result.data.*.ports.443.https.tls.chain.*.parsed.issuer.organization",
-                    "data_type": "string"
-                },
-                {
-                    "data_path": "action_result.data.*.ports.443.https.tls.chain.*.parsed.issuer.organizational_unit",
-                    "data_type": "string"
-                },
-                {
-                    "data_path": "action_result.data.*.ports.443.https.tls.chain.*.parsed.issuer_dn",
-                    "data_type": "string"
-                },
-                {
-                    "data_path": "action_result.data.*.ports.443.https.tls.chain.*.parsed.serial_number",
-                    "data_type": "string"
-                },
-                {
-                    "data_path": "action_result.data.*.ports.443.https.tls.chain.*.parsed.signature.self_signed",
-                    "data_type": "boolean"
-                },
-                {
-                    "data_path": "action_result.data.*.ports.443.https.tls.chain.*.parsed.signature.signature_algorithm.name",
-                    "data_type": "string"
-                },
-                {
-                    "data_path": "action_result.data.*.ports.443.https.tls.chain.*.parsed.signature.signature_algorithm.oid",
-                    "data_type": "string"
-                },
-                {
-                    "data_path": "action_result.data.*.ports.443.https.tls.chain.*.parsed.signature.valid",
-                    "data_type": "boolean"
-                },
-                {
-                    "data_path": "action_result.data.*.ports.443.https.tls.chain.*.parsed.signature.value",
-                    "data_type": "string"
-                },
-                {
-                    "data_path": "action_result.data.*.ports.443.https.tls.chain.*.parsed.signature_algorithm.name",
-                    "data_type": "string"
-                },
-                {
-                    "data_path": "action_result.data.*.ports.443.https.tls.chain.*.parsed.signature_algorithm.oid",
-                    "data_type": "string"
-                },
-                {
-                    "data_path": "action_result.data.*.ports.443.https.tls.chain.*.parsed.spki_subject_fingerprint",
-                    "data_type": "string"
-                },
-                {
-                    "data_path": "action_result.data.*.ports.443.https.tls.chain.*.parsed.subject.common_name",
-                    "data_type": "string"
-                },
-                {
-                    "data_path": "action_result.data.*.ports.443.https.tls.chain.*.parsed.subject.country",
-                    "data_type": "string"
-                },
-                {
-                    "data_path": "action_result.data.*.ports.443.https.tls.chain.*.parsed.subject.organization",
-                    "data_type": "string"
-                },
-                {
-                    "data_path": "action_result.data.*.ports.443.https.tls.chain.*.parsed.subject.organizational_unit",
-                    "data_type": "string"
-                },
-                {
-                    "data_path": "action_result.data.*.ports.443.https.tls.chain.*.parsed.subject_dn",
-                    "data_type": "string"
-                },
-                {
-                    "data_path": "action_result.data.*.ports.443.https.tls.chain.*.parsed.subject_key_info.fingerprint_sha256",
+                    "data_path": "action_result.data.*.result.autonomous_system.description",
                     "data_type": "string",
-                    "contains": [
-                        "sha256"
+                    "example_values": [
+                        "AMAZON-02"
                     ]
                 },
                 {
-                    "data_path": "action_result.data.*.ports.443.https.tls.chain.*.parsed.subject_key_info.key_algorithm.name",
-                    "data_type": "string"
+                    "data_path": "action_result.data.*.result.autonomous_system.name",
+                    "data_type": "string",
+                    "example_values": [
+                        "AMAZON-02"
+                    ]
                 },
                 {
-                    "data_path": "action_result.data.*.ports.443.https.tls.chain.*.parsed.subject_key_info.key_algorithm.oid",
-                    "data_type": "string"
+                    "data_path": "action_result.data.*.result.autonomous_system_updated_at",
+                    "data_type": "string",
+                    "example_values": [
+                        "2021-11-13T23:19:19.468779Z"
+                    ]
                 },
                 {
-                    "data_path": "action_result.data.*.ports.443.https.tls.chain.*.parsed.subject_key_info.rsa_public_key.exponent",
-                    "data_type": "numeric"
+                    "data_path": "action_result.data.*.result.dns.records.ec2-3-8-0-0.eu-west-2.compute.amazonaws.com.record_type",
+                    "data_type": "string",
+                    "example_values": [
+                        "A"
+                    ]
                 },
                 {
-                    "data_path": "action_result.data.*.ports.443.https.tls.chain.*.parsed.subject_key_info.rsa_public_key.length",
-                    "data_type": "numeric"
+                    "data_path": "action_result.data.*.result.dns.records.ec2-3-8-0-0.eu-west-2.compute.amazonaws.com.resolved_at",
+                    "data_type": "string",
+                    "example_values": [
+                        "2021-10-28T03:01:56.147559092Z"
+                    ]
                 },
                 {
-                    "data_path": "action_result.data.*.ports.443.https.tls.chain.*.parsed.subject_key_info.rsa_public_key.modulus",
-                    "data_type": "string"
+                    "data_path": "action_result.data.*.result.dns.records.origin-www.amazon.com.record_type",
+                    "data_type": "string",
+                    "example_values": [
+                        "A"
+                    ]
                 },
                 {
-                    "data_path": "action_result.data.*.ports.443.https.tls.chain.*.parsed.tbs_fingerprint",
-                    "data_type": "string"
+                    "data_path": "action_result.data.*.result.dns.records.origin-www.amazon.com.resolved_at",
+                    "data_type": "string",
+                    "example_values": [
+                        "2021-11-17T13:16:34.532024359Z"
+                    ]
                 },
                 {
-                    "data_path": "action_result.data.*.ports.443.https.tls.chain.*.parsed.tbs_noct_fingerprint",
-                    "data_type": "string"
+                    "data_path": "action_result.data.*.result.ip",
+                    "data_type": "string",
+                    "contains": [
+                        "ip",
+                        "ipv6"
+                    ]
                 },
                 {
-                    "data_path": "action_result.data.*.ports.443.https.tls.chain.*.parsed.validation_level",
-                    "data_type": "string"
+                    "data_path": "action_result.data.*.result.last_updated_at",
+                    "data_type": "string",
+                    "example_values": [
+                        "2021-11-21T21:32:57.423Z"
+                    ]
                 },
                 {
-                    "data_path": "action_result.data.*.ports.443.https.tls.chain.*.parsed.validity.end",
-                    "data_type": "string"
+                    "data_path": "action_result.data.*.result.location.city",
+                    "data_type": "string",
+                    "example_values": [
+                        "Ashburn"
+                    ]
                 },
                 {
-                    "data_path": "action_result.data.*.ports.443.https.tls.chain.*.parsed.validity.length",
-                    "data_type": "numeric"
+                    "data_path": "action_result.data.*.result.location.continent",
+                    "data_type": "string",
+                    "example_values": [
+                        "North America"
+                    ]
                 },
                 {
-                    "data_path": "action_result.data.*.ports.443.https.tls.chain.*.parsed.validity.start",
-                    "data_type": "string"
+                    "data_path": "action_result.data.*.result.location.coordinates.latitude",
+                    "data_type": "numeric",
+                    "example_values": [
+                        39.0469
+                    ]
                 },
                 {
-                    "data_path": "action_result.data.*.ports.443.https.tls.chain.*.parsed.version",
-                    "data_type": "numeric"
+                    "data_path": "action_result.data.*.result.location.coordinates.longitude",
+                    "data_type": "numeric",
+                    "example_values": [
+                        -77.4903
+                    ]
                 },
                 {
-                    "data_path": "action_result.data.*.ports.443.https.tls.cipher_suite.id",
-                    "data_type": "string"
+                    "data_path": "action_result.data.*.result.location.country",
+                    "data_type": "string",
+                    "example_values": [
+                        "United States"
+                    ]
                 },
                 {
-                    "data_path": "action_result.data.*.ports.443.https.tls.cipher_suite.name",
-                    "data_type": "string"
+                    "data_path": "action_result.data.*.result.location.country_code",
+                    "data_type": "string",
+                    "example_values": [
+                        "US"
+                    ]
                 },
                 {
-                    "data_path": "action_result.data.*.ports.443.https.tls.ocsp_stapling",
-                    "data_type": "boolean"
+                    "data_path": "action_result.data.*.result.location.postal_code",
+                    "data_type": "string",
+                    "example_values": [
+                        "20149"
+                    ]
                 },
                 {
-                    "data_path": "action_result.data.*.ports.443.https.tls.server_key_exchange.ecdh_params.curve_id.id",
-                    "data_type": "numeric"
+                    "data_path": "action_result.data.*.result.location.province",
+                    "data_type": "string",
+                    "example_values": [
+                        "Virginia"
+                    ]
                 },
                 {
-                    "data_path": "action_result.data.*.ports.443.https.tls.server_key_exchange.ecdh_params.curve_id.name",
-                    "data_type": "string"
+                    "data_path": "action_result.data.*.result.location.registered_country",
+                    "data_type": "string",
+                    "example_values": [
+                        "United States"
+                    ]
                 },
                 {
-                    "data_path": "action_result.data.*.ports.443.https.tls.signature.hash_algorithm",
-                    "data_type": "string"
+                    "data_path": "action_result.data.*.result.location.registered_country_code",
+                    "data_type": "string",
+                    "example_values": [
+                        "US"
+                    ]
                 },
                 {
-                    "data_path": "action_result.data.*.ports.443.https.tls.signature.signature_algorithm",
-                    "data_type": "string"
+                    "data_path": "action_result.data.*.result.location.timezone",
+                    "data_type": "string",
+                    "example_values": [
+                        "America/New_York"
+                    ]
                 },
                 {
-                    "data_path": "action_result.data.*.ports.443.https.tls.signature.valid",
-                    "data_type": "boolean"
+                    "data_path": "action_result.data.*.result.location_updated_at",
+                    "data_type": "string",
+                    "example_values": [
+                        "2021-11-21T21:32:57.391059Z"
+                    ]
                 },
                 {
-                    "data_path": "action_result.data.*.ports.443.https.tls.validation.browser_trusted",
-                    "data_type": "boolean"
+                    "data_path": "action_result.data.*.result.operating_system.other.family",
+                    "data_type": "string",
+                    "example_values": [
+                        "Linux"
+                    ]
                 },
                 {
-                    "data_path": "action_result.data.*.ports.443.https.tls.version",
-                    "data_type": "string"
+                    "data_path": "action_result.data.*.result.operating_system.part",
+                    "data_type": "string",
+                    "example_values": [
+                        "o"
+                    ]
                 },
                 {
-                    "data_path": "action_result.data.*.ports.80.http.get.body",
-                    "data_type": "string"
+                    "data_path": "action_result.data.*.result.operating_system.product",
+                    "data_type": "string",
+                    "example_values": [
+                        "Linux"
+                    ]
                 },
                 {
-                    "data_path": "action_result.data.*.ports.80.http.get.body_sha256",
-                    "data_type": "string"
+                    "data_path": "action_result.data.*.result.operating_system.uniform_resource_identifier",
+                    "data_type": "string",
+                    "example_values": [
+                        "cpe:2.3:o:centos:centos:*:*:*:*:*:*:*:*"
+                    ]
                 },
                 {
-                    "data_path": "action_result.data.*.ports.80.http.get.headers.cache_control",
-                    "data_type": "string"
+                    "data_path": "action_result.data.*.result.operating_system.vendor",
+                    "data_type": "string",
+                    "example_values": [
+                        "CentOS"
+                    ]
                 },
                 {
-                    "data_path": "action_result.data.*.ports.80.http.get.headers.connection",
-                    "data_type": "string"
+                    "data_path": "action_result.data.*.result.services.*._decoded",
+                    "data_type": "string",
+                    "example_values": [
+                        "http"
+                    ]
                 },
                 {
-                    "data_path": "action_result.data.*.ports.80.http.get.headers.content_language",
-                    "data_type": "string"
+                    "data_path": "action_result.data.*.result.services.*._encoding.banner",
+                    "data_type": "string",
+                    "example_values": [
+                        "DISPLAY_UTF8"
+                    ]
                 },
                 {
-                    "data_path": "action_result.data.*.ports.80.http.get.headers.content_type",
-                    "data_type": "string"
+                    "data_path": "action_result.data.*.result.services.*._encoding.banner_hex",
+                    "data_type": "string",
+                    "example_values": [
+                        "DISPLAY_HEX"
+                    ]
                 },
                 {
-                    "data_path": "action_result.data.*.ports.80.http.get.headers.expires",
-                    "data_type": "string"
+                    "data_path": "action_result.data.*.result.services.*._encoding.certificate",
+                    "data_type": "string",
+                    "example_values": [
+                        "DISPLAY_HEX"
+                    ]
                 },
                 {
-                    "data_path": "action_result.data.*.ports.80.http.get.headers.pragma",
-                    "data_type": "string"
+                    "data_path": "action_result.data.*.result.services.*.banner",
+                    "data_type": "string",
+                    "example_values": [
+                        "HTTP/1.1 404 Not Found\nServer: Apache\nContent-Type: text/html; charset=iso-8859-1\nDate: <REDACTED>\nConnection: close\nContent-Length: 196"
+                    ]
                 },
                 {
-                    "data_path": "action_result.data.*.ports.80.http.get.headers.server",
-                    "data_type": "string"
+                    "data_path": "action_result.data.*.result.services.*.banner_hex",
+                    "data_type": "string",
+                    "example_values": [
+                        "485454502f312e3120343034204e6f7420466f756e640a5365727665723a204170616368650a436f6e74656e742d547970653a20746578742f68746d6c3b20636861727365743d69736f2d383835392d310a446174653a203c52454441435445443e0a436f6e6e656374696f6e3a20636c6f73650a436f6e74656e742d4c656e6774683a20313936"
+                    ]
                 },
                 {
-                    "data_path": "action_result.data.*.ports.80.http.get.headers.strict_transport_security",
-                    "data_type": "string"
+                    "data_path": "action_result.data.*.result.services.*.certificate",
+                    "data_type": "string",
+                    "example_values": [
+                        "5bf3d7e0e6927f773d5106c822c53f6f52c199f7eb1b3b8154b41f2924391c75"
+                    ]
                 },
                 {
-                    "data_path": "action_result.data.*.ports.80.http.get.headers.unknown.*.key",
-                    "data_type": "string"
+                    "data_path": "action_result.data.*.result.services.*.extended_service_name",
+                    "data_type": "string",
+                    "example_values": [
+                        "HTTP"
+                    ]
                 },
                 {
-                    "data_path": "action_result.data.*.ports.80.http.get.headers.unknown.*.value",
-                    "data_type": "string"
+                    "data_path": "action_result.data.*.result.services.*.http.request.headers._encoding.Accept",
+                    "data_type": "string",
+                    "example_values": [
+                        "DISPLAY_UTF8"
+                    ]
                 },
                 {
-                    "data_path": "action_result.data.*.ports.80.http.get.headers.vary",
-                    "data_type": "string"
+                    "data_path": "action_result.data.*.result.services.*.http.request.headers._encoding.User_Agent",
+                    "data_type": "string",
+                    "example_values": [
+                        "DISPLAY_UTF8"
+                    ]
                 },
                 {
-                    "data_path": "action_result.data.*.ports.80.http.get.headers.x_frame_options",
-                    "data_type": "string"
+                    "data_path": "action_result.data.*.result.services.*.http.request.method",
+                    "data_type": "string",
+                    "example_values": [
+                        "GET"
+                    ]
                 },
                 {
-                    "data_path": "action_result.data.*.ports.80.http.get.headers.x_ua_compatible",
-                    "data_type": "string"
+                    "data_path": "action_result.data.*.result.services.*.http.request.uri",
+                    "data_type": "string",
+                    "example_values": [
+                        "http://3.8.0.0/"
+                    ]
                 },
                 {
-                    "data_path": "action_result.data.*.ports.80.http.get.status_code",
-                    "data_type": "numeric"
+                    "data_path": "action_result.data.*.result.services.*.http.response._encoding.body",
+                    "data_type": "string",
+                    "example_values": [
+                        "DISPLAY_UTF8"
+                    ]
                 },
                 {
-                    "data_path": "action_result.data.*.ports.80.http.get.status_line",
-                    "data_type": "string"
+                    "data_path": "action_result.data.*.result.services.*.http.response._encoding.body_hash",
+                    "data_type": "string",
+                    "example_values": [
+                        "DISPLAY_UTF8"
+                    ]
                 },
                 {
-                    "data_path": "action_result.data.*.protocols",
-                    "data_type": "string"
+                    "data_path": "action_result.data.*.result.services.*.http.response._encoding.html_tags",
+                    "data_type": "string",
+                    "example_values": [
+                        "DISPLAY_UTF8"
+                    ]
                 },
                 {
-                    "data_path": "action_result.data.*.tags",
-                    "data_type": "string"
+                    "data_path": "action_result.data.*.result.services.*.http.response._encoding.html_title",
+                    "data_type": "string",
+                    "example_values": [
+                        "DISPLAY_UTF8"
+                    ]
                 },
                 {
-                    "data_path": "action_result.data.*.updated_at",
-                    "data_type": "string"
+                    "data_path": "action_result.data.*.result.services.*.http.response.body",
+                    "data_type": "string",
+                    "example_values": [
+                        "<!DOCTYPE HTML PUBLIC \"-//IETF//DTD HTML 2.0//EN\">\n<html><head>\n<title>404 Not Found</title>\n</head><body>\n<h1>Not Found</h1>\n<p>The requested URL was not found on this server.</p>\n</body></html>\n"
+                    ]
                 },
                 {
-                    "data_path": "action_result.summary.protocols",
-                    "data_type": "string"
+                    "data_path": "action_result.data.*.result.services.*.http.response.body_hash",
+                    "data_type": "string",
+                    "example_values": [
+                        "sha1:d64bae91091eda6a7532ebec06aa70893b79e1f8"
+                    ]
+                },
+                {
+                    "data_path": "action_result.data.*.result.services.*.http.response.body_size",
+                    "data_type": "numeric",
+                    "example_values": [
+                        196
+                    ]
+                },
+                {
+                    "data_path": "action_result.data.*.result.services.*.http.response.headers._encoding.Accept_Ranges",
+                    "data_type": "string",
+                    "example_values": [
+                        "DISPLAY_UTF8"
+                    ]
+                },
+                {
+                    "data_path": "action_result.data.*.result.services.*.http.response.headers._encoding.Cache_Control",
+                    "data_type": "string",
+                    "example_values": [
+                        "DISPLAY_UTF8"
+                    ]
+                },
+                {
+                    "data_path": "action_result.data.*.result.services.*.http.response.headers._encoding.Connection",
+                    "data_type": "string",
+                    "example_values": [
+                        "DISPLAY_UTF8"
+                    ]
+                },
+                {
+                    "data_path": "action_result.data.*.result.services.*.http.response.headers._encoding.Content_Length",
+                    "data_type": "string",
+                    "example_values": [
+                        "DISPLAY_UTF8"
+                    ]
+                },
+                {
+                    "data_path": "action_result.data.*.result.services.*.http.response.headers._encoding.Content_Type",
+                    "data_type": "string",
+                    "example_values": [
+                        "DISPLAY_UTF8"
+                    ]
+                },
+                {
+                    "data_path": "action_result.data.*.result.services.*.http.response.headers._encoding.Date",
+                    "data_type": "string",
+                    "example_values": [
+                        "DISPLAY_UTF8"
+                    ]
+                },
+                {
+                    "data_path": "action_result.data.*.result.services.*.http.response.headers._encoding.Etag",
+                    "data_type": "string",
+                    "example_values": [
+                        "DISPLAY_UTF8"
+                    ]
+                },
+                {
+                    "data_path": "action_result.data.*.result.services.*.http.response.headers._encoding.Expires",
+                    "data_type": "string",
+                    "example_values": [
+                        "DISPLAY_UTF8"
+                    ]
+                },
+                {
+                    "data_path": "action_result.data.*.result.services.*.http.response.headers._encoding.Last_Modified",
+                    "data_type": "string",
+                    "example_values": [
+                        "DISPLAY_UTF8"
+                    ]
+                },
+                {
+                    "data_path": "action_result.data.*.result.services.*.http.response.headers._encoding.Location",
+                    "data_type": "string",
+                    "example_values": [
+                        "DISPLAY_UTF8"
+                    ]
+                },
+                {
+                    "data_path": "action_result.data.*.result.services.*.http.response.headers._encoding.Referrer_Policy",
+                    "data_type": "string",
+                    "example_values": [
+                        "DISPLAY_UTF8"
+                    ]
+                },
+                {
+                    "data_path": "action_result.data.*.result.services.*.http.response.headers._encoding.Server",
+                    "data_type": "string",
+                    "example_values": [
+                        "DISPLAY_UTF8"
+                    ]
+                },
+                {
+                    "data_path": "action_result.data.*.result.services.*.http.response.headers._encoding.Set_Cookie",
+                    "data_type": "string",
+                    "example_values": [
+                        "DISPLAY_UTF8"
+                    ]
+                },
+                {
+                    "data_path": "action_result.data.*.result.services.*.http.response.headers._encoding.Vary",
+                    "data_type": "string",
+                    "example_values": [
+                        "DISPLAY_UTF8"
+                    ]
+                },
+                {
+                    "data_path": "action_result.data.*.result.services.*.http.response.headers._encoding.X_Content_Type_Options",
+                    "data_type": "string",
+                    "example_values": [
+                        "DISPLAY_UTF8"
+                    ]
+                },
+                {
+                    "data_path": "action_result.data.*.result.services.*.http.response.headers._encoding.X_Frame_Options",
+                    "data_type": "string",
+                    "example_values": [
+                        "DISPLAY_UTF8"
+                    ]
+                },
+                {
+                    "data_path": "action_result.data.*.result.services.*.http.response.headers._encoding.X_Hudson",
+                    "data_type": "string",
+                    "example_values": [
+                        "DISPLAY_UTF8"
+                    ]
+                },
+                {
+                    "data_path": "action_result.data.*.result.services.*.http.response.headers._encoding.X_Jenkins",
+                    "data_type": "string",
+                    "example_values": [
+                        "DISPLAY_UTF8"
+                    ]
+                },
+                {
+                    "data_path": "action_result.data.*.result.services.*.http.response.headers._encoding.X_Jenkins_Session",
+                    "data_type": "string",
+                    "example_values": [
+                        "DISPLAY_UTF8"
+                    ]
+                },
+                {
+                    "data_path": "action_result.data.*.result.services.*.http.response.headers._encoding.X_Matomo_Request_Id",
+                    "data_type": "string",
+                    "example_values": [
+                        "DISPLAY_UTF8"
+                    ]
+                },
+                {
+                    "data_path": "action_result.data.*.result.services.*.http.response.headers._encoding.X_Powered_By",
+                    "data_type": "string",
+                    "example_values": [
+                        "DISPLAY_UTF8"
+                    ]
+                },
+                {
+                    "data_path": "action_result.data.*.result.services.*.http.response.html_title",
+                    "data_type": "string",
+                    "example_values": [
+                        "404 Not Found"
+                    ]
+                },
+                {
+                    "data_path": "action_result.data.*.result.services.*.http.response.protocol",
+                    "data_type": "string",
+                    "example_values": [
+                        "HTTP/1.1"
+                    ]
+                },
+                {
+                    "data_path": "action_result.data.*.result.services.*.http.response.status_code",
+                    "data_type": "numeric",
+                    "example_values": [
+                        404
+                    ]
+                },
+                {
+                    "data_path": "action_result.data.*.result.services.*.http.response.status_reason",
+                    "data_type": "string",
+                    "example_values": [
+                        "Not Found"
+                    ]
+                },
+                {
+                    "data_path": "action_result.data.*.result.services.*.mysql._encoding.auth_plugin_data",
+                    "data_type": "string",
+                    "example_values": [
+                        "DISPLAY_HEX"
+                    ]
+                },
+                {
+                    "data_path": "action_result.data.*.result.services.*.mysql.auth_plugin_data",
+                    "data_type": "string",
+                    "example_values": [
+                        "062a65217653656b4e176341794c5b505753015900"
+                    ]
+                },
+                {
+                    "data_path": "action_result.data.*.result.services.*.mysql.auth_plugin_name",
+                    "data_type": "string",
+                    "example_values": [
+                        "caching_sha2_password"
+                    ]
+                },
+                {
+                    "data_path": "action_result.data.*.result.services.*.mysql.capability_flags.CLIENT_CAN_HANDLE_EXPIRED_PASSWORDS",
+                    "data_type": "boolean",
+                    "example_values": [
+                        true
+                    ]
+                },
+                {
+                    "data_path": "action_result.data.*.result.services.*.mysql.capability_flags.CLIENT_COMPRESS",
+                    "data_type": "boolean",
+                    "example_values": [
+                        true
+                    ]
+                },
+                {
+                    "data_path": "action_result.data.*.result.services.*.mysql.capability_flags.CLIENT_CONNECT_ATTRS",
+                    "data_type": "boolean",
+                    "example_values": [
+                        true
+                    ]
+                },
+                {
+                    "data_path": "action_result.data.*.result.services.*.mysql.capability_flags.CLIENT_CONNECT_WITH_DB",
+                    "data_type": "boolean",
+                    "example_values": [
+                        true
+                    ]
+                },
+                {
+                    "data_path": "action_result.data.*.result.services.*.mysql.capability_flags.CLIENT_DEPRECATED_EOF",
+                    "data_type": "boolean",
+                    "example_values": [
+                        true
+                    ]
+                },
+                {
+                    "data_path": "action_result.data.*.result.services.*.mysql.capability_flags.CLIENT_FOUND_ROWS",
+                    "data_type": "boolean",
+                    "example_values": [
+                        true
+                    ]
+                },
+                {
+                    "data_path": "action_result.data.*.result.services.*.mysql.capability_flags.CLIENT_IGNORE_SIGPIPE",
+                    "data_type": "boolean",
+                    "example_values": [
+                        true
+                    ]
+                },
+                {
+                    "data_path": "action_result.data.*.result.services.*.mysql.capability_flags.CLIENT_IGNORE_SPACE",
+                    "data_type": "boolean",
+                    "example_values": [
+                        true
+                    ]
+                },
+                {
+                    "data_path": "action_result.data.*.result.services.*.mysql.capability_flags.CLIENT_INTERACTIVE",
+                    "data_type": "boolean",
+                    "example_values": [
+                        true
+                    ]
+                },
+                {
+                    "data_path": "action_result.data.*.result.services.*.mysql.capability_flags.CLIENT_LOCAL_FILES",
+                    "data_type": "boolean",
+                    "example_values": [
+                        true
+                    ]
+                },
+                {
+                    "data_path": "action_result.data.*.result.services.*.mysql.capability_flags.CLIENT_LONG_FLAG",
+                    "data_type": "boolean",
+                    "example_values": [
+                        true
+                    ]
+                },
+                {
+                    "data_path": "action_result.data.*.result.services.*.mysql.capability_flags.CLIENT_LONG_PASSWORD",
+                    "data_type": "boolean",
+                    "example_values": [
+                        true
+                    ]
+                },
+                {
+                    "data_path": "action_result.data.*.result.services.*.mysql.capability_flags.CLIENT_MULTI_RESULTS",
+                    "data_type": "boolean",
+                    "example_values": [
+                        true
+                    ]
+                },
+                {
+                    "data_path": "action_result.data.*.result.services.*.mysql.capability_flags.CLIENT_MULTI_STATEMENTS",
+                    "data_type": "boolean",
+                    "example_values": [
+                        true
+                    ]
+                },
+                {
+                    "data_path": "action_result.data.*.result.services.*.mysql.capability_flags.CLIENT_NO_SCHEMA",
+                    "data_type": "boolean",
+                    "example_values": [
+                        true
+                    ]
+                },
+                {
+                    "data_path": "action_result.data.*.result.services.*.mysql.capability_flags.CLIENT_ODBC",
+                    "data_type": "boolean",
+                    "example_values": [
+                        true
+                    ]
+                },
+                {
+                    "data_path": "action_result.data.*.result.services.*.mysql.capability_flags.CLIENT_PLUGIN_AUTH",
+                    "data_type": "boolean",
+                    "example_values": [
+                        true
+                    ]
+                },
+                {
+                    "data_path": "action_result.data.*.result.services.*.mysql.capability_flags.CLIENT_PLUGIN_AUTH_LEN_ENC_CLIENT_DATA",
+                    "data_type": "boolean",
+                    "example_values": [
+                        true
+                    ]
+                },
+                {
+                    "data_path": "action_result.data.*.result.services.*.mysql.capability_flags.CLIENT_PROTOCOL_41",
+                    "data_type": "boolean",
+                    "example_values": [
+                        true
+                    ]
+                },
+                {
+                    "data_path": "action_result.data.*.result.services.*.mysql.capability_flags.CLIENT_PS_MULTI_RESULTS",
+                    "data_type": "boolean",
+                    "example_values": [
+                        true
+                    ]
+                },
+                {
+                    "data_path": "action_result.data.*.result.services.*.mysql.capability_flags.CLIENT_RESERVED",
+                    "data_type": "boolean",
+                    "example_values": [
+                        true
+                    ]
+                },
+                {
+                    "data_path": "action_result.data.*.result.services.*.mysql.capability_flags.CLIENT_SECURE_CONNECTION",
+                    "data_type": "boolean",
+                    "example_values": [
+                        true
+                    ]
+                },
+                {
+                    "data_path": "action_result.data.*.result.services.*.mysql.capability_flags.CLIENT_SESSION_TRACK",
+                    "data_type": "boolean",
+                    "example_values": [
+                        true
+                    ]
+                },
+                {
+                    "data_path": "action_result.data.*.result.services.*.mysql.capability_flags.CLIENT_SSL",
+                    "data_type": "boolean",
+                    "example_values": [
+                        true
+                    ]
+                },
+                {
+                    "data_path": "action_result.data.*.result.services.*.mysql.capability_flags.CLIENT_TRANSACTIONS",
+                    "data_type": "boolean",
+                    "example_values": [
+                        true
+                    ]
+                },
+                {
+                    "data_path": "action_result.data.*.result.services.*.mysql.character_set",
+                    "data_type": "numeric",
+                    "example_values": [
+                        255
+                    ]
+                },
+                {
+                    "data_path": "action_result.data.*.result.services.*.mysql.connection_id",
+                    "data_type": "numeric",
+                    "example_values": [
+                        7249
+                    ]
+                },
+                {
+                    "data_path": "action_result.data.*.result.services.*.mysql.error_code",
+                    "data_type": "numeric",
+                    "example_values": [
+                        0
+                    ]
+                },
+                {
+                    "data_path": "action_result.data.*.result.services.*.mysql.protocol_version",
+                    "data_type": "numeric",
+                    "example_values": [
+                        10
+                    ]
+                },
+                {
+                    "data_path": "action_result.data.*.result.services.*.mysql.server_version",
+                    "data_type": "string",
+                    "example_values": [
+                        "8.0.24"
+                    ]
+                },
+                {
+                    "data_path": "action_result.data.*.result.services.*.mysql.status_flags.SERVER_STATUS_AUTOCOMMIT",
+                    "data_type": "boolean",
+                    "example_values": [
+                        true
+                    ]
+                },
+                {
+                    "data_path": "action_result.data.*.result.services.*.observed_at",
+                    "data_type": "string",
+                    "example_values": [
+                        "2021-11-21T05:42:04.118450668Z"
+                    ]
+                },
+                {
+                    "data_path": "action_result.data.*.result.services.*.perspective_id",
+                    "data_type": "string",
+                    "example_values": [
+                        "PERSPECTIVE_NTT"
+                    ]
+                },
+                {
+                    "data_path": "action_result.data.*.result.services.*.port",
+                    "data_type": "numeric",
+                    "example_values": [
+                        80
+                    ]
+                },
+                {
+                    "data_path": "action_result.data.*.result.services.*.service_name",
+                    "data_type": "string",
+                    "example_values": [
+                        "HTTP"
+                    ]
+                },
+                {
+                    "data_path": "action_result.data.*.result.services.*.software.*.other.family",
+                    "data_type": "string",
+                    "example_values": [
+                        "Apache"
+                    ]
+                },
+                {
+                    "data_path": "action_result.data.*.result.services.*.software.*.other.info",
+                    "data_type": "string",
+                    "example_values": [
+                        "(CentOS) PHP/7.4.26"
+                    ]
+                },
+                {
+                    "data_path": "action_result.data.*.result.services.*.software.*.part",
+                    "data_type": "string",
+                    "example_values": [
+                        "a"
+                    ]
+                },
+                {
+                    "data_path": "action_result.data.*.result.services.*.software.*.product",
+                    "data_type": "string",
+                    "example_values": [
+                        "HTTPD"
+                    ]
+                },
+                {
+                    "data_path": "action_result.data.*.result.services.*.software.*.source",
+                    "data_type": "string",
+                    "example_values": [
+                        "OSI_APPLICATION_LAYER"
+                    ]
+                },
+                {
+                    "data_path": "action_result.data.*.result.services.*.software.*.uniform_resource_identifier",
+                    "data_type": "string",
+                    "example_values": [
+                        "cpe:2.3:a:apache:http_server:*:*:*:*:*:*:*:*"
+                    ]
+                },
+                {
+                    "data_path": "action_result.data.*.result.services.*.software.*.vendor",
+                    "data_type": "string",
+                    "example_values": [
+                        "Apache"
+                    ]
+                },
+                {
+                    "data_path": "action_result.data.*.result.services.*.software.*.version",
+                    "data_type": "string",
+                    "example_values": [
+                        "2.0"
+                    ]
+                },
+                {
+                    "data_path": "action_result.data.*.result.services.*.source_ip",
+                    "data_type": "string",
+                    "example_values": [
+                        "167.248.133.60"
+                    ]
+                },
+                {
+                    "data_path": "action_result.data.*.result.services.*.ssh.algorithm_selection.client_to_server_alg_group.cipher",
+                    "data_type": "string",
+                    "example_values": [
+                        "aes128-ctr"
+                    ]
+                },
+                {
+                    "data_path": "action_result.data.*.result.services.*.ssh.algorithm_selection.client_to_server_alg_group.compression",
+                    "data_type": "string",
+                    "example_values": [
+                        "none"
+                    ]
+                },
+                {
+                    "data_path": "action_result.data.*.result.services.*.ssh.algorithm_selection.client_to_server_alg_group.mac",
+                    "data_type": "string",
+                    "example_values": [
+                        "hmac-sha2-256"
+                    ]
+                },
+                {
+                    "data_path": "action_result.data.*.result.services.*.ssh.algorithm_selection.host_key_algorithm",
+                    "data_type": "string",
+                    "example_values": [
+                        "ecdsa-sha2-nistp256"
+                    ]
+                },
+                {
+                    "data_path": "action_result.data.*.result.services.*.ssh.algorithm_selection.kex_algorithm",
+                    "data_type": "string",
+                    "example_values": [
+                        "curve25519-sha256@libssh.org"
+                    ]
+                },
+                {
+                    "data_path": "action_result.data.*.result.services.*.ssh.algorithm_selection.server_to_client_alg_group.cipher",
+                    "data_type": "string",
+                    "example_values": [
+                        "aes128-ctr"
+                    ]
+                },
+                {
+                    "data_path": "action_result.data.*.result.services.*.ssh.algorithm_selection.server_to_client_alg_group.compression",
+                    "data_type": "string",
+                    "example_values": [
+                        "none"
+                    ]
+                },
+                {
+                    "data_path": "action_result.data.*.result.services.*.ssh.algorithm_selection.server_to_client_alg_group.mac",
+                    "data_type": "string",
+                    "example_values": [
+                        "hmac-sha2-256"
+                    ]
+                },
+                {
+                    "data_path": "action_result.data.*.result.services.*.ssh.endpoint_id._encoding.raw",
+                    "data_type": "string",
+                    "example_values": [
+                        "DISPLAY_UTF8"
+                    ]
+                },
+                {
+                    "data_path": "action_result.data.*.result.services.*.ssh.endpoint_id.protocol_version",
+                    "data_type": "string",
+                    "example_values": [
+                        "2.0"
+                    ]
+                },
+                {
+                    "data_path": "action_result.data.*.result.services.*.ssh.endpoint_id.raw",
+                    "data_type": "string",
+                    "example_values": [
+                        "SSH-2.0-OpenSSH_7.4"
+                    ]
+                },
+                {
+                    "data_path": "action_result.data.*.result.services.*.ssh.endpoint_id.software_version",
+                    "data_type": "string",
+                    "example_values": [
+                        "OpenSSH_7.4"
+                    ]
+                },
+                {
+                    "data_path": "action_result.data.*.result.services.*.ssh.kex_init_message.first_kex_follows",
+                    "data_type": "boolean",
+                    "example_values": [
+                        false
+                    ]
+                },
+                {
+                    "data_path": "action_result.data.*.result.services.*.ssh.server_host_key.ecdsa_public_key._encoding.b",
+                    "data_type": "string",
+                    "example_values": [
+                        "DISPLAY_BASE64"
+                    ]
+                },
+                {
+                    "data_path": "action_result.data.*.result.services.*.ssh.server_host_key.ecdsa_public_key._encoding.gx",
+                    "data_type": "string",
+                    "example_values": [
+                        "DISPLAY_BASE64"
+                    ]
+                },
+                {
+                    "data_path": "action_result.data.*.result.services.*.ssh.server_host_key.ecdsa_public_key._encoding.gy",
+                    "data_type": "string",
+                    "example_values": [
+                        "DISPLAY_BASE64"
+                    ]
+                },
+                {
+                    "data_path": "action_result.data.*.result.services.*.ssh.server_host_key.ecdsa_public_key._encoding.n",
+                    "data_type": "string",
+                    "example_values": [
+                        "DISPLAY_BASE64"
+                    ]
+                },
+                {
+                    "data_path": "action_result.data.*.result.services.*.ssh.server_host_key.ecdsa_public_key._encoding.p",
+                    "data_type": "string",
+                    "example_values": [
+                        "DISPLAY_BASE64"
+                    ]
+                },
+                {
+                    "data_path": "action_result.data.*.result.services.*.ssh.server_host_key.ecdsa_public_key._encoding.x",
+                    "data_type": "string",
+                    "example_values": [
+                        "DISPLAY_BASE64"
+                    ]
+                },
+                {
+                    "data_path": "action_result.data.*.result.services.*.ssh.server_host_key.ecdsa_public_key._encoding.y",
+                    "data_type": "string",
+                    "example_values": [
+                        "DISPLAY_BASE64"
+                    ]
+                },
+                {
+                    "data_path": "action_result.data.*.result.services.*.ssh.server_host_key.ecdsa_public_key.b",
+                    "data_type": "string",
+                    "example_values": [
+                        "WsY12Ko6k+ez671VdpiGvGUdBrDMU7D2O848PifSYEs="
+                    ]
+                },
+                {
+                    "data_path": "action_result.data.*.result.services.*.ssh.server_host_key.ecdsa_public_key.curve",
+                    "data_type": "string",
+                    "example_values": [
+                        "P-256"
+                    ]
+                },
+                {
+                    "data_path": "action_result.data.*.result.services.*.ssh.server_host_key.ecdsa_public_key.gx",
+                    "data_type": "string",
+                    "example_values": [
+                        "axfR8uEsQkf4vOblY6RA8ncDfYEt6zOg9KE5RdiYwpY="
+                    ]
+                },
+                {
+                    "data_path": "action_result.data.*.result.services.*.ssh.server_host_key.ecdsa_public_key.gy",
+                    "data_type": "string",
+                    "example_values": [
+                        "T+NC4v4af5uO5+tKfA+eFivOM1drMV7Oy7ZAaDe/UfU="
+                    ]
+                },
+                {
+                    "data_path": "action_result.data.*.result.services.*.ssh.server_host_key.ecdsa_public_key.length",
+                    "data_type": "numeric",
+                    "example_values": [
+                        256
+                    ]
+                },
+                {
+                    "data_path": "action_result.data.*.result.services.*.ssh.server_host_key.ecdsa_public_key.n",
+                    "data_type": "string",
+                    "example_values": [
+                        "/////wAAAAD//////////7zm+q2nF56E87nKwvxjJVE="
+                    ]
+                },
+                {
+                    "data_path": "action_result.data.*.result.services.*.ssh.server_host_key.ecdsa_public_key.p",
+                    "data_type": "string",
+                    "example_values": [
+                        "/////wAAAAEAAAAAAAAAAAAAAAD///////////////8="
+                    ]
+                },
+                {
+                    "data_path": "action_result.data.*.result.services.*.ssh.server_host_key.ecdsa_public_key.x",
+                    "data_type": "string",
+                    "example_values": [
+                        "q97beO8DGS0xwQKNolJ7umVQN3AIPWNhXVC7Dzx9SGM="
+                    ]
+                },
+                {
+                    "data_path": "action_result.data.*.result.services.*.ssh.server_host_key.ecdsa_public_key.y",
+                    "data_type": "string",
+                    "example_values": [
+                        "KNDegOYkRKWF7SQEJIiGTqTObRSIhjvUcRR9U4IJ0ug="
+                    ]
+                },
+                {
+                    "data_path": "action_result.data.*.result.services.*.ssh.server_host_key.fingerprint_sha256",
+                    "data_type": "string",
+                    "example_values": [
+                        "421716b215b76be624b10596f3a12c5eb9148d1f92e07a15d9bb9f2f0a90f34c"
+                    ]
+                },
+                {
+                    "data_path": "action_result.data.*.result.services.*.tls.certificates._encoding.chain_fps_sha_256",
+                    "data_type": "string",
+                    "example_values": [
+                        "DISPLAY_HEX"
+                    ]
+                },
+                {
+                    "data_path": "action_result.data.*.result.services.*.tls.certificates._encoding.leaf_fp_sha_256",
+                    "data_type": "string",
+                    "example_values": [
+                        "DISPLAY_HEX"
+                    ]
+                },
+                {
+                    "data_path": "action_result.data.*.result.services.*.tls.certificates.chain.*.fingerprint",
+                    "data_type": "string",
+                    "example_values": [
+                        "8fac576439c9fd3ef153b51f9edd0d381b5df7b87559cebeca04297dd44a639b"
+                    ]
+                },
+                {
+                    "data_path": "action_result.data.*.result.services.*.tls.certificates.chain.*.issuer_dn",
+                    "data_type": "string",
+                    "example_values": [
+                        "C=US, O=DigiCert Inc, OU=www.digicert.com, CN=DigiCert Global Root G2"
+                    ]
+                },
+                {
+                    "data_path": "action_result.data.*.result.services.*.tls.certificates.chain.*.subject_dn",
+                    "data_type": "string",
+                    "example_values": [
+                        "C=US, O=DigiCert Inc, CN=DigiCert Global CA G2"
+                    ]
+                },
+                {
+                    "data_path": "action_result.data.*.result.services.*.tls.certificates.leaf_data.fingerprint",
+                    "data_type": "string",
+                    "example_values": [
+                        "5bf3d7e0e6927f773d5106c822c53f6f52c199f7eb1b3b8154b41f2924391c75"
+                    ]
+                },
+                {
+                    "data_path": "action_result.data.*.result.services.*.tls.certificates.leaf_data.issuer_dn",
+                    "data_type": "string",
+                    "example_values": [
+                        "C=US, O=DigiCert Inc, CN=DigiCert Global CA G2"
+                    ]
+                },
+                {
+                    "data_path": "action_result.data.*.result.services.*.tls.certificates.leaf_data.pubkey_algorithm",
+                    "data_type": "string",
+                    "example_values": [
+                        "RSA"
+                    ]
+                },
+                {
+                    "data_path": "action_result.data.*.result.services.*.tls.certificates.leaf_data.pubkey_bit_size",
+                    "data_type": "numeric",
+                    "example_values": [
+                        2048
+                    ]
+                },
+                {
+                    "data_path": "action_result.data.*.result.services.*.tls.certificates.leaf_data.public_key.fingerprint",
+                    "data_type": "string",
+                    "example_values": [
+                        "5dfb8a839c37dc0db3e129b0acefb50923a4d84931596890149e9f1c84baa8ac"
+                    ]
+                },
+                {
+                    "data_path": "action_result.data.*.result.services.*.tls.certificates.leaf_data.public_key.key_algorithm",
+                    "data_type": "string",
+                    "example_values": [
+                        "RSA"
+                    ]
+                },
+                {
+                    "data_path": "action_result.data.*.result.services.*.tls.certificates.leaf_data.public_key.rsa._encoding.exponent",
+                    "data_type": "string",
+                    "example_values": [
+                        "DISPLAY_BASE64"
+                    ]
+                },
+                {
+                    "data_path": "action_result.data.*.result.services.*.tls.certificates.leaf_data.public_key.rsa._encoding.modulus",
+                    "data_type": "string",
+                    "example_values": [
+                        "DISPLAY_BASE64"
+                    ]
+                },
+                {
+                    "data_path": "action_result.data.*.result.services.*.tls.certificates.leaf_data.public_key.rsa.exponent",
+                    "data_type": "string",
+                    "example_values": [
+                        "AAEAAQ=="
+                    ]
+                },
+                {
+                    "data_path": "action_result.data.*.result.services.*.tls.certificates.leaf_data.public_key.rsa.length",
+                    "data_type": "numeric",
+                    "example_values": [
+                        256
+                    ]
+                },
+                {
+                    "data_path": "action_result.data.*.result.services.*.tls.certificates.leaf_data.public_key.rsa.modulus",
+                    "data_type": "string",
+                    "example_values": [
+                        "v+/uM8Nke+pDU6lWoZALXfrNwH6/B3+8FEfNewD6mN8untzCMH8fPU5Gb1/odQWS7GiBPowoU6smFj4F0kD3Qh4OUpAVbcYS2ad5nVBnwmh8Tm/U3DO34FZgxtjz3qxBVKr1ryYO3+1/H2xBuit8W1TSd/s+2joupzAAQq0zn8B36kpi14dYIaZgBw0WuQHaybTlC0cko9x2t43RXxNZgRxqYyh+I+MK19ZOAZgCPAooJXyQiUIohTdOw8gnDY5gI4zhHyzvuhifSBeII1WA6MfGdiKV+K0R9LLr0oHYV3F7yCQoDN29ZVgXj4UZu64IxIQnuHRN6X2otR3qgUjAoQ=="
+                    ]
+                },
+                {
+                    "data_path": "action_result.data.*.result.services.*.tls.certificates.leaf_data.signature.self_signed",
+                    "data_type": "boolean",
+                    "example_values": [
+                        false
+                    ]
+                },
+                {
+                    "data_path": "action_result.data.*.result.services.*.tls.certificates.leaf_data.signature.signature_algorithm",
+                    "data_type": "string",
+                    "example_values": [
+                        "SHA256-RSA"
+                    ]
+                },
+                {
+                    "data_path": "action_result.data.*.result.services.*.tls.certificates.leaf_data.subject_dn",
+                    "data_type": "string",
+                    "example_values": [
+                        "CN=*.peg.a2z.com"
+                    ]
+                },
+                {
+                    "data_path": "action_result.data.*.result.services.*.tls.certificates.leaf_data.tbs_fingerprint",
+                    "data_type": "string",
+                    "example_values": [
+                        "787c8b32c43d57cf862530a5a0af775b55cc98bf5e04edaf65753a68b3f3ea05"
+                    ]
+                },
+                {
+                    "data_path": "action_result.data.*.result.services.*.tls.certificates.leaf_fp_sha_256",
+                    "data_type": "string",
+                    "example_values": [
+                        "5bf3d7e0e6927f773d5106c822c53f6f52c199f7eb1b3b8154b41f2924391c75"
+                    ]
+                },
+                {
+                    "data_path": "action_result.data.*.result.services.*.tls.cipher_selected",
+                    "data_type": "string",
+                    "example_values": [
+                        "TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256"
+                    ]
+                },
+                {
+                    "data_path": "action_result.data.*.result.services.*.tls.server_key_exchange.ec_params.named_curve",
+                    "data_type": "numeric",
+                    "example_values": [
+                        23
+                    ]
+                },
+                {
+                    "data_path": "action_result.data.*.result.services.*.tls.session_ticket.length",
+                    "data_type": "numeric",
+                    "example_values": [
+                        176
+                    ]
+                },
+                {
+                    "data_path": "action_result.data.*.result.services.*.tls.session_ticket.lifetime_hint",
+                    "data_type": "numeric",
+                    "example_values": [
+                        43200
+                    ]
+                },
+                {
+                    "data_path": "action_result.data.*.result.services.*.tls.version_selected",
+                    "data_type": "string",
+                    "example_values": [
+                        "TLSv1_2"
+                    ]
+                },
+                {
+                    "data_path": "action_result.data.*.result.services.*.transport_fingerprint.id",
+                    "data_type": "numeric",
+                    "example_values": [
+                        0
+                    ]
+                },
+                {
+                    "data_path": "action_result.data.*.result.services.*.transport_fingerprint.raw",
+                    "data_type": "string",
+                    "example_values": [
+                        "28960,64,true,MSTNW,1424,false,false"
+                    ]
+                },
+                {
+                    "data_path": "action_result.data.*.result.services.*.transport_protocol",
+                    "data_type": "string",
+                    "example_values": [
+                        "TCP"
+                    ]
+                },
+                {
+                    "data_path": "action_result.data.*.result.services.*.truncated",
+                    "data_type": "boolean",
+                    "example_values": [
+                        false
+                    ]
+                },
+                {
+                    "data_path": "action_result.data.*.status",
+                    "data_type": "string",
+                    "example_values": [
+                        "OK"
+                    ]
+                },
+                {
+                    "data_path": "action_result.summary.port",
+                    "data_type": "numeric",
+                    "example_values": [
+                        80
+                    ]
+                },
+                {
+                    "data_path": "action_result.summary.port",
+                    "data_type": "numeric",
+                    "example_values": [
+                        80
+                    ]
+                },
+                {
+                    "data_path": "action_result.summary.service_name",
+                    "data_type": "string",
+                    "example_values": [
+                        "HTTP"
+                    ]
+                },
+                {
+                    "data_path": "action_result.summary.service_name",
+                    "data_type": "numeric",
+                    "example_values": [
+                        "HTTP"
+                    ]
                 },
                 {
                     "data_path": "action_result.message",
-                    "data_type": "string"
+                    "data_type": "string",
+                    "example_values": [
+                        "Port: 80, Service name: HTTP"
+                    ]
                 },
                 {
                     "data_path": "summary.total_objects",
-                    "data_type": "numeric"
+                    "data_type": "numeric",
+                    "example_values": [
+                        1
+                    ]
                 },
                 {
                     "data_path": "summary.total_objects_successful",
-                    "data_type": "numeric"
+                    "data_type": "numeric",
+                    "example_values": [
+                        1
+                    ]
                 }
             ],
             "render": {
@@ -2366,7 +3808,6 @@
                     "data_type": "string",
                     "description": "Censys.IO query string to use",
                     "required": true,
-                    "primary": false,
                     "order": 0
                 }
             },
@@ -2378,6 +3819,22 @@
                         "success",
                         "failed"
                     ]
+                },
+                {
+                    "data_path": "action_result.parameter.query",
+                    "data_type": "string",
+                    "example_values": [
+                        "not 443.https.tls.validation.browser_trusted: true"
+                    ]
+                },
+                {
+                    "data_path": "action_result.data.*.alexa_rank",
+                    "data_type": "numeric",
+                    "example_values": [
+                        6
+                    ],
+                    "column_name": "Alexa Rank",
+                    "column_order": 1
                 },
                 {
                     "data_path": "action_result.data.*.domain",
@@ -2392,33 +3849,17 @@
                     "column_order": 0
                 },
                 {
-                    "data_path": "action_result.data.*.alexa_rank",
+                    "data_path": "action_result.summary.result_count",
                     "data_type": "numeric",
                     "example_values": [
-                        6
-                    ],
-                    "column_name": "Alexa Rank",
-                    "column_order": 1
+                        671494
+                    ]
                 },
                 {
                     "data_path": "action_result.message",
                     "data_type": "string",
                     "example_values": [
                         "Result count: 671494"
-                    ]
-                },
-                {
-                    "data_path": "action_result.parameter.query",
-                    "data_type": "string",
-                    "example_values": [
-                        "not 443.https.tls.validation.browser_trusted: true"
-                    ]
-                },
-                {
-                    "data_path": "action_result.summary.result_count",
-                    "data_type": "numeric",
-                    "example_values": [
-                        671494
                     ]
                 },
                 {
@@ -2455,8 +3896,13 @@
                     "data_type": "string",
                     "description": "Censys.IO query string to use",
                     "required": true,
-                    "primary": false,
                     "order": 0
+                },
+                "limit": {
+                    "data_type": "numeric",
+                    "description": "Number of results to fetch",
+                    "default": 200,
+                    "order": 1
                 }
             },
             "output": [
@@ -2466,6 +3912,21 @@
                     "example_values": [
                         "success",
                         "failed"
+                    ]
+                },
+                {
+                    "data_path": "action_result.parameter.limit",
+                    "data_type": "numeric",
+                    "example_values": [
+                        "200"
+                    ]
+                },
+                {
+                    "data_path": "action_result.parameter.query",
+                    "data_type": "string",
+                    "example_values": [
+                        "parsed.fingerprint_sha256: 87f2085c32b6a2cc709b365f55873e207a9caa10bffecf2fd16d3cf9d94d390c",
+                        "```(google.com*) AND parsed.issuer.organization.raw:\"Let's Encrypt\"```"
                     ]
                 },
                 {
@@ -2482,15 +3943,6 @@
                     "column_order": 0
                 },
                 {
-                    "data_path": "action_result.data.*.parsed_subject_dn",
-                    "data_type": "string",
-                    "example_values": [
-                        "CN=ghs.google.com.sommervillepartners.co.uk"
-                    ],
-                    "column_name": "Subject DN",
-                    "column_order": 1
-                },
-                {
                     "data_path": "action_result.data.*.parsed_issuer_dn",
                     "data_type": "string",
                     "example_values": [
@@ -2500,20 +3952,13 @@
                     "column_order": 2
                 },
                 {
-                    "data_path": "action_result.message",
+                    "data_path": "action_result.data.*.parsed_subject_dn",
                     "data_type": "string",
                     "example_values": [
-                        "Result count: 1",
-                        "Result count: 8632"
-                    ]
-                },
-                {
-                    "data_path": "action_result.parameter.query",
-                    "data_type": "string",
-                    "example_values": [
-                        "parsed.fingerprint_sha256: 87f2085c32b6a2cc709b365f55873e207a9caa10bffecf2fd16d3cf9d94d390c",
-                        "```(google.com*) AND parsed.issuer.organization.raw:\"Let's Encrypt\"```"
-                    ]
+                        "CN=ghs.com.sommervillepartners.co.uk"
+                    ],
+                    "column_name": "Subject DN",
+                    "column_order": 1
                 },
                 {
                     "data_path": "action_result.summary.result_count",
@@ -2521,6 +3966,27 @@
                     "example_values": [
                         1,
                         8632
+                    ]
+                },
+                {
+                    "data_path": "action_result.summary.total_available_records",
+                    "data_type": "numeric",
+                    "example_values": [
+                        15000
+                    ]
+                },
+                {
+                    "data_path": "action_result.summary.total_records_fetched",
+                    "data_type": "numeric",
+                    "example_values": [
+                        200
+                    ]
+                },
+                {
+                    "data_path": "action_result.message",
+                    "data_type": "string",
+                    "example_values": [
+                        "Total records fetched: 200, Total available records: 15000"
                     ]
                 },
                 {
@@ -2557,8 +4023,13 @@
                     "data_type": "string",
                     "description": "Censys.IO query string to use",
                     "required": true,
-                    "primary": false,
                     "order": 0
+                },
+                "limit": {
+                    "data_type": "numeric",
+                    "description": "Number of results to fetch",
+                    "default": 200,
+                    "order": 1
                 }
             },
             "output": [
@@ -2571,112 +4042,10 @@
                     ]
                 },
                 {
-                    "data_path": "action_result.data.*.location_city",
-                    "data_type": "string",
-                    "example_values": [
-                        "Provins"
-                    ],
-                    "column_name": "City",
-                    "column_order": 1
-                },
-                {
-                    "data_path": "action_result.data.*.location_registered_country",
-                    "data_type": "string",
-                    "example_values": [
-                        "France"
-                    ],
-                    "column_name": "Country",
-                    "column_order": 2
-                },
-                {
-                    "data_path": "action_result.data.*.location_postal_code",
-                    "data_type": "string",
-                    "example_values": [
-                        "77160"
-                    ]
-                },
-                {
-                    "data_path": "action_result.data.*.location_country",
-                    "data_type": "string",
-                    "example_values": [
-                        "France"
-                    ]
-                },
-                {
-                    "data_path": "action_result.data.*.location_country_code",
-                    "data_type": "string",
-                    "example_values": [
-                        "FR"
-                    ]
-                },
-                {
-                    "data_path": "action_result.data.*.ip",
-                    "data_type": "string",
-                    "example_values": [
-                        "80.15.120.40"
-                    ],
-                    "contains": [
-                        "ip"
-                    ],
-                    "column_name": "IP",
-                    "column_order": 0
-                },
-                {
-                    "data_path": "action_result.data.*.location_longitude",
+                    "data_path": "action_result.parameter.limit",
                     "data_type": "numeric",
                     "example_values": [
-                        3.3
-                    ]
-                },
-                {
-                    "data_path": "action_result.data.*.location_continent",
-                    "data_type": "string",
-                    "example_values": [
-                        "Europe"
-                    ],
-                    "column_name": "Continent",
-                    "column_order": 3
-                },
-                {
-                    "data_path": "action_result.data.*.location_registered_country_code",
-                    "data_type": "string",
-                    "example_values": [
-                        "FR"
-                    ]
-                },
-                {
-                    "data_path": "action_result.data.*.location_province",
-                    "data_type": "string",
-                    "example_values": [
-                        "\u00cele-de-France"
-                    ]
-                },
-                {
-                    "data_path": "action_result.data.*.location_latitude",
-                    "data_type": "numeric",
-                    "example_values": [
-                        48.55
-                    ]
-                },
-                {
-                    "data_path": "action_result.data.*.location_timezone",
-                    "data_type": "string",
-                    "example_values": [
-                        "Europe/Paris"
-                    ]
-                },
-                {
-                    "data_path": "action_result.data.*.protocols",
-                    "data_type": "string",
-                    "example_values": [
-                        "22/ssh"
-                    ]
-                },
-                {
-                    "data_path": "action_result.message",
-                    "data_type": "string",
-                    "example_values": [
-                        "Result count: 798"
+                        "200"
                     ]
                 },
                 {
@@ -2687,10 +4056,225 @@
                     ]
                 },
                 {
-                    "data_path": "action_result.summary.result_count",
+                    "data_path": "action_result.data.*.autonomous_system.asn",
                     "data_type": "numeric",
                     "example_values": [
-                        798
+                        45528
+                    ]
+                },
+                {
+                    "data_path": "action_result.data.*.autonomous_system.bgp_prefix",
+                    "data_type": "string",
+                    "example_values": [
+                        "1.22.124.0/24"
+                    ]
+                },
+                {
+                    "data_path": "action_result.data.*.autonomous_system.country_code",
+                    "data_type": "string",
+                    "example_values": [
+                        "IN"
+                    ]
+                },
+                {
+                    "data_path": "action_result.data.*.autonomous_system.description",
+                    "data_type": "string",
+                    "example_values": [
+                        "TIKONAIN-AS Tikona Infinet Ltd."
+                    ]
+                },
+                {
+                    "data_path": "action_result.data.*.autonomous_system.name",
+                    "data_type": "string",
+                    "example_values": [
+                        "TIKONAIN-AS Tikona Infinet Ltd."
+                    ]
+                },
+                {
+                    "data_path": "action_result.data.*.ip",
+                    "data_type": "string",
+                    "example_values": [
+                        "80.15.120.40"
+                    ],
+                    "contains": [
+                        "ip",
+                        "ipv6"
+                    ],
+                    "column_name": "IP",
+                    "column_order": 0
+                },
+                {
+                    "data_path": "action_result.data.*.location.city",
+                    "data_type": "string",
+                    "example_values": [
+                        "Provins"
+                    ],
+                    "column_name": "City",
+                    "column_order": 1
+                },
+                {
+                    "data_path": "action_result.data.*.location.continent",
+                    "data_type": "string",
+                    "example_values": [
+                        "Europe"
+                    ],
+                    "column_name": "Continent",
+                    "column_order": 3
+                },
+                {
+                    "data_path": "action_result.data.*.location.coordinates.latitude",
+                    "data_type": "numeric",
+                    "example_values": [
+                        48.55
+                    ]
+                },
+                {
+                    "data_path": "action_result.data.*.location.coordinates.longitude",
+                    "data_type": "numeric",
+                    "example_values": [
+                        3.3
+                    ]
+                },
+                {
+                    "data_path": "action_result.data.*.location.country",
+                    "data_type": "string",
+                    "example_values": [
+                        "France"
+                    ],
+                    "column_name": "Country",
+                    "column_order": 2
+                },
+                {
+                    "data_path": "action_result.data.*.location.country_code",
+                    "data_type": "string",
+                    "example_values": [
+                        "FR"
+                    ]
+                },
+                {
+                    "data_path": "action_result.data.*.location.postal_code",
+                    "data_type": "string",
+                    "example_values": [
+                        "77160"
+                    ]
+                },
+                {
+                    "data_path": "action_result.data.*.location.province",
+                    "data_type": "string",
+                    "example_values": [
+                        "\u00cele-de-France"
+                    ]
+                },
+                {
+                    "data_path": "action_result.data.*.location.registered_country",
+                    "data_type": "string",
+                    "example_values": [
+                        "France"
+                    ]
+                },
+                {
+                    "data_path": "action_result.data.*.location.registered_country_code",
+                    "data_type": "string",
+                    "example_values": [
+                        "FR"
+                    ]
+                },
+                {
+                    "data_path": "action_result.data.*.location.timezone",
+                    "data_type": "string",
+                    "example_values": [
+                        "Europe/Paris"
+                    ]
+                },
+                {
+                    "data_path": "action_result.data.*.operating_system.part",
+                    "data_type": "string",
+                    "example_values": [
+                        "o"
+                    ]
+                },
+                {
+                    "data_path": "action_result.data.*.operating_system.product",
+                    "data_type": "string",
+                    "example_values": [
+                        "linux"
+                    ]
+                },
+                {
+                    "data_path": "action_result.data.*.operating_system.source",
+                    "data_type": "string",
+                    "example_values": [
+                        "OSI_TRANSPORT_LAYER"
+                    ]
+                },
+                {
+                    "data_path": "action_result.data.*.operating_system.uniform_resource_identifier",
+                    "data_type": "string",
+                    "example_values": [
+                        "cpe:2.3:o:*:linux:*:*:*:*:*:*:*:*"
+                    ]
+                },
+                {
+                    "data_path": "action_result.data.*.operating_system.vendor",
+                    "data_type": "string",
+                    "example_values": [
+                        "MikroTik"
+                    ]
+                },
+                {
+                    "data_path": "action_result.data.*.operating_system.version",
+                    "data_type": "string",
+                    "example_values": [
+                        "6.45.9"
+                    ]
+                },
+                {
+                    "data_path": "action_result.data.*.services.*.certificate",
+                    "data_type": "string",
+                    "example_values": [
+                        "bb3ea7cf4847dc16bad51d70a3a62952682f044cba7600f8c832f9e18b4a70bf"
+                    ]
+                },
+                {
+                    "data_path": "action_result.data.*.services.*.port",
+                    "data_type": "string",
+                    "example_values": [
+                        "22/ssh"
+                    ]
+                },
+                {
+                    "data_path": "action_result.data.*.services.*.service_name",
+                    "data_type": "string",
+                    "example_values": [
+                        "HTTP"
+                    ]
+                },
+                {
+                    "data_path": "action_result.data.*.services.*.transport_protocol",
+                    "data_type": "string",
+                    "example_values": [
+                        "TCP"
+                    ]
+                },
+                {
+                    "data_path": "action_result.summary.total_available_records",
+                    "data_type": "numeric",
+                    "example_values": [
+                        15000
+                    ]
+                },
+                {
+                    "data_path": "action_result.summary.total_records_fetched",
+                    "data_type": "numeric",
+                    "example_values": [
+                        200
+                    ]
+                },
+                {
+                    "data_path": "action_result.message",
+                    "data_type": "string",
+                    "example_values": [
+                        "Total records fetched: 200, Total available records: 15000"
                     ]
                 },
                 {
