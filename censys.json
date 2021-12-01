@@ -5,7 +5,7 @@
     "publisher": "Splunk",
     "type": "information",
     "main_module": "censys_connector.py",
-    "app_version": "2.1.6",
+    "app_version": "2.1.8",
     "utctime_updated": "2021-11-30T19:43:10.000000Z",
     "package_name": "phantom_censys",
     "product_vendor": "Censys",
