@@ -15,6 +15,7 @@
     "logo_dark": "logo_censys_dark.svg",
     "min_phantom_version": "5.0.0",
     "python_version": "3",
+    "fips_compliant":true,
     "latest_tested_versions": [
         "Cloud v2 API tested 30 November 2021"
     ],

@@ -45,3 +45,5 @@ CENSYS_PARSE_ERR_MSG = "Unable to parse the error message. Please check the asse
 # constants for integer validation
 CENSYS_INT_ERR_MSG = "Please provide a valid integer value in the {key}"
 CENSYS_LIMIT_KEY = "'limit' action parameter"
+
+CENSYS_DEFAULT_TIMEOUT = 30

@@ -14,19 +14,17 @@
 # and limitations under the License.
 #
 #
-# Phantom imports
-import phantom.app as phantom
-from phantom.base_connector import BaseConnector
-from phantom.action_result import ActionResult
-
-# Local imports
-from censys_consts import *
-
-import requests
+import ipaddress
 import json
 import math
-import ipaddress
 import time
+
+import phantom.app as phantom
+import requests
+from phantom.action_result import ActionResult
+from phantom.base_connector import BaseConnector
+
+from censys_consts import *
 
 
 class CensysConnector(BaseConnector):
@@ -132,7 +130,8 @@ class CensysConnector(BaseConnector):
             response = request_func("{}{}".format(CENSYS_API_URL, endpoint), json=data,
                     auth=(config[CENSYS_JSON_API_ID], config[CENSYS_JSON_SECRET]), headers=headers)
         except Exception as e:
-            return (action_result.set_status(phantom.APP_ERROR, "Unable to connect to the server. {}".format(self._get_error_message_from_exception(e))), resp_json)
+            return (action_result.set_status(phantom.APP_ERROR, "Unable to connect to the server. {}".format(
+                self._get_error_message_from_exception(e))), resp_json)
 
         if response.status_code not in (200, 429):
             return (self._parse_http_error(action_result, response), {})
@@ -203,7 +202,8 @@ class CensysConnector(BaseConnector):
         for page in range(2, num_pages + 1):
             self.debug_print("requesting page {} out of {}".format(page, num_pages))
             data['page'] = page
-            page_response = requests.post("{}{}{}".format(CENSYS_API_URL, api, censys_io_dataset), data=json.dumps(data), headers=headers, auth=auth)
+            page_response = requests.post("{}{}{}".format(
+                CENSYS_API_URL, api, censys_io_dataset), data=json.dumps(data), headers=headers, auth=auth, timeout=CENSYS_DEFAULT_TIMEOUT)
             if page_response.status_code != 200:
                 self.debug_print("received {} response with body {}".format(page_response.status_code, page_response.text))
                 return action_result.set_status(phantom.APP_SUCCESS), response
@@ -473,8 +473,9 @@ class CensysConnector(BaseConnector):
 
 if __name__ == '__main__':
 
-    import pudb
     import argparse
+
+    import pudb
 
     pudb.set_trace()
 
