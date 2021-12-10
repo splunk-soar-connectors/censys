@@ -203,7 +203,7 @@ class CensysConnector(BaseConnector):
             self.debug_print("requesting page {} out of {}".format(page, num_pages))
             data['page'] = page
             page_response = requests.post("{}{}{}".format(
-                CENSYS_API_URL, api, censys_io_dataset), data=json.dumps(data), headers=headers, auth=auth)
+                CENSYS_API_URL, api, censys_io_dataset), data=json.dumps(data), headers=headers, auth=auth, timeout=CENSYS_DEFAULT_TIMEOUT)
             if page_response.status_code != 200:
                 self.debug_print("received {} response with body {}".format(page_response.status_code, page_response.text))
                 return action_result.set_status(phantom.APP_SUCCESS), response
