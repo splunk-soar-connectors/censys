@@ -5,8 +5,8 @@
     "publisher": "Splunk",
     "type": "information",
     "main_module": "censys_connector.py",
-    "app_version": "2.1.10",
-    "utctime_updated": "2021-12-01T00:35:15.000000Z",
+    "app_version": "2.1.11",
+    "utctime_updated": "2021-12-10T23:57:14.000000Z",
     "package_name": "phantom_censys",
     "product_vendor": "Censys",
     "product_name": "Censys",
@@ -15,7 +15,7 @@
     "logo_dark": "logo_censys_dark.svg",
     "min_phantom_version": "5.0.0",
     "python_version": "3",
-    "fips_compliant":true,
+    "fips_compliant": true,
     "latest_tested_versions": [
         "Cloud v2 API tested 30 November 2021"
     ],
