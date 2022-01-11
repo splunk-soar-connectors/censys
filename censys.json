@@ -19,7 +19,7 @@
     "latest_tested_versions": [
         "Cloud v2 API tested 30 November 2021"
     ],
-    "license": "Copyright (c) 2016-2021 Splunk Inc.",
+    "license": "Copyright (c) 2016-2022 Splunk Inc.",
     "configuration": {
         "api_id": {
             "description": "API ID",
