@@ -2,7 +2,7 @@
 # Censys
 
 Publisher: Splunk  
-Connector Version: 2\.1\.11  
+Connector Version: 2\.1\.13  
 Product Vendor: Censys  
 Product Name: Censys  
 Product Version Supported (regex): "\.\*"  
@@ -10,7 +10,7 @@ Minimum Product Version: 5\.0\.0
 
 This app implements investigative actions to get information from the Censys search engine
 
-[comment]: # " File: readme.md"
+[comment]: # " File: README.md"
 [comment]: # "  Copyright (c) 2016-2022 Splunk Inc."
 [comment]: # ""
 [comment]: # "Licensed under the Apache License, Version 2.0 (the 'License');"
