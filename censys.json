@@ -5,8 +5,8 @@
     "publisher": "Splunk",
     "type": "information",
     "main_module": "censys_connector.py",
-    "app_version": "2.1.11",
-    "utctime_updated": "2021-12-01T01:15:26.000000Z",
+    "app_version": "2.1.13",
+    "utctime_updated": "2022-01-12T18:06:55.000000Z",
     "package_name": "phantom_censys",
     "product_vendor": "Censys",
     "product_name": "Censys",
@@ -15,10 +15,11 @@
     "logo_dark": "logo_censys_dark.svg",
     "min_phantom_version": "5.0.0",
     "python_version": "3",
+    "fips_compliant": true,
     "latest_tested_versions": [
         "Cloud v2 API tested 30 November 2021"
     ],
-    "license": "Copyright (c) 2016-2021 Splunk Inc.",
+    "license": "Copyright (c) 2016-2022 Splunk Inc.",
     "configuration": {
         "api_id": {
             "description": "API ID",
@@ -4300,5 +4301,29 @@
             },
             "versions": "EQ(*)"
         }
-    ]
+    ],
+    "pip_dependencies": {
+        "wheel": [
+            {
+                "module": "certifi",
+                "input_file": "wheels/certifi-2021.10.8-py2.py3-none-any.whl"
+            },
+            {
+                "module": "chardet",
+                "input_file": "wheels/chardet-3.0.4-py2.py3-none-any.whl"
+            },
+            {
+                "module": "idna",
+                "input_file": "wheels/idna-2.10-py2.py3-none-any.whl"
+            },
+            {
+                "module": "requests",
+                "input_file": "wheels/requests-2.25.0-py2.py3-none-any.whl"
+            },
+            {
+                "module": "urllib3",
+                "input_file": "wheels/urllib3-1.26.8-py2.py3-none-any.whl"
+            }
+        ]
+    }
 }
