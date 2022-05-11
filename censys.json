@@ -9,11 +9,11 @@
     "utctime_updated": "2022-01-12T18:06:55.000000Z",
     "package_name": "phantom_censys",
     "product_vendor": "Censys, Inc.",
-    "product_name": "Censys Search",
+    "product_name": "Censys",
     "product_version_regex": ".*",
     "logo": "logo_censys.svg",
     "logo_dark": "logo_censys_dark.svg",
-    "min_phantom_version": "5.0.0",
+    "min_phantom_version": "5.2.0",
     "python_version": "3",
     "fips_compliant": true,
     "latest_tested_versions": [
