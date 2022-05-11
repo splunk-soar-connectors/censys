@@ -23,7 +23,7 @@ CENSYS_API_METHOD_MAP = {
                     "data": ("get", "/api/v1/data/domain/20151013T2353")}
 
 CENSYS_JSON_API_ID = "api_id"
-CENSYS_JSON_SECRET = "secret"
+CENSYS_JSON_SECRET = "secret"  # pragma: allowlist secret
 CENSYS_JSON_SHA256 = "sha256"
 CENSYS_JSON_IP = "ip"
 CENSYS_JSON_DOMAIN = "domain"
