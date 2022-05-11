@@ -1155,7 +1155,7 @@
         },
         {
             "action": "lookup ip",
-            "description": "Lookup ip info",
+            "description": "Lookup IP info",
             "type": "investigate",
             "identifier": "lookup_ip",
             "read_only": true,
