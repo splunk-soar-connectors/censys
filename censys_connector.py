@@ -265,6 +265,8 @@ class CensysConnector(BaseConnector):
 
     def _lookup_ip(self, param):
 
+        self.debug_print("Entering _lookup_ip")
+
         action_result = self.add_action_result(ActionResult(param))
         summary_data = action_result.update_summary({})
         req_method, endpoint = CENSYS_API_METHOD_MAP.get("hosts")
@@ -286,9 +288,13 @@ class CensysConnector(BaseConnector):
 
         self._update_summary(action_result, response)
 
+        self.debug_print("Exiting _lookup_ip")
+
         return action_result.set_status(phantom.APP_SUCCESS)
 
     def _query_ip(self, param):
+
+        self.debug_print("Entering _query_ip")
 
         action_result = self.add_action_result(ActionResult(param))
         summary_data = action_result.update_summary({})
@@ -334,9 +340,13 @@ class CensysConnector(BaseConnector):
         summary_data['total_available_records'] = total_records
         self._update_summary(action_result, response)
 
+        self.debug_print("Exiting _query_ip")
+
         return action_result.set_status(phantom.APP_SUCCESS)
 
     def _lookup_certificate(self, param):
+
+        self.debug_print("Entering _lookup_certificate")
 
         action_result = self.add_action_result(ActionResult(param))
         ret_val, response = self._handle_view(param[CENSYS_JSON_SHA256], "certificates", action_result)
@@ -365,6 +375,8 @@ class CensysConnector(BaseConnector):
 
             action_result.update_summary(summary)
 
+        self.debug_print("Exiting _lookup_certificate")
+
         return ret_val
 
     def _update_summary(self, action_result, response):
@@ -382,7 +394,11 @@ class CensysConnector(BaseConnector):
 
     def _lookup_domain(self, param):
 
+        self.debug_print("Entering _lookup_domain")
+
         action_result = self.add_action_result(ActionResult(param))
+
+        self.debug_print("Exiting _lookup_domain")
 
         return action_result.set_status(phantom.APP_ERROR, 'This action is not yet supported by Censys in API v2')
 
@@ -390,13 +406,19 @@ class CensysConnector(BaseConnector):
         """ Use handle_search to query the correct dataset with the query string
         """
 
+        self.debug_print("Entering _query_domain")
+
         action_result = self.add_action_result(ActionResult(param))
+
+        self.debug_print("Exiting _query_domain")
 
         return action_result.set_status(phantom.APP_ERROR, 'This action is not yet supported by Censys in API v2')
 
     def _query_certificate(self, param):
         """ Use handle_search to query the correct dataset with the query string
         """
+
+        self.debug_print("Entering _query_certificate")
 
         action_result = self.add_action_result(ActionResult(param))
         summary_data = action_result.update_summary({})
@@ -414,11 +436,15 @@ class CensysConnector(BaseConnector):
             summary_data['total_records_fetched'] = min(limit, total_results)
             summary_data['total_available_records'] = response.get('metadata').get('count')
             self._update_summary(action_result, response)
+            self.debug_print(f"Total results fetched: {min(limit, total_results)}")
+            self.debug_print("Exiting _query_certificate")
             return action_result.set_status(phantom.APP_SUCCESS)
-        except:
+        except Exception as e:
             summary_data['total_records_fetched'] = 'not found'
             summary_data['total_available_records'] = response.get('metadata').get('count')
             self._update_summary(action_result, response)
+            self.debug_print(f"An exception occurred: {e}")
+            self.debug_print("Exiting _query_certificate")
             return action_result.set_status(phantom.APP_ERROR, 'unable to parse result count')
 
     def handle_action(self, param):
