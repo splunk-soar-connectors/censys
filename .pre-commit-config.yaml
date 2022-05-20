@@ -1,11 +1,21 @@
 repos:
--   repo: https://github.com/phantomcyber/dev-cicd-tools
-    rev: v1.13
-    hooks:
-    -   id: org-hook
-    -   id: package-app-dependencies
--   repo: https://github.com/Yelp/detect-secrets
-    rev: v1.2.0
-    hooks:
-    -   id: detect-secrets
-        args: ['--no-verify', '--exclude-files', '^censys.json$']
+    - repo: https://github.com/asottile/pyupgrade
+      rev: v2.32.1
+      hooks:
+          - id: pyupgrade
+            args: ["--py36-plus"]
+    - repo: https://github.com/psf/black
+      rev: 22.3.0
+      hooks:
+          - id: black
+            language_version: python3.9
+    - repo: https://github.com/phantomcyber/dev-cicd-tools
+      rev: v1.13
+      hooks:
+          - id: org-hook
+          - id: package-app-dependencies
+    - repo: https://github.com/Yelp/detect-secrets
+      rev: v1.2.0
+      hooks:
+          - id: detect-secrets
+            args: ["--no-verify", "--exclude-files", "^censys.json$"]
