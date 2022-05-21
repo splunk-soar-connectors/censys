@@ -199,7 +199,7 @@ class CensysConnector(BaseConnector):
     def _test_connectivity(self, param):
         """Test connectivity by retrieving a valid token"""
 
-        action_result = ActionResult()
+        action_result = self.add_action_result(ActionResult(dict(param)))
         self.save_progress("Testing connectivity")
 
         ret_val, response = self._make_rest_call(
@@ -609,7 +609,7 @@ class CensysConnector(BaseConnector):
 
     def finalize(self):
 
-        # Save the state, this data is saved accross actions and app upgrades
+        # Save the state, this data is saved across actions and app upgrades
         self.save_state(self._state)
         return phantom.APP_SUCCESS
 
@@ -661,7 +661,7 @@ if __name__ == "__main__":
             r2 = requests.post(login_url, verify=False, data=data, headers=headers)
             session_id = r2.cookies["sessionid"]
         except Exception as e:
-            print("Unable to get session id from the platfrom. Error: " + str(e))
+            print("Unable to get session id from the platform. Error: " + str(e))
             exit(1)
 
     with open(args.input_test_json) as f:
