@@ -48,3 +48,12 @@ CENSYS_INT_ERR_MSG = "Please provide a valid integer value in the {key}"
 CENSYS_LIMIT_KEY = "'limit' action parameter"
 
 CENSYS_DEFAULT_TIMEOUT = 30
+
+# Action names
+CENSYS_TEST_CONNECTIVITY_ACTION = "test_connectivity"
+CENSYS_LOOKUP_IP_ACTION = "lookup_ip"
+CENSYS_LOOKUP_DOMAIN_ACTION = "lookup_domain"
+CENSYS_LOOKUP_CERTIFICATE_ACTION = "lookup_certificate"
+CENSYS_QUERY_IP_ACTION = "query_ip"
+CENSYS_QUERY_DOMAIN_ACTION = "query_domain"
+CENSYS_QUERY_CERTIFICATE_ACTION = "query_certificate"

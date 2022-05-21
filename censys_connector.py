@@ -28,18 +28,9 @@ from censys_consts import *
 
 
 class CensysConnector(BaseConnector):
-
-    ACTION_LOOKUP_IP = "lookup_ip"
-    ACTION_LOOKUP_CERTIFICATE = "lookup_certificate"
-    ACTION_LOOKUP_DOMAIN = "lookup_domain"
-    ACTION_QUERY_IP = "query_ip"
-    ACTION_QUERY_CERTIFICATE = "query_certificate"
-    ACTION_QUERY_DOMAIN = "query_domain"
-
     def __init__(self):
         self._headers = {}
         super().__init__()
-        return
 
     def _parse_http_error(self, action_result, r):
 
@@ -209,12 +200,10 @@ class CensysConnector(BaseConnector):
         if phantom.is_fail(ret_val):
             self.save_progress(action_result.get_message())
             self.save_progress("Connectivity test failed")
-            return self.set_status(
-                phantom.APP_ERROR,
-            )
+            return action_result.get_status()
 
         self.save_progress("Connectivity test passed")
-        return self.set_status(phantom.APP_SUCCESS, "Connectivity test passed")
+        return action_result.set_status(phantom.APP_SUCCESS, "Connectivity test passed")
 
     def _check_datapath(self, datadict):
         for i in list(datadict.keys()):
@@ -570,19 +559,19 @@ class CensysConnector(BaseConnector):
 
         ret_val = phantom.APP_SUCCESS
 
-        if action == phantom.ACTION_ID_TEST_ASSET_CONNECTIVITY:
+        if action == CENSYS_TEST_CONNECTIVITY_ACTION:
             ret_val = self._test_connectivity(param)
-        elif action == self.ACTION_LOOKUP_IP:
+        elif action == CENSYS_LOOKUP_IP_ACTION:
             ret_val = self._lookup_ip(param)
-        elif action == self.ACTION_LOOKUP_CERTIFICATE:
-            ret_val = self._lookup_certificate(param)
-        elif action == self.ACTION_LOOKUP_DOMAIN:
+        elif action == CENSYS_LOOKUP_DOMAIN_ACTION:
             ret_val = self._lookup_domain(param)
-        elif action == self.ACTION_QUERY_IP:
+        elif action == CENSYS_LOOKUP_CERTIFICATE_ACTION:
+            ret_val = self._lookup_certificate(param)
+        elif action == CENSYS_QUERY_IP_ACTION:
             ret_val = self._query_ip(param)
-        elif action == self.ACTION_QUERY_DOMAIN:
+        elif action == CENSYS_QUERY_DOMAIN_ACTION:
             ret_val = self._query_domain(param)
-        elif action == self.ACTION_QUERY_CERTIFICATE:
+        elif action == CENSYS_QUERY_CERTIFICATE_ACTION:
             ret_val = self._query_certificate(param)
 
         return ret_val
