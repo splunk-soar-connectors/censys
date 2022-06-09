@@ -39,7 +39,7 @@
             "action": "test connectivity",
             "description": "Validate connectivity to Censys",
             "type": "test",
-            "identifier": "test_connectivity",
+            "identifier": "test_asset_connectivity",
             "read_only": true,
             "parameters": {},
             "output": [],

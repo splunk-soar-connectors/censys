@@ -30,7 +30,7 @@ from censys_consts import *
 class CensysConnector(BaseConnector):
     def __init__(self):
         self._headers = {}
-        super().__init__()
+        super(CensysConnector, self).__init__()
 
     def _parse_http_error(self, action_result, r):
 
@@ -193,14 +193,14 @@ class CensysConnector(BaseConnector):
         action_result = self.add_action_result(ActionResult(dict(param)))
         self.save_progress("Testing connectivity")
 
-        ret_val, response = self._make_rest_call(
+        ret_val, _ = self._make_rest_call(
             "/api/v1/account", action_result=action_result, method="get"
         )
 
         if phantom.is_fail(ret_val):
             self.save_progress(action_result.get_message())
             self.save_progress("Connectivity test failed")
-            return action_result.get_status()
+            return action_result.set_status(phantom.APP_ERROR, "Connectivity test failed")
 
         self.save_progress("Connectivity test passed")
         return action_result.set_status(phantom.APP_SUCCESS, "Connectivity test passed")
@@ -559,7 +559,7 @@ class CensysConnector(BaseConnector):
 
         ret_val = phantom.APP_SUCCESS
 
-        if action == CENSYS_TEST_CONNECTIVITY_ACTION:
+        if action == phantom.ACTION_ID_TEST_ASSET_CONNECTIVITY:
             ret_val = self._test_connectivity(param)
         elif action == CENSYS_LOOKUP_IP_ACTION:
             ret_val = self._lookup_ip(param)
