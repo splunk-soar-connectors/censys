@@ -406,6 +406,8 @@ class CensysConnector(BaseConnector):
         """
 
         self.debug_print(f"Entering _query_domain")
+        self.debug_print(f"mpantest1")
+        self.debug_print(f"mpantest2")
 
         action_result = self.add_action_result(ActionResult(param))
 
