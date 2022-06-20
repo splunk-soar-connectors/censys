@@ -39,7 +39,7 @@ class CensysConnector(BaseConnector):
 
         try:
             resp_json = r.json()
-        except:
+        except Exception:
             return (
                 action_result.set_status(
                     phantom.APP_ERROR, "Unable to parse response as JSON"
@@ -56,36 +56,29 @@ class CensysConnector(BaseConnector):
         return action_result.set_status(phantom.APP_ERROR, message)
 
     def _get_error_message_from_exception(self, e):
-        """This method is used to get appropriate error messages from the exception.
+        """
+        Get appropriate error message from the exception.
         :param e: Exception object
         :return: error message
         """
 
+        error_code = None
+        error_msg = CENSYS_ERR_MSG_UNAVAILABLE
+
         try:
-            if e.args:
+            if hasattr(e, "args"):
                 if len(e.args) > 1:
                     error_code = e.args[0]
                     error_msg = e.args[1]
                 elif len(e.args) == 1:
-                    error_code = CENSYS_ERR_CODE_MSG
                     error_msg = e.args[0]
-            else:
-                error_code = CENSYS_ERR_CODE_MSG
-                error_msg = CENSYS_ERR_MSG_UNAVAILABLE
-        except:
-            error_code = CENSYS_ERR_CODE_MSG
-            error_msg = CENSYS_ERR_MSG_UNAVAILABLE
+        except Exception:
+            self.debug_print("Error occurred while fetching exception information")
 
-        try:
-            if error_code in CENSYS_ERR_CODE_MSG:
-                error_text = f"Error Message: {error_msg}"
-            else:
-                error_text = "Error Code: {}. Error Message: {}".format(
-                    error_code, error_msg
-                )
-        except:
-            self.debug_print("Error occurred while parsing error message")
-            error_text = CENSYS_PARSE_ERR_MSG
+        if not error_code:
+            error_text = f"Error Message: {error_msg}"
+        else:
+            error_text = f"Error Code: {error_code}. Error Message: {error_msg}"
 
         return error_text
 
@@ -100,7 +93,7 @@ class CensysConnector(BaseConnector):
                 )
 
             parameter = int(parameter)
-        except:
+        except Exception:
             return (
                 action_result.set_status(
                     phantom.APP_ERROR, CENSYS_INT_ERR_MSG.format(key=key)
@@ -174,7 +167,7 @@ class CensysConnector(BaseConnector):
 
         try:
             resp_json = response.json()
-        except:
+        except Exception:
             return (
                 action_result.set_status(
                     phantom.APP_ERROR, "Unable to parse response as JSON"
@@ -255,15 +248,24 @@ class CensysConnector(BaseConnector):
         config = self.get_config()
         auth = (config[CENSYS_JSON_API_ID], config[CENSYS_JSON_SECRET])
         for page in range(2, num_pages + 1):
-            self.debug_print(f"requesting page {page} out of {num_pages}")
+            self.debug_print(f"Requesting page {page} out of {num_pages}")
             data["page"] = page
-            page_response = requests.post(
-                f"{CENSYS_API_URL}{api}{censys_io_dataset}",
-                data=json.dumps(data),
-                headers=headers,
-                auth=auth,
-                timeout=CENSYS_DEFAULT_TIMEOUT,
-            )
+            try:
+                page_response = requests.post(
+                    f"{CENSYS_API_URL}{api}{censys_io_dataset}",
+                    data=json.dumps(data),
+                    headers=headers,
+                    auth=auth,
+                    timeout=CENSYS_DEFAULT_TIMEOUT,
+                )
+            except Exception as e:
+                return (
+                    action_result.set_status(
+                        phantom.APP_ERROR,
+                        f"Error connecting to server. Details: {self._get_error_message_from_exception(e)}",
+                    ),
+                    None,
+                )
             if page_response.status_code != 200:
                 self.debug_print(
                     "received {} response with body {}".format(
@@ -276,7 +278,9 @@ class CensysConnector(BaseConnector):
 
             results = response_json.get("results", [])
             if (
-                limit and page == num_pages and (limit % CENSYS_QUERY_CERTIFICATE_DATA_PER_PAGE) != 0
+                limit
+                and page == num_pages
+                and (limit % CENSYS_QUERY_CERTIFICATE_DATA_PER_PAGE) != 0
             ):
                 for result in range(
                     0, min(limit % CENSYS_QUERY_CERTIFICATE_DATA_PER_PAGE, len(results))
@@ -547,10 +551,12 @@ class CensysConnector(BaseConnector):
                 "count"
             )
             self._update_summary(action_result, response)
-            self.debug_print(f"An exception occurred: {e}")
+            self.debug_print(
+                f"An exception occurred: {self._get_error_message_from_exception(e)}"
+            )
             self.debug_print("Exiting _query_certificate")
             return action_result.set_status(
-                phantom.APP_ERROR, "unable to parse result count"
+                phantom.APP_ERROR, "Unable to parse result count"
             )
 
     def handle_action(self, param):
@@ -581,6 +587,9 @@ class CensysConnector(BaseConnector):
         # Load the state in initialize, use it to store data
         # that needs to be accessed across actions
         self._state = self.load_state()
+        if not isinstance(self._state, dict):
+            self.debug_print("Resetting the state file with the default format")
+            self._state = {}
 
         """
         # Access values in asset config by the name

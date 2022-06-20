@@ -39,15 +39,13 @@ CENSYS_QUERY_DOMAIN_DATASET = "websites"
 CENSYS_QUERY_CERTIFICATE_DATASET = "certificates"
 
 # constants relating to "get_error_msg_from_exception"
-CENSYS_ERR_CODE_MSG = "Error code unavailable"
 CENSYS_ERR_MSG_UNAVAILABLE = "Error message unavailable. Please check the asset configuration and|or action parameters"
-CENSYS_PARSE_ERR_MSG = "Unable to parse the error message. Please check the asset configuration and|or action parameters"
 
 # constants for integer validation
 CENSYS_INT_ERR_MSG = "Please provide a valid integer value in the {key}"
 CENSYS_LIMIT_KEY = "'limit' action parameter"
 
-CENSYS_DEFAULT_TIMEOUT = 30
+CENSYS_DEFAULT_TIMEOUT = 60
 
 # Action names
 CENSYS_TEST_CONNECTIVITY_ACTION = "test_connectivity"
