@@ -276,9 +276,7 @@ class CensysConnector(BaseConnector):
 
             results = response_json.get("results", [])
             if (
-                limit
-                and page == num_pages
-                and (limit % CENSYS_QUERY_CERTIFICATE_DATA_PER_PAGE) != 0
+                limit and page == num_pages and (limit % CENSYS_QUERY_CERTIFICATE_DATA_PER_PAGE) != 0
             ):
                 for result in range(
                     0, min(limit % CENSYS_QUERY_CERTIFICATE_DATA_PER_PAGE, len(results))
