@@ -2,11 +2,11 @@
 # Censys
 
 Publisher: Splunk  
-Connector Version: 2\.1\.13  
-Product Vendor: Censys  
+Connector Version: 2\.2\.0  
+Product Vendor: Censys, Inc\.  
 Product Name: Censys  
 Product Version Supported (regex): "\.\*"  
-Minimum Product Version: 5\.0\.0  
+Minimum Product Version: 5\.2\.0  
 
 This app implements investigative actions to get information from the Censys search engine
 
@@ -57,7 +57,7 @@ VARIABLE | REQUIRED | TYPE | DESCRIPTION
 ### Supported Actions  
 [test connectivity](#action-test-connectivity) - Validate connectivity to Censys  
 [lookup certificate](#action-lookup-certificate) - Lookup certificate info  
-[lookup ip](#action-lookup-ip) - Lookup ip info  
+[lookup ip](#action-lookup-ip) - Lookup IP info  
 [lookup domain](#action-lookup-domain) - Lookup Domain info  
 [query domain](#action-query-domain) - Query the domain dataset  
 [query certificate](#action-query-certificate) - Query the certificate dataset  
@@ -263,7 +263,7 @@ summary\.total\_objects | numeric |
 summary\.total\_objects\_successful | numeric |   
 
 ## action: 'lookup ip'
-Lookup ip info
+Lookup IP info
 
 Type: **investigate**  
 Read only: **True**

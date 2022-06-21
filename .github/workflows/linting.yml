@@ -8,4 +8,4 @@ jobs:
     if: github.event_name == 'push' || github.event.pull_request.head.repo.fork
     runs-on: ubuntu-latest
     steps:
-     - uses: 'phantomcyber/dev-cicd-tools/github-actions/lint@main'
+      - uses: "phantomcyber/dev-cicd-tools/github-actions/lint@main"
