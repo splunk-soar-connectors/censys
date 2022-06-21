@@ -17,7 +17,7 @@
     "python_version": "3",
     "fips_compliant": true,
     "latest_tested_versions": [
-        "Cloud v2 API tested 30 November 2021"
+        "Cloud v2 API tested 20 June 2022"
     ],
     "license": "Copyright (c) 2016-2022 Splunk Inc.",
     "configuration": {
