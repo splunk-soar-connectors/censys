@@ -498,6 +498,8 @@ class CensysConnector(BaseConnector):
         """Use handle_search to query the correct dataset with the query string"""
 
         self.debug_print("Entering _query_domain")
+        self.debug_print(f"mpantest1")
+        self.debug_print(f"mpantest2")
 
         action_result = self.add_action_result(ActionResult(param))
 
