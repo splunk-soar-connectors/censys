@@ -13,7 +13,7 @@
     "product_version_regex": ".*",
     "logo": "logo_censys.svg",
     "logo_dark": "logo_censys_dark.svg",
-    "min_phantom_version": "5.2.0",
+    "min_phantom_version": "5.5.0",
     "python_version": "3",
     "fips_compliant": true,
     "latest_tested_versions": [
