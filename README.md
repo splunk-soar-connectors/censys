@@ -2,7 +2,7 @@
 # Censys
 
 Publisher: Splunk  
-Connector Version: 2.2.0  
+Connector Version: 2.2.1  
 Product Vendor: Censys, Inc.  
 Product Name: Censys  
 Product Version Supported (regex): ".\*"  
