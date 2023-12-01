@@ -33,7 +33,6 @@ class CensysConnector(BaseConnector):
         super().__init__()
 
     def _parse_http_error(self, action_result, r):
-
         if "json" not in r.headers.get("Content-Type", ""):
             return ""
 
@@ -137,7 +136,6 @@ class CensysConnector(BaseConnector):
         return True
 
     def _make_rest_call(self, endpoint, action_result, data=None, method="post"):
-
         resp_json = None
 
         config = self.get_config()
@@ -277,9 +275,7 @@ class CensysConnector(BaseConnector):
             response_json = page_response.json()
 
             results = response_json.get("results", [])
-            if (
-                limit and page == num_pages and (limit % CENSYS_QUERY_CERTIFICATE_DATA_PER_PAGE) != 0
-            ):
+            if limit and page == num_pages and (limit % CENSYS_QUERY_CERTIFICATE_DATA_PER_PAGE) != 0:
                 for result in range(
                     0, min(limit % CENSYS_QUERY_CERTIFICATE_DATA_PER_PAGE, len(results))
                 ):
@@ -294,7 +290,6 @@ class CensysConnector(BaseConnector):
         return (action_result.set_status(phantom.APP_SUCCESS), response)
 
     def _handle_view(self, query_string, search_action, action_result):
-
         req_method, api = CENSYS_API_METHOD_MAP.get("view")
 
         api = api.format(search_action, query_string)
@@ -311,7 +306,6 @@ class CensysConnector(BaseConnector):
         return (action_result.set_status(phantom.APP_SUCCESS), response)
 
     def _process_ports(self, response):
-
         protocols = response.get("protocols")
 
         if not protocols:
@@ -334,7 +328,6 @@ class CensysConnector(BaseConnector):
         return response
 
     def _lookup_ip(self, param):
-
         self.debug_print("Entering _lookup_ip")
 
         action_result = self.add_action_result(ActionResult(param))
@@ -370,7 +363,6 @@ class CensysConnector(BaseConnector):
         return action_result.set_status(phantom.APP_SUCCESS)
 
     def _query_ip(self, param):
-
         self.debug_print("Entering _query_ip")
 
         action_result = self.add_action_result(ActionResult(param))
@@ -428,7 +420,6 @@ class CensysConnector(BaseConnector):
         return action_result.set_status(phantom.APP_SUCCESS)
 
     def _lookup_certificate(self, param):
-
         self.debug_print("Entering _lookup_certificate")
 
         action_result = self.add_action_result(ActionResult(param))
@@ -446,7 +437,6 @@ class CensysConnector(BaseConnector):
         parsed = response.get("parsed", {})
 
         if parsed:
-
             summary = {}
 
             validity = parsed.get("validity")
@@ -470,7 +460,6 @@ class CensysConnector(BaseConnector):
         return ret_val
 
     def _update_summary(self, action_result, response):
-
         protocols = response.get("protocols")
 
         if protocols:
@@ -483,7 +472,6 @@ class CensysConnector(BaseConnector):
         return action_result
 
     def _lookup_domain(self, param):
-
         self.debug_print("Entering _lookup_domain")
 
         action_result = self.add_action_result(ActionResult(param))
@@ -558,7 +546,6 @@ class CensysConnector(BaseConnector):
             )
 
     def handle_action(self, param):
-
         action = self.get_action_identifier()
 
         ret_val = phantom.APP_SUCCESS
@@ -581,7 +568,6 @@ class CensysConnector(BaseConnector):
         return ret_val
 
     def initialize(self):
-
         # Load the state in initialize, use it to store data
         # that needs to be accessed across actions
         self._state = self.load_state()
@@ -604,14 +590,12 @@ class CensysConnector(BaseConnector):
         return phantom.APP_SUCCESS
 
     def finalize(self):
-
         # Save the state, this data is saved across actions and app upgrades
         self.save_state(self._state)
         return phantom.APP_SUCCESS
 
 
 if __name__ == "__main__":
-
     import argparse
     import sys
 
@@ -641,7 +625,6 @@ if __name__ == "__main__":
     verify = args.verify
 
     if username is not None and password is None:
-
         # User specified a username but not a password, so ask
         import getpass
 
