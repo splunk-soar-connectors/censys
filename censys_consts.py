@@ -16,7 +16,6 @@ CENSYS_API_URL = "https://search.censys.io"
 CENSYS_API_METHOD_MAP = {
     "info": ("get", "/api/v2/{dataset}/{value}"),
     "search": ("get", "/api/v2/{dataset}/search?q={q}&per_page={per_page}"),
-    "data": ("get", "/api/v1/data/domain/20151013T2353"),
 }
 
 CENSYS_JSON_API_ID = "api_id"
