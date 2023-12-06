@@ -56,7 +56,7 @@ class CensysConnector(BaseConnector):
         self.save_progress("Connectivity test passed")
         return action_result.set_status(phantom.APP_SUCCESS, "Connectivity test passed")
 
-    def _handle_view(self, query, dataset, action_result):
+    def _handle_lookup(self, query, dataset, action_result):
         req_method, api = CENSYS_API_METHOD_MAP["info"]
 
         api_url = api.format(dataset=dataset, value=query)
@@ -166,7 +166,7 @@ class CensysConnector(BaseConnector):
         self.debug_print("Entering _lookup_certificate")
 
         action_result = self.add_action_result(ActionResult(param))
-        ret_val, response = self._handle_view(
+        ret_val, response = self._handle_lookup(
             param[CENSYS_JSON_SHA256], "certificates", action_result
         )
 
