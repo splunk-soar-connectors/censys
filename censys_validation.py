@@ -62,12 +62,7 @@ def get_error_message_from_exception(self, e):
     except Exception:
         self.debug_print("Error occurred while fetching exception information")
 
-    if not error_code:
-        error_text = f"Error Message: {error_msg}"
-    else:
-        error_text = f"Error Code: {error_code}. Error Message: {error_msg}"
-
-    return error_text
+    return f"Error Code: {error_code}. Error Message: {error_msg}" if error_code else f"Error Message: {error_msg}"
 
 
 def validate_integer(action_result, parameter, key, allow_zero=False):
