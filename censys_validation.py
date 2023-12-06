@@ -46,7 +46,7 @@ def get_error_message_from_exception(e):
     )
 
 
-def validate_integer(action_result, parameter, key, allow_zero=False):
+def validate_integer(action_result, parameter, key):
     try:
         parsed = float(parameter)
     except ValueError:
