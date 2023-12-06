@@ -15,11 +15,11 @@
 CENSYS_API_URL = "https://search.censys.io"
 CENSYS_API_METHOD_MAP = {
     "hosts": ("get", "/api/v2/hosts/{0}"),
-    "hosts_search": ("get", "/api/v2/hosts/search?q={}&per_page={}"),
     "query": ("post", "/api/v1/query"),
     "report": ("post", "/api/v1/report/{0}"),
-    "search": ("post", "/api/v1/search/"),
     "view": ("get", "/api/v1/view/{0}/{1}"),
+    "certs": ("get", "/api/v2/{}/{}"),
+    "search": ("get", "/api/v2/{dataset}/search?q={q}&per_page={per_page}"),
     "data": ("get", "/api/v1/data/domain/20151013T2353"),
 }
 
@@ -33,10 +33,11 @@ CENSYS_JSON_DATASET = "dataset"
 CENSYS_JSON_QUERY = "query"
 CENSYS_QUERY_IP_DATASET = "ipv4"
 CENSYS_QUERY_IP_DATA_PER_PAGE = 100
-CENSYS_QUERY_CERTIFICATE_DATA_PER_PAGE = 100
+CENSYS_QUERY_CERTIFICATE_DATA_PER_PAGE = 50
 CENSYS_QUERY_CERTIFICATE_MAX_LIMIT = 25000
 CENSYS_QUERY_DOMAIN_DATASET = "websites"
 CENSYS_QUERY_CERTIFICATE_DATASET = "certificates"
+CENSYS_QUERY_HOSTS_DATASET = "hosts"
 
 # constants relating to "get_error_msg_from_exception"
 CENSYS_ERR_MSG_UNAVAILABLE = "Error message unavailable. Please check the asset configuration and|or action parameters"
