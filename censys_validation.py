@@ -121,6 +121,6 @@ def is_ip(input_ip_address):
 
     try:
         ipaddress.ip_address(input_ip_address)
-    except Exception:
+    except ValueError:
         return False
     return True
