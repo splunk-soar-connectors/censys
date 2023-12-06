@@ -19,30 +19,7 @@ import phantom.app as phantom
 from censys_consts import CENSYS_ERR_MSG_UNAVAILABLE, CENSYS_INT_ERR_MSG
 
 
-def parse_http_error(self, action_result, r):
-    if "json" not in r.headers.get("Content-Type", ""):
-        return ""
-
-    try:
-        resp_json = r.json()
-    except Exception:
-        return (
-            action_result.set_status(
-                phantom.APP_ERROR, "Unable to parse response as JSON"
-            ),
-            None,
-        )
-
-    message = "Server returned error with status: {}, Type: {}, Detail: {}".format(
-        resp_json.get("status", "NA"),
-        resp_json.get("error_type", "NA"),
-        resp_json.get("error", "NA"),
-    )
-
-    return action_result.set_status(phantom.APP_ERROR, message)
-
-
-def get_error_message_from_exception(self, e):
+def get_error_message_from_exception(e):
     """
     Get appropriate error message from the exception.
     :param e: Exception object
@@ -59,50 +36,45 @@ def get_error_message_from_exception(self, e):
                 error_msg = e.args[1]
             elif len(e.args) == 1:
                 error_msg = e.args[0]
-    except Exception:
-        self.debug_print("Error occurred while fetching exception information")
+    except Exception as e:
+        return f"Error occurred while fetching exception information: {e}"
 
-    return f"Error Code: {error_code}. Error Message: {error_msg}" if error_code else f"Error Message: {error_msg}"
+    return (
+        f"Error Code: {error_code}. Error Message: {error_msg}"
+        if error_code
+        else f"Error Message: {error_msg}"
+    )
 
 
 def validate_integer(action_result, parameter, key, allow_zero=False):
     try:
-        if not float(parameter).is_integer():
-            return (
-                action_result.set_status(
-                    phantom.APP_ERROR, CENSYS_INT_ERR_MSG.format(key=key)
-                ),
-                None,
-            )
-
-        parameter = int(parameter)
-    except Exception:
+        parsed = float(parameter)
+    except ValueError:
         return (
             action_result.set_status(
                 phantom.APP_ERROR, CENSYS_INT_ERR_MSG.format(key=key)
             ),
             None,
         )
-
-    if parameter < 0:
+    if not parsed.is_integer():
         return (
             action_result.set_status(
-                phantom.APP_ERROR,
-                "Please provide a valid non-negative integer value in the {}".format(
-                    key
-                ),
+                phantom.APP_ERROR, CENSYS_INT_ERR_MSG.format(key=key)
             ),
             None,
         )
-    if not allow_zero and parameter == 0:
+    return phantom.APP_SUCCESS, int(parameter)
+
+
+def validate_is_positive(action_result, parameter, key):
+    if parameter <= 0:
         return (
             action_result.set_status(
                 phantom.APP_ERROR,
-                f"Please provide a positive integer value in the {key}",
+                f"Please provide a valid non-negative integer value in the {key}",
             ),
             None,
         )
-
     return phantom.APP_SUCCESS, parameter
 
 

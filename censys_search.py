@@ -15,12 +15,13 @@
 import phantom.app as phantom
 
 from censys_consts import CENSYS_API_METHOD_MAP, CENSYS_JSON_QUERY, CENSYS_LIMIT_KEY
-from censys_validation import validate_integer
+from censys_rest import make_rest_call
+from censys_validation import validate_integer, validate_is_positive
 
 
 class CensysSearch:
-    def __init__(self, make_rest_call) -> None:
-        self._make_rest_call = make_rest_call
+    def __init__(self, app_config) -> None:
+        self.app_config = app_config
         self._req_method, self._endpoint = CENSYS_API_METHOD_MAP["search"]
 
     def query_dataset(self, action_result, summary_data, dataset, param, per_page):
@@ -29,10 +30,10 @@ class CensysSearch:
         hosts, and websites (domains).
         """
         query = param[CENSYS_JSON_QUERY]
-        ret_val, limit = validate_integer(
-            action_result, param.get("limit", 200), CENSYS_LIMIT_KEY
-        )
-        if phantom.is_fail(ret_val):
+        limit = param.get("limit", 200)
+        ret_val, limit = validate_integer(action_result, limit, CENSYS_LIMIT_KEY)
+        ret_val, limit = validate_is_positive(action_result, limit, CENSYS_LIMIT_KEY)
+        if phantom.is_fail(action_result.get_status()):
             return action_result.get_status(), None
 
         ret_val, response = self._search_call(
@@ -69,8 +70,11 @@ class CensysSearch:
         endpoint_url = self._endpoint.format(
             dataset=dataset, q=q, per_page=min(limit, per_page)
         )
-        return self._make_rest_call(
-            f"{endpoint_url}{cursor_q}", action_result, method=self._req_method
+        return make_rest_call(
+            f"{endpoint_url}{cursor_q}",
+            action_result,
+            self.app_config,
+            method=self._req_method,
         )
 
     def _check_datapath(self, datadict):
@@ -82,12 +86,12 @@ class CensysSearch:
 
     @staticmethod
     def _get_hits(response):
-        return response.get("result").get("hits")
+        return response.get("result", {}).get("hits")
 
     @staticmethod
     def _get_next(response):
-        return response.get("result").get("links").get("next")
+        return response.get("result", {}).get("links", {}).get("next")
 
     @staticmethod
     def _get_total(response):
-        return response.get("result").get("total")
+        return response.get("result", {}).get("total")

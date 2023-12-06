@@ -22,58 +22,16 @@ from phantom.action_result import ActionResult
 from phantom.base_connector import BaseConnector
 
 from censys_consts import *
+from censys_rest import make_rest_call
 from censys_search import CensysSearch
-from censys_validation import get_error_message_from_exception, is_ip, parse_http_error
+from censys_validation import is_ip
 
 
 class CensysConnector(BaseConnector):
     def __init__(self):
         self._headers = {}
-        self.search = CensysSearch(self._make_rest_call)
+        self.search = CensysSearch(self.get_config())
         super().__init__()
-
-    def _make_rest_call(self, endpoint, action_result, data=None, method="post"):
-        resp_json = None
-
-        config = self.get_config()
-        request_func = getattr(requests, method)
-        headers = {"Content-type": "application/json", "Accept": "text/plain"}
-
-        try:
-            response = request_func(
-                f"{CENSYS_API_URL}{endpoint}",
-                json=data,
-                auth=(config[CENSYS_JSON_API_ID], config[CENSYS_JSON_SECRET]),
-                headers=headers,
-            )
-        except Exception as e:
-            return (
-                action_result.set_status(
-                    phantom.APP_ERROR,
-                    "Unable to connect to the server. {}".format(
-                        get_error_message_from_exception(e)
-                    ),
-                ),
-                resp_json,
-            )
-
-        if response.status_code not in (200, 429):
-            return (parse_http_error(action_result, response), {})
-
-        try:
-            resp_json = response.json()
-        except Exception:
-            return (
-                action_result.set_status(
-                    phantom.APP_ERROR, "Unable to parse response as JSON"
-                ),
-                None,
-            )
-
-        if resp_json.get("status", "") == "error":
-            return (parse_http_error(action_result, response), {})
-
-        return (phantom.APP_SUCCESS, resp_json)
 
     def _test_connectivity(self, param):
         """Test connectivity by retrieving a valid token"""
@@ -81,8 +39,11 @@ class CensysConnector(BaseConnector):
         action_result = self.add_action_result(ActionResult(dict(param)))
         self.save_progress("Testing connectivity")
 
-        ret_val, _ = self._make_rest_call(
-            "/api/v1/account", action_result=action_result, method="get"
+        ret_val, _ = make_rest_call(
+            "/api/v1/account",
+            action_result,
+            self.get_config(),
+            method="get",
         )
 
         if phantom.is_fail(ret_val):
@@ -95,12 +56,17 @@ class CensysConnector(BaseConnector):
         self.save_progress("Connectivity test passed")
         return action_result.set_status(phantom.APP_SUCCESS, "Connectivity test passed")
 
-    def _handle_view(self, query_string, search_action, action_result):
-        req_method, api = CENSYS_API_METHOD_MAP.get("certs")
+    def _handle_view(self, query, dataset, action_result):
+        req_method, api = CENSYS_API_METHOD_MAP["info"]
 
-        api = api.format(search_action, query_string)
+        api_url = api.format(dataset=dataset, value=query)
 
-        ret_val, response = self._make_rest_call(api, action_result, method=req_method)
+        ret_val, response = make_rest_call(
+            api_url,
+            action_result,
+            self.get_config(),
+            method=req_method,
+        )
 
         if phantom.is_fail(ret_val):
             return (action_result.get_status(), None)
@@ -109,7 +75,7 @@ class CensysConnector(BaseConnector):
 
         action_result.add_data(response)
 
-        return (action_result.set_status(phantom.APP_SUCCESS), response)
+        return action_result.set_status(phantom.APP_SUCCESS), response
 
     def _process_ports(self, response):
         protocols = response.get("protocols")
@@ -138,26 +104,31 @@ class CensysConnector(BaseConnector):
 
         action_result = self.add_action_result(ActionResult(param))
         summary_data = action_result.update_summary({})
-        req_method, endpoint = CENSYS_API_METHOD_MAP.get("hosts")
+        req_method, endpoint = CENSYS_API_METHOD_MAP["info"]
         ip = param[CENSYS_JSON_IP]
         if not is_ip(ip):
             return action_result.set_status(
                 phantom.APP_ERROR,
                 "Please provide a valid value in the 'ip' action parameter",
             )
-        ret_val, response = self._make_rest_call(
-            endpoint.format(ip), action_result, method=req_method
+        ret_val, response = make_rest_call(
+            endpoint.format(dataset=CENSYS_QUERY_HOSTS_DATASET, value=ip),
+            action_result,
+            self.get_config(),
+            method=req_method,
         )
 
         if phantom.is_fail(ret_val):
             return action_result.get_status()
 
-        if not response.get("result").get("services"):
+        if not response.get("result", {}).get("services"):
             return action_result.set_status(phantom.APP_SUCCESS, CENSYS_NO_INFO)
 
-        summary_data["port"] = response.get("result").get("services")[0].get("port")
+        summary_data["port"] = (
+            response.get("result", {}).get("services", [])[0].get("port")
+        )
         summary_data["service_name"] = (
-            response.get("result").get("services")[0].get("service_name")
+            response.get("result", {}).get("services", [])[0].get("service_name")
         )
 
         action_result.add_data(response)
