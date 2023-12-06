@@ -74,7 +74,7 @@ class CensysSearch:
         )
 
     def _check_datapath(self, datadict):
-        for i in list(datadict.keys()):
+        for i in datadict:
             if "." in i:
                 datadict[i.replace(".", "_")] = datadict[i]
                 del datadict[i]
