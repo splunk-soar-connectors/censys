@@ -1,4 +1,4 @@
-# File: censys_validation.py
+# File: censys_search.py
 #
 # Copyright (c) 2016-2023 Splunk Inc.
 #
