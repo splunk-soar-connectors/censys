@@ -30,7 +30,6 @@ from censys_validation import is_ip
 class CensysConnector(BaseConnector):
     def __init__(self):
         self._headers = {}
-        self.search = CensysSearch(self.get_config())
         super().__init__()
 
     def _test_connectivity(self, param):
@@ -145,7 +144,7 @@ class CensysConnector(BaseConnector):
         action_result = self.add_action_result(ActionResult(param))
         summary_data = action_result.update_summary({})
 
-        ret_val, response = self.search.query_dataset(
+        ret_val, response = CensysSearch(self.get_config()).query_dataset(
             action_result,
             summary_data,
             CENSYS_QUERY_HOSTS_DATASET,
@@ -210,7 +209,7 @@ class CensysConnector(BaseConnector):
         action_result = self.add_action_result(ActionResult(param))
         summary_data = action_result.update_summary({})
 
-        ret_val, response = self.search.query_dataset(
+        ret_val, response = CensysSearch(self.get_config()).query_dataset(
             action_result,
             summary_data,
             CENSYS_QUERY_CERTIFICATE_DATASET,

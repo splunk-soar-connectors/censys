@@ -32,8 +32,10 @@ class CensysSearch:
         query = param[CENSYS_JSON_QUERY]
         limit = param.get("limit", 200)
         ret_val, limit = validate_integer(action_result, limit, CENSYS_LIMIT_KEY)
+        if phantom.is_fail(ret_val):
+            return action_result.get_status(), None
         ret_val, limit = validate_is_positive(action_result, limit, CENSYS_LIMIT_KEY)
-        if phantom.is_fail(action_result.get_status()):
+        if phantom.is_fail(ret_val):
             return action_result.get_status(), None
 
         ret_val, response = self._search_call(
