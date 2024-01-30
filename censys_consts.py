@@ -1,6 +1,6 @@
 # File: censys_consts.py
 #
-# Copyright (c) 2016-2023 Splunk Inc.
+# Copyright (c) 2016-2024 Splunk Inc.
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -14,13 +14,8 @@
 # and limitations under the License.
 CENSYS_API_URL = "https://search.censys.io"
 CENSYS_API_METHOD_MAP = {
-    "hosts": ("get", "/api/v2/hosts/{0}"),
-    "hosts_search": ("get", "/api/v2/hosts/search?q={}&per_page={}"),
-    "query": ("post", "/api/v1/query"),
-    "report": ("post", "/api/v1/report/{0}"),
-    "search": ("post", "/api/v1/search/"),
-    "view": ("get", "/api/v1/view/{0}/{1}"),
-    "data": ("get", "/api/v1/data/domain/20151013T2353"),
+    "info": ("get", "/api/v2/{dataset}/{value}"),
+    "search": ("get", "/api/v2/{dataset}/search?q={q}&per_page={per_page}"),
 }
 
 CENSYS_JSON_API_ID = "api_id"
@@ -37,9 +32,11 @@ CENSYS_QUERY_CERTIFICATE_DATA_PER_PAGE = 100
 CENSYS_QUERY_CERTIFICATE_MAX_LIMIT = 25000
 CENSYS_QUERY_DOMAIN_DATASET = "websites"
 CENSYS_QUERY_CERTIFICATE_DATASET = "certificates"
+CENSYS_QUERY_HOSTS_DATASET = "hosts"
 
 # constants relating to "get_error_msg_from_exception"
 CENSYS_ERR_MSG_UNAVAILABLE = "Error message unavailable. Please check the asset configuration and|or action parameters"
+CENSYS_ERR_JSON_DECODE = "Unable to parse response as JSON: {} Raw text: {}"
 
 # constants for integer validation
 CENSYS_INT_ERR_MSG = "Please provide a valid integer value in the {key}"
