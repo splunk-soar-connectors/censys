@@ -1,6 +1,6 @@
 # File: censys_view.py
 #
-# Copyright (c) 2016-2022 Splunk Inc.
+# Copyright (c) 2016-2024 Splunk Inc.
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -16,7 +16,6 @@ from censys_consts import *
 
 
 def _get_ctx_result(result):
-
     ctx_result = {}
 
     ctx_result["summary"] = result.get_summary()
@@ -45,11 +44,9 @@ def _get_ctx_result(result):
 
 
 def display_cert_info(provides, all_app_runs, context):
-
     context["results"] = results = []
     for summary, action_results in all_app_runs:
         for result in action_results:
-
             ctx_result = _get_ctx_result(result)
             if not ctx_result:
                 continue
@@ -59,11 +56,9 @@ def display_cert_info(provides, all_app_runs, context):
 
 
 def display_ip_domain_info(provides, all_app_runs, context):
-
     context["results"] = results = []
     for summary, action_results in all_app_runs:
         for result in action_results:
-
             ctx_result = _get_ctx_result(result)
             if not ctx_result:
                 continue
