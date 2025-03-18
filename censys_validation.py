@@ -1,6 +1,6 @@
 # File: censys_validation.py
 #
-# Copyright (c) 2016-2024 Splunk Inc.
+# Copyright (c) 2016-2025 Splunk Inc.
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -39,11 +39,7 @@ def get_error_message_from_exception(e):
     except Exception as e:
         return f"Error occurred while fetching exception information: {e}"
 
-    return (
-        f"Error Code: {error_code}. Error Message: {error_msg}"
-        if error_code
-        else f"Error Message: {error_msg}"
-    )
+    return f"Error Code: {error_code}. Error Message: {error_msg}" if error_code else f"Error Message: {error_msg}"
 
 
 def validate_integer(action_result, parameter, key):
@@ -51,16 +47,12 @@ def validate_integer(action_result, parameter, key):
         parsed = float(parameter)
     except ValueError:
         return (
-            action_result.set_status(
-                phantom.APP_ERROR, CENSYS_INT_ERR_MSG.format(key=key)
-            ),
+            action_result.set_status(phantom.APP_ERROR, CENSYS_INT_ERR_MSG.format(key=key)),
             None,
         )
     if not parsed.is_integer():
         return (
-            action_result.set_status(
-                phantom.APP_ERROR, CENSYS_INT_ERR_MSG.format(key=key)
-            ),
+            action_result.set_status(phantom.APP_ERROR, CENSYS_INT_ERR_MSG.format(key=key)),
             None,
         )
     return phantom.APP_SUCCESS, int(parameter)
