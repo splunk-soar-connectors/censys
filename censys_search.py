@@ -1,6 +1,6 @@
 # File: censys_search.py
 #
-# Copyright (c) 2016-2024 Splunk Inc.
+# Copyright (c) 2016-2025 Splunk Inc.
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -38,9 +38,7 @@ class CensysSearch:
         if phantom.is_fail(ret_val):
             return action_result.get_status(), None
 
-        ret_val, response = self._search_call(
-            action_result, dataset, query, per_page, limit
-        )
+        ret_val, response = self._search_call(action_result, dataset, query, per_page, limit)
         if phantom.is_fail(ret_val):
             return action_result.get_status(), None
 
@@ -50,9 +48,7 @@ class CensysSearch:
 
         data_left = limit - len(hits)
         while next != "" and data_left > 0:
-            ret_val, next_response = self._search_call(
-                action_result, dataset, query, min(per_page, data_left), limit, next
-            )
+            ret_val, next_response = self._search_call(action_result, dataset, query, min(per_page, data_left), limit, next)
             if phantom.is_fail(ret_val):
                 return action_result.get_status(), next_response
             next_hits = self._get_hits(next_response)
@@ -69,9 +65,7 @@ class CensysSearch:
 
     def _search_call(self, action_result, dataset, q, per_page, limit, cursor=""):
         cursor_q = "" if cursor == "" else f"&cursor={cursor}"
-        endpoint_url = self._endpoint.format(
-            dataset=dataset, q=q, per_page=min(limit, per_page)
-        )
+        endpoint_url = self._endpoint.format(dataset=dataset, q=q, per_page=min(limit, per_page))
         return make_rest_call(
             f"{endpoint_url}{cursor_q}",
             action_result,

@@ -1,5 +1,5 @@
 {
-    "appid": "97C8DF6F-C870-4482-B6CA-B6C31745FBAB",
+    "appid": "97c8df6f-c870-4482-b6ca-b6c31745fbab",
     "name": "Censys",
     "description": "This app implements investigative actions to get information from the Censys search engine",
     "publisher": "Splunk",
@@ -19,7 +19,7 @@
     "latest_tested_versions": [
         "Cloud v2 API tested 20 June 2023"
     ],
-    "license": "Copyright (c) 2016-2024 Splunk Inc.",
+    "license": "Copyright (c) 2016-2025 Splunk Inc.",
     "configuration": {
         "api_id": {
             "description": "API ID",

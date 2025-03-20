@@ -1,6 +1,6 @@
 # File: censys_connector.py
 #
-# Copyright (c) 2016-2024 Splunk Inc.
+# Copyright (c) 2016-2025 Splunk Inc.
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -48,9 +48,7 @@ class CensysConnector(BaseConnector):
         if phantom.is_fail(ret_val):
             self.save_progress(action_result.get_message())
             self.save_progress("Connectivity test failed")
-            return action_result.set_status(
-                phantom.APP_ERROR, "Connectivity test failed"
-            )
+            return action_result.set_status(phantom.APP_ERROR, "Connectivity test failed")
 
         self.save_progress("Connectivity test passed")
         return action_result.set_status(phantom.APP_SUCCESS, "Connectivity test passed")
@@ -123,12 +121,8 @@ class CensysConnector(BaseConnector):
         if not response.get("result", {}).get("services"):
             return action_result.set_status(phantom.APP_SUCCESS, CENSYS_NO_INFO)
 
-        summary_data["port"] = (
-            response.get("result", {}).get("services", [])[0].get("port")
-        )
-        summary_data["service_name"] = (
-            response.get("result", {}).get("services", [])[0].get("service_name")
-        )
+        summary_data["port"] = response.get("result", {}).get("services", [])[0].get("port")
+        summary_data["service_name"] = response.get("result", {}).get("services", [])[0].get("service_name")
 
         action_result.add_data(response)
 
@@ -165,9 +159,7 @@ class CensysConnector(BaseConnector):
         self.debug_print("Entering _lookup_certificate")
 
         action_result = self.add_action_result(ActionResult(param))
-        ret_val, response = self._handle_lookup(
-            param[CENSYS_JSON_SHA256], "certificates", action_result
-        )
+        ret_val, response = self._handle_lookup(param[CENSYS_JSON_SHA256], "certificates", action_result)
 
         if phantom.is_fail(ret_val):
             message = action_result.get_message()
@@ -244,9 +236,7 @@ class CensysConnector(BaseConnector):
 
         self.debug_print("Exiting _lookup_domain")
 
-        return action_result.set_status(
-            phantom.APP_ERROR, "This action is not yet supported by Censys in API v2"
-        )
+        return action_result.set_status(phantom.APP_ERROR, "This action is not yet supported by Censys in API v2")
 
     def _query_domain(self, param):
         """Use handle_search to query the correct dataset with the query string"""
@@ -257,9 +247,7 @@ class CensysConnector(BaseConnector):
 
         self.debug_print("Exiting _query_domain")
 
-        return action_result.set_status(
-            phantom.APP_ERROR, "This action is not yet supported by Censys in API v2"
-        )
+        return action_result.set_status(phantom.APP_ERROR, "This action is not yet supported by Censys in API v2")
 
     def handle_action(self, param):
         action = self.get_action_identifier()

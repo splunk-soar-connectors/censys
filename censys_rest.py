@@ -1,6 +1,6 @@
 # File: censys_rest.py
 #
-# Copyright (c) 2016-2024 Splunk Inc.
+# Copyright (c) 2016-2025 Splunk Inc.
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -34,9 +34,7 @@ def make_rest_call(endpoint, action_result, config, data=None, method="post"):
         return (
             action_result.set_status(
                 phantom.APP_ERROR,
-                "Unable to connect to the server. {}".format(
-                    get_error_message_from_exception(e)
-                ),
+                f"Unable to connect to the server. {get_error_message_from_exception(e)}",
             ),
             {},
         )
@@ -48,9 +46,7 @@ def make_rest_call(endpoint, action_result, config, data=None, method="post"):
         resp_json = response.json()
     except Exception as e:
         return (
-            action_result.set_status(
-                phantom.APP_ERROR, CENSYS_ERR_JSON_DECODE.format(e, response.text)
-            ),
+            action_result.set_status(phantom.APP_ERROR, CENSYS_ERR_JSON_DECODE.format(e, response.text)),
             {},
         )
 
@@ -68,9 +64,7 @@ def parse_http_error(action_result, r):
         resp_json = r.json()
     except Exception as e:
         return (
-            action_result.set_status(
-                phantom.APP_ERROR, CENSYS_ERR_JSON_DECODE.format(e, r.text)
-            ),
+            action_result.set_status(phantom.APP_ERROR, CENSYS_ERR_JSON_DECODE.format(e, r.text)),
             None,
         )
 
