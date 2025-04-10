@@ -1,9 +1,2 @@
-Splunk SOAR Censys
-Copyright (c) 2016-2022 Splunk Inc.
-
-Third-party Software Attributions:
-
-Library: requests
-Version: 2.25.0
-License: Apache 2.0
-Kenneth Reitz
+Splunk SOAR App: Censys
+Copyright (c) 2016-2025 Splunk Inc.
