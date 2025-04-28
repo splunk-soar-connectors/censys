@@ -5,8 +5,8 @@
     "publisher": "Splunk",
     "type": "information",
     "main_module": "censys_connector.py",
-    "app_version": "2.2.1",
-    "utctime_updated": "2023-12-01T07:45:08.000000Z",
+    "app_version": "2.2.2",
+    "utctime_updated": "2025-04-28T23:46:26.080019Z",
     "package_name": "phantom_censys",
     "product_vendor": "Censys, Inc.",
     "product_name": "Censys",
@@ -4163,7 +4163,7 @@
                     "data_path": "action_result.data.*.location.province",
                     "data_type": "string",
                     "example_values": [
-                        "Île-de-France"
+                        "\u00cele-de-France"
                     ]
                 },
                 {
