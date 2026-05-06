@@ -37,15 +37,21 @@ repos:
     hooks:
       - id: djlint-reformat-django
       - id: djlint-django
+  - repo: https://github.com/phantomcyber/soar-app-linter
+    rev: 0.1.0
+    hooks:
+      - id: soar-app-linter
+        args: ["--single-repo", "--message-level", "error"]
   - repo: https://github.com/hukkin/mdformat
     rev: 0.7.22
     hooks:
       - id: mdformat
         exclude: "release_notes/.*"
   - repo: https://github.com/returntocorp/semgrep
-    rev: v1.89.0
+    rev: v1.136.0
     hooks:
       - id: semgrep
+        additional_dependencies: ["setuptools==81.0.0"]
   - repo: https://github.com/Yelp/detect-secrets
     rev: v1.5.0
     hooks:
@@ -55,7 +61,7 @@ repos:
         exclude: "README.md"
   # Central hooks
   - repo: https://github.com/phantomcyber/dev-cicd-tools
-    rev: v2.0.4
+    rev: v2.1.4
     hooks:
       - id: build-docs
         language: python
