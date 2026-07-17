@@ -15,7 +15,7 @@
 import phantom.app as phantom
 import requests
 
-from censys_consts import CENSYS_API_URL, CENSYS_ERR_JSON_DECODE, CENSYS_JSON_API_ID, CENSYS_JSON_SECRET
+from censys_consts import CENSYS_API_URL, CENSYS_DEFAULT_TIMEOUT, CENSYS_ERR_JSON_DECODE, CENSYS_JSON_API_ID, CENSYS_JSON_SECRET
 from censys_validation import get_error_message_from_exception
 
 
@@ -52,6 +52,7 @@ def make_rest_call(endpoint, action_result, config, data=None, method="post"):
             json=data,
             auth=(config[CENSYS_JSON_API_ID], config[CENSYS_JSON_SECRET]),
             headers=headers,
+            timeout=CENSYS_DEFAULT_TIMEOUT,
         )
     except Exception as e:
         return (
