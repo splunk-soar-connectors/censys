@@ -36,7 +36,7 @@ CENSYS_QUERY_HOSTS_DATASET = "hosts"
 
 # constants relating to "get_error_msg_from_exception"
 CENSYS_ERR_MSG_UNAVAILABLE = "Error message unavailable. Please check the asset configuration and|or action parameters"
-CENSYS_ERR_JSON_DECODE = "Unable to parse response as JSON: {} Raw text: {}"
+CENSYS_ERR_JSON_DECODE = "Unable to parse response as JSON: {}"
 
 # constants for integer validation
 CENSYS_INT_ERR_MSG = "Please provide a valid integer value in the {key}"

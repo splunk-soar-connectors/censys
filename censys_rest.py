@@ -46,7 +46,7 @@ def make_rest_call(endpoint, action_result, config, data=None, method="post"):
         resp_json = response.json()
     except Exception as e:
         return (
-            action_result.set_status(phantom.APP_ERROR, CENSYS_ERR_JSON_DECODE.format(e, response.text)),
+            action_result.set_status(phantom.APP_ERROR, CENSYS_ERR_JSON_DECODE.format(e)),
             {},
         )
 
@@ -64,7 +64,7 @@ def parse_http_error(action_result, r):
         resp_json = r.json()
     except Exception as e:
         return (
-            action_result.set_status(phantom.APP_ERROR, CENSYS_ERR_JSON_DECODE.format(e, r.text)),
+            action_result.set_status(phantom.APP_ERROR, CENSYS_ERR_JSON_DECODE.format(e)),
             None,
         )
 

@@ -132,13 +132,7 @@ and limitations under the License.
             </tr>
           {% endif %}
         </table>
-        {% if result.message %}
-          <p>
-            {% autoescape off %}
-              {{ result.message }}
-            {% endautoescape %}
-          </p>
-        {% endif %}
+        {% if result.message %}<p>{{ result.message }}</p>{% endif %}
         {% if result.data.result.autonomous_system %}
           <h3 class="wf-h3-style">AS Info</h3>
           <table class="wf-table-vertical">
