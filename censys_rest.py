@@ -19,6 +19,29 @@ from censys_consts import CENSYS_API_URL, CENSYS_ERR_JSON_DECODE, CENSYS_JSON_AP
 from censys_validation import get_error_message_from_exception
 
 
+SENSITIVE_HTTP_HEADERS = {
+    "authorization",
+    "cookie",
+    "proxy_authorization",
+    "set_cookie",
+    "www_authenticate",
+}
+
+
+def redact_sensitive_headers(value, inside_headers=False):
+    if isinstance(value, dict):
+        cleaned = {}
+        for key, child in value.items():
+            normalized_key = str(key).casefold().replace("-", "_")
+            if inside_headers and normalized_key in SENSITIVE_HTTP_HEADERS:
+                continue
+            cleaned[key] = redact_sensitive_headers(child, inside_headers or normalized_key == "headers")
+        return cleaned
+    if isinstance(value, list):
+        return [redact_sensitive_headers(item, inside_headers) for item in value]
+    return value
+
+
 def make_rest_call(endpoint, action_result, config, data=None, method="post"):
     request_func = getattr(requests, method)
     headers = {"Content-type": "application/json", "Accept": "text/plain"}
@@ -53,7 +76,7 @@ def make_rest_call(endpoint, action_result, config, data=None, method="post"):
     if resp_json.get("status", "") == "error":
         return parse_http_error(action_result, response), {}
 
-    return phantom.APP_SUCCESS, resp_json
+    return phantom.APP_SUCCESS, redact_sensitive_headers(resp_json)
 
 
 def parse_http_error(action_result, r):

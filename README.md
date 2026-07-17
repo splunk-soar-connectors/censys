@@ -351,7 +351,6 @@ action_result.data.\*.result.services.\*.http.response.headers.\_encoding.Last_M
 action_result.data.\*.result.services.\*.http.response.headers.\_encoding.Location | string | | DISPLAY_UTF8 |
 action_result.data.\*.result.services.\*.http.response.headers.\_encoding.Referrer_Policy | string | | DISPLAY_UTF8 |
 action_result.data.\*.result.services.\*.http.response.headers.\_encoding.Server | string | | DISPLAY_UTF8 |
-action_result.data.\*.result.services.\*.http.response.headers.\_encoding.Set_Cookie | string | | DISPLAY_UTF8 |
 action_result.data.\*.result.services.\*.http.response.headers.\_encoding.Vary | string | | DISPLAY_UTF8 |
 action_result.data.\*.result.services.\*.http.response.headers.\_encoding.X_Content_Type_Options | string | | DISPLAY_UTF8 |
 action_result.data.\*.result.services.\*.http.response.headers.\_encoding.X_Frame_Options | string | | DISPLAY_UTF8 |

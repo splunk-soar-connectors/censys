@@ -1752,13 +1752,6 @@
                     ]
                 },
                 {
-                    "data_path": "action_result.data.*.result.services.*.http.response.headers._encoding.Set_Cookie",
-                    "data_type": "string",
-                    "example_values": [
-                        "DISPLAY_UTF8"
-                    ]
-                },
-                {
                     "data_path": "action_result.data.*.result.services.*.http.response.headers._encoding.Vary",
                     "data_type": "string",
                     "example_values": [
