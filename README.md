@@ -1,9 +1,9 @@
 # Censys
 
-Publisher: Splunk \
-Connector Version: 2.2.4 \
-Product Vendor: Censys, Inc. \
-Product Name: Censys \
+Publisher: Splunk <br>
+Connector Version: 2.2.4 <br>
+Product Vendor: Censys, Inc. <br>
+Product Name: Censys <br>
 Minimum Product Version: 6.1.1
 
 This app implements investigative actions to get information from the Censys search engine
@@ -40,19 +40,19 @@ VARIABLE | REQUIRED | TYPE | DESCRIPTION
 
 ### Supported Actions
 
-[test connectivity](#action-test-connectivity) - Validate connectivity to Censys \
-[lookup certificate](#action-lookup-certificate) - Lookup certificate info \
-[lookup ip](#action-lookup-ip) - Lookup IP info \
-[lookup domain](#action-lookup-domain) - Lookup Domain info \
-[query domain](#action-query-domain) - Query the domain dataset \
-[query certificate](#action-query-certificate) - Query the certificate dataset \
+[test connectivity](#action-test-connectivity) - Validate connectivity to Censys <br>
+[lookup certificate](#action-lookup-certificate) - Lookup certificate info <br>
+[lookup ip](#action-lookup-ip) - Lookup IP info <br>
+[lookup domain](#action-lookup-domain) - Lookup Domain info <br>
+[query domain](#action-query-domain) - Query the domain dataset <br>
+[query certificate](#action-query-certificate) - Query the certificate dataset <br>
 [query ip](#action-query-ip) - Query the IP dataset
 
 ## action: 'test connectivity'
 
 Validate connectivity to Censys
 
-Type: **test** \
+Type: **test** <br>
 Read only: **True**
 
 #### Action Parameters
@@ -67,7 +67,7 @@ No Output
 
 Lookup certificate info
 
-Type: **investigate** \
+Type: **investigate** <br>
 Read only: **True**
 
 #### Action Parameters
@@ -257,7 +257,7 @@ summary.total_objects_successful | numeric | | 1 |
 
 Lookup IP info
 
-Type: **investigate** \
+Type: **investigate** <br>
 Read only: **True**
 
 #### Action Parameters
@@ -484,7 +484,7 @@ summary.total_objects_successful | numeric | | 1 |
 
 Lookup Domain info
 
-Type: **investigate** \
+Type: **investigate** <br>
 Read only: **True**
 
 #### Action Parameters
@@ -770,7 +770,7 @@ summary.total_objects_successful | numeric | | |
 
 Query the domain dataset
 
-Type: **investigate** \
+Type: **investigate** <br>
 Read only: **True**
 
 #### Action Parameters
@@ -796,7 +796,7 @@ summary.total_objects_successful | numeric | | 1 |
 
 Query the certificate dataset
 
-Type: **investigate** \
+Type: **investigate** <br>
 Read only: **True**
 
 #### Action Parameters
@@ -827,7 +827,7 @@ summary.total_objects_successful | numeric | | 1 |
 
 Query the IP dataset
 
-Type: **investigate** \
+Type: **investigate** <br>
 Read only: **True**
 
 #### Action Parameters
@@ -881,7 +881,7 @@ ______________________________________________________________________
 
 Auto-generated Splunk SOAR Connector documentation.
 
-Copyright 2025 Splunk Inc.
+Copyright 2026 Splunk Inc.
 
 Licensed under the Apache License, Version 2.0 (the "License");
 you may not use this file except in compliance with the License.
