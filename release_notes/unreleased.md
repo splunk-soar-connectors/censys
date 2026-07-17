@@ -4,3 +4,4 @@
 * - Escaped Censys widget values before embedding them in inline JavaScript contexts.
 * - Removed credential-bearing HTTP headers from Censys records before storing action-result data.
 * - Bounded Censys search pagination, stopped zero-progress cursors, truncated oversized pages, and added request timeouts.
+* - Reported Censys rate limits and v2 API error bodies as action failures instead of empty successful results.

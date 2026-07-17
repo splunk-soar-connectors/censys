@@ -63,7 +63,10 @@ def make_rest_call(endpoint, action_result, config, data=None, method="post"):
             {},
         )
 
-    if response.status_code not in (200, 429):
+    if response.status_code == 429:
+        return action_result.set_status(phantom.APP_ERROR, "Censys rate limit exceeded; retry later"), {}
+
+    if response.status_code != 200:
         return parse_http_error(action_result, response), {}
 
     try:
@@ -74,7 +77,8 @@ def make_rest_call(endpoint, action_result, config, data=None, method="post"):
             {},
         )
 
-    if resp_json.get("status", "") == "error":
+    api_code = resp_json.get("code")
+    if resp_json.get("status") == "error" or resp_json.get("error") or (isinstance(api_code, int) and not 200 <= api_code < 300):
         return parse_http_error(action_result, response), {}
 
     return phantom.APP_SUCCESS, redact_sensitive_headers(resp_json)
@@ -82,7 +86,7 @@ def make_rest_call(endpoint, action_result, config, data=None, method="post"):
 
 def parse_http_error(action_result, r):
     if "json" not in r.headers.get("Content-Type", ""):
-        return ""
+        return action_result.set_status(phantom.APP_ERROR, f"Censys returned HTTP status {r.status_code}")
 
     try:
         resp_json = r.json()
@@ -93,9 +97,9 @@ def parse_http_error(action_result, r):
         )
 
     message = "Server returned error with status: {}, Type: {}, Detail: {}".format(
-        resp_json.get("status", "NA"),
+        resp_json.get("code", resp_json.get("status", r.status_code)),
         resp_json.get("error_type", "NA"),
-        resp_json.get("error", "NA"),
+        resp_json.get("error", resp_json.get("detail", resp_json.get("message", "NA"))),
     )
 
     return action_result.set_status(phantom.APP_ERROR, message)
