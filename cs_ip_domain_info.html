@@ -11,7 +11,7 @@
 {% block widget_content %}
   <!-- Main Start Block -->
   <!-- File: cs_ip_domain_info.html
-  Copyright (c) 2016-2025 Splunk Inc.
+  Copyright (c) 2016-2026 Splunk Inc.
 
 Licensed under the Apache License, Version 2.0 (the "License");
 you may not use this file except in compliance with the License.
@@ -102,7 +102,7 @@ and limitations under the License.
               </td>
               <td>
                 <a href="javascript:;"
-                   onclick="context_menu(this, [{'contains': ['ip', 'ipv6'], 'value': '{{ result.param.ip }}' }], 0, {{ container.id }}, null, false);">
+                   onclick="context_menu(this, [{'contains': ['ip', 'ipv6'], 'value': '{{ result.param.ip|escapejs }}' }], 0, {{ container.id }}, null, false);">
                   {{ result.param.ip }}
                   &nbsp;<span class="fa fa-caret-down" style="font-size: smaller;"></span>
                 </a>
@@ -116,7 +116,7 @@ and limitations under the License.
               </td>
               <td>
                 <a href="javascript:;"
-                   onclick="context_menu(this, [{'contains': ['domain'], 'value': '{{ result.param.domain }}' }], 0, {{ container.id }}, null, false);">
+                   onclick="context_menu(this, [{'contains': ['domain'], 'value': '{{ result.param.domain|escapejs }}' }], 0, {{ container.id }}, null, false);">
                   {{ result.param.domain }}
                   &nbsp;<span class="fa fa-caret-down" style="font-size: smaller;"></span>
                 </a>
@@ -132,13 +132,7 @@ and limitations under the License.
             </tr>
           {% endif %}
         </table>
-        {% if result.message %}
-          <p>
-            {% autoescape off %}
-              {{ result.message }}
-            {% endautoescape %}
-          </p>
-        {% endif %}
+        {% if result.message %}<p>{{ result.message }}</p>{% endif %}
         {% if result.data.result.autonomous_system %}
           <h3 class="wf-h3-style">AS Info</h3>
           <table class="wf-table-vertical">
@@ -309,7 +303,7 @@ and limitations under the License.
                       </td>
                       <td>
                         <a href="javascript:;"
-                           onclick="context_menu(this, [{'contains': ['sha256'], 'value': '{{ result.data.ports|by_key:curr_port|by_key:curr_protocol|by_key:'tls'|by_key:'certificate'|by_key:'parsed'|by_key:'fingerprint_sha256' }}' }], 0, {{ container.id }}, null, false);">
+                           onclick="context_menu(this, [{'contains': ['sha256'], 'value': '{{ result.data.ports|by_key:curr_port|by_key:curr_protocol|by_key:'tls'|by_key:'certificate'|by_key:'parsed'|by_key:'fingerprint_sha256'|escapejs }}' }], 0, {{ container.id }}, null, false);">
                           {{ result.data.ports|by_key:curr_port|by_key:curr_protocol|by_key:'tls'|by_key:'certificate'|by_key:'parsed'|by_key:'fingerprint_sha256' }}
                           &nbsp;<span class="fa fa-caret-down" style="font-size: smaller;"></span>
                         </a>

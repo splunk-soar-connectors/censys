@@ -1,6 +1,6 @@
 # File: censys_consts.py
 #
-# Copyright (c) 2016-2025 Splunk Inc.
+# Copyright (c) 2016-2026 Splunk Inc.
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -36,7 +36,7 @@ CENSYS_QUERY_HOSTS_DATASET = "hosts"
 
 # constants relating to "get_error_msg_from_exception"
 CENSYS_ERR_MSG_UNAVAILABLE = "Error message unavailable. Please check the asset configuration and|or action parameters"
-CENSYS_ERR_JSON_DECODE = "Unable to parse response as JSON: {} Raw text: {}"
+CENSYS_ERR_JSON_DECODE = "Unable to parse response as JSON: {}"
 
 # constants for integer validation
 CENSYS_INT_ERR_MSG = "Please provide a valid integer value in the {key}"

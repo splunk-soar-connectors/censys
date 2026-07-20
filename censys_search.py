@@ -1,6 +1,6 @@
 # File: censys_search.py
 #
-# Copyright (c) 2016-2025 Splunk Inc.
+# Copyright (c) 2016-2026 Splunk Inc.
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -42,19 +42,27 @@ class CensysSearch:
         if phantom.is_fail(ret_val):
             return action_result.get_status(), None
 
-        hits = self._get_hits(response)
-        next = self._get_next(response)
+        hits = self._get_hits(response) or []
+        next_cursor = self._get_next(response) or ""
         total = self._get_total(response)
 
-        data_left = limit - len(hits)
-        while next != "" and data_left > 0:
-            ret_val, next_response = self._search_call(action_result, dataset, query, min(per_page, data_left), limit, next)
+        page_count = 1
+        max_pages = max(1, (limit + per_page - 1) // per_page)
+        while next_cursor and len(hits) < limit and page_count < max_pages:
+            requested_cursor = next_cursor
+            ret_val, next_response = self._search_call(action_result, dataset, query, min(per_page, limit - len(hits)), limit, requested_cursor)
             if phantom.is_fail(ret_val):
                 return action_result.get_status(), next_response
-            next_hits = self._get_hits(next_response)
+            next_hits = self._get_hits(next_response) or []
+            if not next_hits:
+                break
             hits.extend(next_hits)
-            next = self._get_next(next_response)
-            data_left -= len(next_hits)
+            page_count += 1
+            next_cursor = self._get_next(next_response) or ""
+            if next_cursor == requested_cursor:
+                break
+
+        hits = hits[:limit]
 
         for hit in hits:
             action_result.add_data(hit)
