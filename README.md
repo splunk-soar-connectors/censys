@@ -1,7 +1,7 @@
 # Censys
 
 Publisher: Splunk <br>
-Connector Version: 2.2.4 <br>
+Connector Version: 2.2.5 <br>
 Product Vendor: Censys, Inc. <br>
 Product Name: Censys <br>
 Minimum Product Version: 6.1.1
